@@ -45,15 +45,15 @@ function App() {
   const slideTypes = ["E-commerce", "CRM", "Landing", "Analytics"];
 
   return (
-    <main className="bg-primary text-text">
-      <section className="flex justify-between items-center w-full h-screen px-8 max-w-[1500px] mx-auto overflow-hidden">
+    <main className="bg-primary text-text" role="main">
+      <section className="flex justify-between items-center w-full h-screen px-8 max-w-[1500px] mx-auto overflow-hidden" aria-label="Seção principal do portfolio">
         <div className="flex flex-col w-2/3 h-full justify-center relative">
             <div className="absolute top-3/5 left-3/5 w-[28rem] h-[28rem] rounded-full blur-3xl opacity-60 animate-float-gentle" style={{
               background: 'radial-gradient(circle, rgba(156, 163, 175, 0.3) 0%, rgba(209, 213, 219, 0.2) 50%, transparent 100%)'
             }}></div>
           <div className="text-white shine text-6xl font-light leading-tight relative mb-8 z-10">
             <h1 className="relative w-fit">
-              <div className="absolute top-10 -left-20 w-16 h-px border-b border-dotted border-gray-500"></div>
+              <div className="absolute top-10 -left-20 w-16 h-px border-b border-dotted border-gray-500" aria-hidden="true"></div>
               <b>Hi</b>, I'm <b>Fernando Esdras</b>,
             </h1>
             <h2>turning <b>ideas</b> into <b>code</b>.</h2>
@@ -63,10 +63,12 @@ function App() {
             </p>
           </div>
           <div className="flex items-center gap-4 mt-12">
-            <SilverButton size="lg" className="w-48">
+            <SilverButton size="lg" className="w-48" aria-label="Explorar meu trabalho">
               Explore My Work
             </SilverButton>
-            <SilverButton className="w-12 h-12 rounded-full"><MdOutlineWhatsapp size={20} /></SilverButton>
+            <SilverButton className="w-12 h-12 rounded-full" aria-label="Contato via WhatsApp">
+              <MdOutlineWhatsapp size={20} />
+            </SilverButton>
           </div>
         </div>
         <div className="w-1/3 h-full flex justify-center items-center">
@@ -304,13 +306,15 @@ function App() {
           ))}
         </div>
       </section>
-      <nav className="flex justify-between items-center w-full px-12 fixed bottom-8 z-50">
+      <nav className="flex justify-between items-center w-full px-12 fixed bottom-8 z-50" role="navigation" aria-label="Navegação principal">
         <ul className="flex items-center gap-6 uppercase text-sm tracking-wider">
-          <li className="menu__link"><a href="#about">About</a></li>
-          <li className="menu__link"><a href="#work">Work</a></li>
-          <li className="menu__link"><a href="#contact">Contact</a></li>
+          <li className="menu__link"><a href="#about" aria-label="Sobre mim">About</a></li>
+          <li className="menu__link"><a href="#work" aria-label="Meu trabalho">Work</a></li>
+          <li className="menu__link"><a href="#contact" aria-label="Contato">Contact</a></li>
         </ul>
-        <button className="p-2 cursor-pointer rounded-full hover:bg-gray-500/30 hover:text-white hover:scale-110 duration-300"><MdTranslate /></button>
+        <button className="p-2 cursor-pointer rounded-full hover:bg-gray-500/30 hover:text-white hover:scale-110 duration-300" aria-label="Alterar idioma">
+          <MdTranslate />
+        </button>
       </nav>
         <span className="absolute bottom-8 animate-bounce left-1/2 -translate-x-1/2 text-gray-300"><CgScrollV size={20} /></span>
     </main>
