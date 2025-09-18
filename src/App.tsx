@@ -44,12 +44,6 @@ function App() {
 
   const slideTypes = ["E-commerce", "CRM", "Landing", "Analytics"];
 
-  const goToSlide = (index: number) => {
-    if (swiperRef.current) {
-      swiperRef.current.slideTo(index);
-    }
-  };
-
   return (
     <main className="bg-primary text-text">
       <section className="flex justify-between items-center w-full h-screen px-8 max-w-[1500px] mx-auto overflow-hidden">
