@@ -1,0 +1,97 @@
+@import url("https://fonts.googleapis.com/css2?family=Wire+One&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #000;
+  --color-text: #ffffff;
+}
+@layer base {
+body{
+  overflow-x: hidden;
+  background-color: var(--color-primary);
+  color: var(--color-text);
+}
+  .shine {
+    background: linear-gradient(120deg,#ffffff 0%,#c0c0c0 20%,#7f7f7f 40%,#c0c0c0 60%,#ffffff 80%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shine 3s linear infinite;
+  }
+
+  @keyframes shine {
+    from {
+      background-position: 0% center;
+    }
+    to {
+      background-position: 200% center;
+    }
+  }
+
+  /* Swiper styles */
+  .swiper {
+    width: 100%;
+    height: 100%;
+  }
+
+  .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: transform 0.3s ease;
+  }
+
+  .swiper-slide:not(.swiper-slide-active) {
+    opacity: 0.5;
+    
+  }
+
+  .swiper-slide-active {
+    transform: scale(1.13);
+    opacity: 1;
+  }
+
+}
+
+.menu__link {
+  color: #fff;
+  line-height: 2;
+  position: relative;
+}
+
+.menu__link::before {
+  content: '';
+  width: 0;
+  height: 1px;
+  border-radius: 2px;
+  background-color: #fff;
+  position: absolute;
+  bottom: -.25rem;
+  left: 50%;
+  transition: width .4s, left .4s;
+}
+
+.menu__link:hover::before {
+  width: 100%;
+  left: 0;
+}
+
+/* Animação suave para a luz cinza */
+@keyframes float-gentle {
+  0%, 100% {
+    transform: translate(-50%, -50%) translateY(0px) translateX(0px);
+  }
+  25% {
+    transform: translate(-50%, -50%) translateY(-25px) translateX(20px);
+  }
+  50% {
+    transform: translate(-50%, -50%) translateY(-15px) translateX(-15px);
+  }
+  75% {
+    transform: translate(-50%, -50%) translateY(20px) translateX(15px);
+  }
+}
+
+.animate-float-gentle {
+  animation: float-gentle 8s ease-in-out infinite;
+}
