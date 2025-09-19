@@ -157,7 +157,7 @@ export const AboutSection = () => {
          {/* Technologies Carousel */}
          <div className="relative">
            <div className="rounded-2xl overflow-hidden">
-            <div className="flex animate-scroll">
+            <div className="flex animate-scroll items-center">
               {[
                 "React",
                 "TypeScript",
@@ -186,9 +186,9 @@ export const AboutSection = () => {
               ].map((tech, index) => (
                  <div
                    key={index}
-                   className="flex-shrink-0 mx-1 px-3 py-2 w-32 bg-black rounded-lg relative before:content-[''] before:absolute before:top-1 before:left-1 before:right-1 before:bottom-1 before:border before:border-white/30 before:rounded before:pointer-events-none before:z-10 before:transition-all before:duration-300 flex items-center justify-center"
+                   className="flex-shrink-0 mx-1 inline-flex items-center border transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 text-foreground px-3 sm:px-4 md:px-6 lg:px-6 xl:px-6 py-1.5 sm:py-2 text-xs sm:text-sm font-medium border-primary/20 bg-primary/5 rounded-full"
                  >
-                   <span className="text-white font-semibold text-xs">{tech}</span>
+                   <span>{tech}</span>
                  </div>
               ))}
               {/* Duplicate for seamless loop */}
@@ -220,9 +220,9 @@ export const AboutSection = () => {
               ].map((tech, index) => (
                  <div
                    key={`duplicate-${index}`}
-                   className="flex-shrink-0 mx-1 px-3 py-2 w-32 bg-black rounded-lg relative before:content-[''] before:absolute before:top-1 before:left-1 before:right-1 before:bottom-1 before:border before:border-white/30 before:rounded before:pointer-events-none before:z-10 before:transition-all before:duration-300 flex items-center justify-center"
+                   className="flex-shrink-0 mx-1 inline-flex items-center border transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 text-foreground px-3 sm:px-4 md:px-6 lg:px-6 xl:px-6 py-1.5 sm:py-2 text-xs sm:text-sm font-medium border-primary/20 bg-primary/5 rounded-full"
                  >
-                   <span className="text-white font-semibold text-xs">{tech}</span>
+                   <span>{tech}</span>
                  </div>
               ))}
             </div>
