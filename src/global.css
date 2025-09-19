@@ -2,14 +2,28 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #000;
+  --color-primary: #0e0e0e;
+  --color-secondary: #fff;
   --color-text: #ffffff;
+  --color-text-reverse: #000000;
 }
 @layer base {
 body{
   overflow-x: hidden;
-  background-color: var(--color-primary);
+  background-color: #0e0e0e;
   color: var(--color-text);
+}
+
+.bg-pattern {
+  background-color: #0e0e0e;
+  background-image: repeating-linear-gradient(
+    135deg,
+    #000,
+    #19191a 1%,
+    transparent 1.5%,
+    transparent 50%
+  );
+  background-size: 100px 100px;
 }
   .shine {
     background: linear-gradient(120deg,#ffffff 0%,#c0c0c0 20%,#7f7f7f 40%,#c0c0c0 60%,#ffffff 80%);
@@ -95,3 +109,21 @@ body{
 .animate-float-gentle {
   animation: float-gentle 8s ease-in-out infinite;
 }
+
+.hover-border-inner::before {
+  border-color: rgba(0, 0, 0, 0.3) !important;
+}
+
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-scroll {
+  animation: scroll 30s linear infinite;
+}
+
