@@ -1,4 +1,4 @@
-import { forwardRef, useMemo, useRef, useEffect,type MutableRefObject, type CSSProperties, type HTMLAttributes } from 'react';
+import { forwardRef, useRef, useEffect,type MutableRefObject, type CSSProperties, type HTMLAttributes } from 'react';
 import { motion } from 'motion/react';
 
 function useAnimationFrame(callback: () => void) {
@@ -70,31 +70,8 @@ const VariableProximity = forwardRef<HTMLSpanElement, VariableProximityProps>((p
   } = props;
 
   const letterRefs = useRef<(HTMLSpanElement | null)[]>([]);
-  const interpolatedSettingsRef = useRef<string[]>([]);
   const mousePositionRef = useMousePositionRef(containerRef);
   const lastPositionRef = useRef<{ x: number | null; y: number | null }>({ x: null, y: null });
-
-  const parsedSettings = useMemo(() => {
-    const parseSettings = (settingsStr: string) =>
-      new Map(
-        settingsStr
-          .split(',')
-          .map(s => s.trim())
-          .map(s => {
-            const [name, value] = s.split(' ');
-            return [name.replace(/['"]/g, ''), parseFloat(value)];
-          })
-      );
-
-    const fromSettings = parseSettings(fromFontVariationSettings);
-    const toSettings = parseSettings(toFontVariationSettings);
-
-    return Array.from(fromSettings.entries()).map(([axis, fromValue]) => ({
-      axis,
-      fromValue,
-      toValue: toSettings.get(axis) ?? fromValue
-    }));
-  }, [fromFontVariationSettings, toFontVariationSettings]);
 
   const calculateDistance = (x1: number, y1: number, x2: number, y2: number) =>
     Math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2);
@@ -121,7 +98,7 @@ const VariableProximity = forwardRef<HTMLSpanElement, VariableProximityProps>((p
     lastPositionRef.current = { x, y };
     const containerRect = containerRef.current.getBoundingClientRect();
 
-    letterRefs.current.forEach((letterRef, index) => {
+    letterRefs.current.forEach((letterRef) => {
       if (!letterRef) return;
 
       const rect = letterRef.getBoundingClientRect();
