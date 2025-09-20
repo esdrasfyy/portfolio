@@ -13,24 +13,12 @@ const getInitialLang = () => {
   return "pt-BR";
 };
 
-const ContextPreferences = createContext<ContextPreferencesT | undefined>(
-  undefined
-);
+const ContextPreferences = createContext<ContextPreferencesT | undefined>(undefined);
 
-const ProviderPreferences: React.FC<{
-  children: ReactNode;
-}> = ({ children }) => {
+const ProviderPreferences: React.FC<{ children: ReactNode }> = ({ children }) => {
   const [lang, setLang] = useState<string>(getInitialLang());
   const [menu, setMenu] = useState(false);
   const [loading, setLoading] = useState(false);
-  
-  const onClose = () => {
-    setMenu(false);
-  };
-
-  const onOpen = () => {
-    setMenu(true);
-  };
 
   const toggleLang = (value: string) => {
     localStorage.setItem("i18nextLng", value);
@@ -41,18 +29,14 @@ const ProviderPreferences: React.FC<{
   const contextValue: ContextPreferencesT = {
     lang,
     toggleLang,
-    onClose,
-    onOpen,
+    onClose: () => setMenu(false),
+    onOpen: () => setMenu(true),
     menu,
     loading,
     setLoading,
   };
 
-  return (
-    <ContextPreferences.Provider value={contextValue}>
-      {children}
-    </ContextPreferences.Provider>
-  );
+  return <ContextPreferences.Provider value={contextValue}>{children}</ContextPreferences.Provider>;
 };
 
 export { ContextPreferences, ProviderPreferences };

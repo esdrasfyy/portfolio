@@ -7,94 +7,6 @@
   --color-text: #ffffff;
   --color-text-reverse: #000000;
 }
-@layer base {
-body{
-  overflow-x: hidden;
-  background-color: #0e0e0e;
-  color: var(--color-text);
-}
-
-.bg-pattern {
-  background-color: #0e0e0e;
-  background-image: repeating-linear-gradient(
-    135deg,
-    #000,
-    #19191a 1%,
-    transparent 1.5%,
-    transparent 50%
-  );
-  background-size: 100px 100px;
-}
-  .shine {
-    background: linear-gradient(120deg,#ffffff 0%,#c0c0c0 20%,#7f7f7f 40%,#c0c0c0 60%,#ffffff 80%);
-    background-size: 200% auto;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    animation: shine 3s linear infinite;
-  }
-
-  @keyframes shine {
-    0% {
-      background-position: 100%;
-    }
-    100% {
-      background-position: -100%;
-    }
-  }
-
-  /* Swiper styles */
-  .swiper {
-    width: 100%;
-    height: 100%;
-  }
-
-  .swiper-slide {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: transform 0.3s ease;
-  }
-
-  .swiper-slide:not(.swiper-slide-active) {
-    opacity: 0.5;
-    
-  }
-
-  .swiper-slide-active {
-    transform: scale(1.13);
-    opacity: 1;
-  }
-
-}
-
-
-/* Animação suave para a luz cinza */
-@keyframes float-gentle {
-  0%, 100% {
-    transform: translate(-50%, -50%) translateY(0px) translateX(0px);
-  }
-  25% {
-    transform: translate(-50%, -50%) translateY(-25px) translateX(20px);
-  }
-  50% {
-    transform: translate(-50%, -50%) translateY(-15px) translateX(-15px);
-  }
-  75% {
-    transform: translate(-50%, -50%) translateY(20px) translateX(15px);
-  }
-}
-
-  .animate-float-gentle {
-    animation: float-gentle 8s ease-in-out infinite;
-  }
-
-  .animate-shine {
-    animation: shine 5s linear infinite;
-  }
-
-.hover-border-inner::before {
-  border-color: rgba(0, 0, 0, 0.3) !important;
-}
 
 @keyframes scroll {
   0% {
@@ -109,77 +21,12 @@ body{
   animation: scroll 30s linear infinite;
 }
 
-.animated-button {
-  position: relative;
-  width: 45px;
-  height: 45px;
-  overflow: hidden;
-  border: none;
-  mix-blend-mode: difference;
-  background: none;
-  cursor: pointer;
-  padding-bottom: 2em;
-margin-top: -4px;
-}
-
-.animated-button > div {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.animated-button .clone > *,
-.animated-button .text > * {
-  opacity: 1;
-  transition: 0.2s;
-  margin-left: 4px;
-  mix-blend-mode: difference;
-  cursor: pointer;
-}
-
-.animated-button .clone > * {
-  transform: translateY(60px);
-}
-
-.animated-button:hover .clone > * {
-  opacity: 1;
-  transform: translateY(0px);
-  transition: all 0.2s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
-}
-
-.animated-button:hover .text > * {
-  opacity: 1;
-  transform: translateY(-60px);
-  transition: all 0.2s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
-}
-
-.animated-button:hover .clone > :nth-child(1) {
-  transition-delay: 0.15s;
-}
-
-.animated-button:hover .clone > :nth-child(2) {
-  transition-delay: 0.2s;
-}
-
-.animated-button:hover .clone > :nth-child(3) {
-  transition-delay: 0.25s;
-}
-
-.animated-button:hover .clone > :nth-child(4) {
-  transition-delay: 0.3s;
-}
-
-/* Vertical Text */
 .writing-mode-vertical {
   writing-mode: vertical-lr;
   text-orientation: mixed;
   transform: rotate(180deg);
 }
 
-/* Hide scrollbar but keep functionality */
 ::-webkit-scrollbar {
   display: none;
 }
@@ -190,7 +37,6 @@ html {
   scroll-behavior: smooth;
 }
 
-/* Disable text selection */
 * {
   -webkit-user-select: none;
   -moz-user-select: none;
@@ -198,53 +44,5 @@ html {
   user-select: none;
   -webkit-touch-callout: none;
   -webkit-tap-highlight-color: transparent;
-}
-
-/* Custom Cursor */
-* {
   cursor: none !important;
-}
-
-.custom-cursor {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 32px;
-  height: 32px;
-  border: 1px solid white;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 9999;
-  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-  transform: translate(-50%, -50%);
-  mix-blend-mode: difference;
-}
-
-.custom-cursor::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 4px;
-  height: 4px;
-  background: white;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  transition: all 0.1s ease-out;
-  mix-blend-mode: difference;
-}
-
-.custom-cursor.hover {
-  width: 20px;
-  height: 20px;
-  border-width: 3px;
-}
-
-.custom-cursor.hover::before {
-  width: 2px;
-  height: 2px;
-}
-
-.custom-cursor.hidden {
-  opacity: 0;
 }
