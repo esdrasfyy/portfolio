@@ -1,11 +1,16 @@
 import { SilverButton } from "./ui/button/silver.button";
 import { PiChartLineLight, PiStorefrontLight } from "react-icons/pi";
-import { MdOutlineWhatsapp } from "react-icons/md";
+import { MdKeyboardArrowDown, MdOutlineWhatsapp } from "react-icons/md";
 import { GlowingEffect } from "./ui/glowing-effect";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { RiArrowRightSLine } from "react-icons/ri";
 import { Autoplay } from "swiper/modules";
 import { useState, useRef } from "react";
+import ShinyText from "./ui/shiny-text";
+import LightRays from "./lightRays";
+import { FaMouse } from "react-icons/fa";
+import { CgScrollV } from "react-icons/cg";
+import { SlArrowDown } from "react-icons/sl";
 
 const SilhouetteCard = ({
   type,
@@ -32,8 +37,9 @@ const SilhouetteCard = ({
           <div className="w-2 h-2 rounded-full bg-gray-700"></div>
           <div className="w-2 h-2 rounded-full bg-gray-900"></div>
         </div>
-        <span className="text-gray-500 shine text-xs flex gap-2 items-center">
-          <Icon size={16} /> {type}
+        <span className="text-gray-500 text-xs flex gap-2 items-center">
+          <Icon size={16} /> 
+          <ShinyText text={type} speed={3} />
         </span>
       </div>
       <div className="group relative flex-1 w-full p-2 overflow-hidden">
@@ -64,29 +70,40 @@ export const HeroSection = () => {
       className="flex justify-between items-center w-full h-screen px-8 max-w-[1500px] mx-auto overflow-hidden"
       aria-label="Seção principal do portfolio"
     >
+        <LightRays
+          raysOrigin="top-center"
+          raysColor="#ffffff"
+          raysSpeed={1.5}
+          lightSpread={0.8}
+          rayLength={1.2}
+          followMouse={true}
+          mouseInfluence={0.1}
+          noiseAmount={0.1}
+          distortion={0.05}
+          className="custom-rays"
+        />
       <div className="flex flex-col w-2/3 h-full justify-center relative">
-        <div
+        {/* <div
           className="absolute top-3/5 left-3/5 w-[28rem] h-[28rem] rounded-full blur-3xl opacity-60 animate-float-gentle"
           style={{
             background:
               "radial-gradient(circle, rgba(156, 163, 175, 0.3) 0%, rgba(209, 213, 219, 0.2) 50%, transparent 100%)",
           }}
-        ></div>
-        <div className="text-white shine text-6xl font-light leading-tight relative mb-8 z-10">
+        ></div> */}
+        <div className="text-white text-7xl font-light relative mb-8 z-10">
           <h1 className="relative w-fit">
             <div
               className="absolute top-10 -left-20 w-16 h-px border-b border-dotted border-gray-500"
               aria-hidden="true"
             ></div>
-            <b>Hi</b>, I'm <b>Fernando Esdras</b>,
+            <ShinyText text="Hi" speed={4} />, I'm <ShinyText text="Fernando Esdras" speed={4} />,
           </h1>
           <h2>
-            turning <b>ideas</b> into <b>code</b>.
+            turning <ShinyText text="ideas" speed={4} /> into <ShinyText text="code" speed={4} />.
           </h2>
-          <p className="text-gray-400 mt-6 text-xl leading-relaxed max-w-xl">
-            I build scalable <b>web applications</b> and{" "}
-            <b>digital products</b> with clean code, performance, and modern
-            design.
+          <p className="text-gray-200 mt-10 text-2xl leading-relaxed max-w-xl">
+            I build scalable <ShinyText text="web applications" speed={4} /> and <ShinyText text="digital products" speed={4} />{" "}
+            with clean code, performance, and modern design.
           </p>
         </div>
         <div className="flex items-center gap-4 mt-12">
@@ -338,6 +355,18 @@ export const HeroSection = () => {
           ></div>
         ))}
       </div>
+      
+      {/* Demos Indicator */}
+      <div className="absolute bottom-8 flex flex-col items-center group w-5 h-32 cursor-pointer">
+        <div className="writing-mode-vertical text-sm tracking-wider mb-4">
+          Demos
+        </div>
+        <span className="h-16 w-[2px] bg-white"></span>
+        <MdKeyboardArrowDown className="-mt-3 group-hover:translate-y-2 text-2xl group-hover:text-5xl transition-all duration-300" />
+      </div>
+      <span className="absolute bottom-8 animate-bounce left-1/2 -translate-x-1/2">
+        <CgScrollV size={20} />
+      </span>
     </section>
   );
 };

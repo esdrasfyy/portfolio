@@ -34,11 +34,11 @@ body{
   }
 
   @keyframes shine {
-    from {
-      background-position: 0% center;
+    0% {
+      background-position: 100%;
     }
-    to {
-      background-position: 200% center;
+    100% {
+      background-position: -100%;
     }
   }
 
@@ -67,28 +67,6 @@ body{
 
 }
 
-.menu__link {
-  color: #fff;
-  line-height: 2;
-  position: relative;
-}
-
-.menu__link::before {
-  content: '';
-  width: 0;
-  height: 1px;
-  border-radius: 2px;
-  background-color: #fff;
-  position: absolute;
-  bottom: -.25rem;
-  left: 50%;
-  transition: width .4s, left .4s;
-}
-
-.menu__link:hover::before {
-  width: 100%;
-  left: 0;
-}
 
 /* Animação suave para a luz cinza */
 @keyframes float-gentle {
@@ -106,9 +84,13 @@ body{
   }
 }
 
-.animate-float-gentle {
-  animation: float-gentle 8s ease-in-out infinite;
-}
+  .animate-float-gentle {
+    animation: float-gentle 8s ease-in-out infinite;
+  }
+
+  .animate-shine {
+    animation: shine 5s linear infinite;
+  }
 
 .hover-border-inner::before {
   border-color: rgba(0, 0, 0, 0.3) !important;
@@ -127,3 +109,142 @@ body{
   animation: scroll 30s linear infinite;
 }
 
+.animated-button {
+  position: relative;
+  width: 45px;
+  height: 45px;
+  overflow: hidden;
+  border: none;
+  mix-blend-mode: difference;
+  background: none;
+  cursor: pointer;
+  padding-bottom: 2em;
+margin-top: -4px;
+}
+
+.animated-button > div {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.animated-button .clone > *,
+.animated-button .text > * {
+  opacity: 1;
+  transition: 0.2s;
+  margin-left: 4px;
+  mix-blend-mode: difference;
+  cursor: pointer;
+}
+
+.animated-button .clone > * {
+  transform: translateY(60px);
+}
+
+.animated-button:hover .clone > * {
+  opacity: 1;
+  transform: translateY(0px);
+  transition: all 0.2s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+}
+
+.animated-button:hover .text > * {
+  opacity: 1;
+  transform: translateY(-60px);
+  transition: all 0.2s cubic-bezier(0.215, 0.61, 0.355, 1) 0s;
+}
+
+.animated-button:hover .clone > :nth-child(1) {
+  transition-delay: 0.15s;
+}
+
+.animated-button:hover .clone > :nth-child(2) {
+  transition-delay: 0.2s;
+}
+
+.animated-button:hover .clone > :nth-child(3) {
+  transition-delay: 0.25s;
+}
+
+.animated-button:hover .clone > :nth-child(4) {
+  transition-delay: 0.3s;
+}
+
+/* Vertical Text */
+.writing-mode-vertical {
+  writing-mode: vertical-lr;
+  text-orientation: mixed;
+  transform: rotate(180deg);
+}
+
+/* Hide scrollbar but keep functionality */
+::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  scroll-behavior: smooth;
+}
+
+/* Disable text selection */
+* {
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Custom Cursor */
+* {
+  cursor: none !important;
+}
+
+.custom-cursor {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 32px;
+  height: 32px;
+  border: 1px solid white;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 9999;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  transform: translate(-50%, -50%);
+  mix-blend-mode: difference;
+}
+
+.custom-cursor::before {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4px;
+  height: 4px;
+  background: white;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  transition: all 0.1s ease-out;
+  mix-blend-mode: difference;
+}
+
+.custom-cursor.hover {
+  width: 20px;
+  height: 20px;
+  border-width: 3px;
+}
+
+.custom-cursor.hover::before {
+  width: 2px;
+  height: 2px;
+}
+
+.custom-cursor.hidden {
+  opacity: 0;
+}
