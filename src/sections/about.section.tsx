@@ -153,10 +153,10 @@ export const AboutSection = () => {
               ME
             </motion.span>
           </h2>
-          <div className="relative max-w-xl w-full text-end">
-            <VariableProximity
-              label="I'm a software engineer with a passion for building scalable and efficient web applications."
-              className="text-3xl font-semibold"
+          <div className="relative w-[600px] text-end">
+              <VariableProximity
+                label="I'm a full-stack engineer with a passion for designing and delivering scalable, secure, and robust applications."
+                className="text-3xl font-semibold"
               fromFontVariationSettings="'wght' 400"
               toFontVariationSettings="'wght' 900"
               containerRef={containerRef}
@@ -180,7 +180,7 @@ export const AboutSection = () => {
             <div className="space-y-4">
                 <div className="relative max-w-[700px]">
                   <VariableProximity
-                    label="Unlock your digital potential with custom web solutions that drive results. I specialize in creating high-performance websites and applications that transform your business goals into digital success."
+                    label="With 4+ years in tech, I’m an independent full-stack developer delivering projects for startups, agencies, and enterprises, focused on performance, scalability, and real business impact."
                     className="leading-relaxed text-xl font-thin"
                     fromFontVariationSettings="'wght' 400"
                     toFontVariationSettings="'wght' 900"
@@ -189,7 +189,7 @@ export const AboutSection = () => {
                     falloff="linear"
                   />
                 </div>
-                <p className="leading-relaxed font-bold max-w-[700px]">Whether you need a fast landing page, a complex e-commerce platform, or a custom web application, I deliver solutions that exceed expectations and drive measurable results.</p>
+                <p className="leading-relaxed font-bold max-w-[700px]">Working autonomously sharpened my ability to manage the full cycle — from design to deployment — while leading impactful projects and adapting to different business needs with agility and precision.</p>
               </div>
               <div className="grid grid-cols-2 gap-4 w-2/5">
                 {experienceCards.map((card, index) => (
@@ -228,7 +228,7 @@ export const AboutSection = () => {
             <div className="space-y-4">
             <div className="relative max-w-[55%] text-end ml-auto">
               <VariableProximity
-                label="Turning ideas into digital experiences that matter. From front-end design. From front-end design to scalable back-end systems, I build solutions with performance, clarity, and impact."
+                label="I architect scalable applications using Next.js, TypeScript, and Nest.js with Relational Databases. I implement CI/CD pipelines, Docker containerization, virtual machines deployment, and follow SOLID principles with Scrum for robust code."
                 className="leading-relaxed text-xl font-thin"
                 fromFontVariationSettings="'wght' 400"
                 toFontVariationSettings="'wght' 900"
