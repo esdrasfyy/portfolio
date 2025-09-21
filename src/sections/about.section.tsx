@@ -35,7 +35,7 @@ const experienceCards = [
   },
   {
     company: "Cidade Alta RP",
-    position: "Frontend JR",
+    position: "FullStack JR",
     startDate: "Nov 2023",
     endDate: "Out 2024",
     isFirst: false,
