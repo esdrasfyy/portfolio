@@ -3,6 +3,7 @@ import { useEffect, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import ScrollVelocity from "../components/ui/scroll-velocity.component";
 import VariableProximity from "../components/ui/variable-proximity.component";
+import { Card3D } from "../components/ui/3d-card.component";
 
 const technologies = ["React", "TypeScript", "Next.js", "Node.js", "Express", "MongoDB", "PostgreSQL", "Tailwind CSS", "Framer Motion", "Swiper.js", "Vite", "Git", "Docker", "AWS", "Vercel", "Figma", "Adobe XD", "JavaScript", "HTML5", "CSS3", "SASS", "Webpack", "Jest", "Cypress"];
 
@@ -44,58 +45,17 @@ const experienceCards = [
 export const AboutSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
 
-  // Refs para animações
-  const titleRef = useRef<HTMLDivElement>(null);
-  const journeyTitleRef = useRef<HTMLDivElement>(null);
-  const journeyParagraphRef = useRef<HTMLParagraphElement>(null);
-  const cardsRef = useRef<HTMLDivElement>(null);
-  const skillsTitleRef = useRef<HTMLDivElement>(null);
-  const techRef = useRef<HTMLDivElement>(null);
+  const aboutRef = useRef<HTMLDivElement>(null);
+  const meRef = useRef<HTMLDivElement>(null);
+  const journeyRef = useRef<HTMLDivElement>(null);
+  const skillsRef = useRef<HTMLDivElement>(null);
+  
+  const aboutInView = useInView(aboutRef, { once: false });
+  const meInView = useInView(meRef, { once: false });
+  const journeyInView = useInView(journeyRef, { once: false });
+  const skillsInView = useInView(skillsRef, { once: false });
+  const techInView = useInView(containerRef, { once: false });
 
-  // useInView para cada elemento
-  const titleInView = useInView(titleRef, { once: false });
-  const journeyTitleInView = useInView(journeyTitleRef, { once: false });
-  const journeyParagraphInView = useInView(journeyParagraphRef, { once: false });
-  const cardsInView = useInView(cardsRef, { once: false });
-  const skillsTitleInView = useInView(skillsTitleRef, { once: false });
-  const techInView = useInView(techRef, { once: false });
-
-  // Variantes de animação
-  const titleVariants = {
-    hidden: { opacity: 0, y: -50, filter: "blur(10px)" },
-    visible: { opacity: 1, y: 0, filter: "blur(0px)" },
-    exit: { opacity: 0, y: -50, filter: "blur(10px)" },
-  };
-
-  const journeyTitleVariants = {
-    hidden: { opacity: 0, y: -30, filter: "blur(8px)" },
-    visible: { opacity: 1, y: 0, filter: "blur(0px)" },
-    exit: { opacity: 0, y: -30, filter: "blur(8px)" },
-  };
-
-  const journeyParagraphVariants = {
-    hidden: { opacity: 0, y: 30, filter: "blur(8px)" },
-    visible: { opacity: 1, y: 0, filter: "blur(0px)" },
-    exit: { opacity: 0, y: 30, filter: "blur(8px)" },
-  };
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 50, filter: "blur(8px)" },
-    visible: { opacity: 1, y: 0, filter: "blur(0px)" },
-    exit: { opacity: 0, y: 50, filter: "blur(8px)" },
-  };
-
-  const skillsTitleVariants = {
-    hidden: { opacity: 0, y: -30, filter: "blur(8px)" },
-    visible: { opacity: 1, y: 0, filter: "blur(0px)" },
-    exit: { opacity: 0, y: -30, filter: "blur(8px)" },
-  };
-
-  const techVariants = {
-    hidden: { opacity: 0, y: 100, filter: "blur(10px)" },
-    visible: { opacity: 1, y: 0, filter: "blur(0px)" },
-    exit: { opacity: 0, y: 100, filter: "blur(10px)" },
-  };
   useEffect(() => {
     const experienceCards = document.querySelectorAll(".experience-card-js");
 
@@ -171,11 +131,27 @@ export const AboutSection = () => {
   return (
     <section id="about" className="h-screen bg-secondary text-text-reverse py-16">
       <div className="max-w-[1500px] h-full mx-auto px-8 flex flex-col justify-between">
-        <motion.div ref={titleRef} className="col-span-4 flex justify-between" variants={titleVariants} initial="hidden" animate={titleInView ? "visible" : "exit"} transition={{ duration: 0.8, ease: "easeOut" }}>
+        <div className="col-span-4 flex justify-between">
           <h2 className="text-6xl font-light relative">
-            <span className="font-bold">ABOUT</span>
+            <motion.span 
+              ref={aboutRef} 
+              className="font-bold" 
+              initial={{ opacity: 0, y: -50, filter: "blur(10px)" }} 
+              animate={aboutInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : { opacity: 0, y: -50, filter: "blur(10px)" }} 
+              transition={{ duration: 0.8, ease: "easeOut" }}
+            >
+              ABOUT
+            </motion.span>
             <br />
-            <span className="text-4xl absolute bottom-2 left-0">ME</span>
+            <motion.span 
+              ref={meRef} 
+              className="text-4xl absolute bottom-2 left-0" 
+              initial={{ opacity: 0, y: 50, filter: "blur(10px)" }} 
+              animate={meInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : { opacity: 0, y: 50, filter: "blur(10px)" }} 
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
+            >
+              ME
+            </motion.span>
           </h2>
           <div className="relative max-w-xl w-full text-end">
             <VariableProximity
@@ -188,59 +164,68 @@ export const AboutSection = () => {
               falloff="linear"
             />
           </div>
-        </motion.div>
+        </div>
         <div className="flex justify-between gap-8">
           <div className="w-full">
-            <motion.div ref={journeyTitleRef} variants={journeyTitleVariants} initial="hidden" animate={journeyTitleInView ? "visible" : "exit"} transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}>
+            <motion.div 
+              ref={journeyRef}
+              initial={{ opacity: 0, y: -30, filter: "blur(8px)" }}
+              animate={journeyInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : { opacity: 0, y: -30, filter: "blur(8px)" }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+            >
               <h2 className="text-4xl font-bold">Journey.</h2>
               <h3 className="text-xs uppercase opacity-50 font-bold">MY HISTORY</h3>
             </motion.div>
             <div className="flex justify-between items-center w-full">
-              <div className="space-y-4">
+            <div className="space-y-4">
                 <div className="relative max-w-[700px]">
-                <VariableProximity
-                  label="Unlock your digital potential with custom web solutions that drive results. I specialize in creating high-performance websites and applications that transform your business goals into digital success."
+                  <VariableProximity
+                    label="Unlock your digital potential with custom web solutions that drive results. I specialize in creating high-performance websites and applications that transform your business goals into digital success."
                     className="leading-relaxed text-xl font-thin"
-                  fromFontVariationSettings="'wght' 400"
-                  toFontVariationSettings="'wght' 900"
-                  containerRef={containerRef}
-                  radius={80}
-                  falloff="linear"
+                    fromFontVariationSettings="'wght' 400"
+                    toFontVariationSettings="'wght' 900"
+                    containerRef={containerRef}
+                    radius={80}
+                    falloff="linear"
                   />
-                  </div>
-                <motion.p ref={journeyParagraphRef} className="leading-relaxed font-bold max-w-[700px]" variants={journeyParagraphVariants} initial="hidden" animate={journeyParagraphInView ? "visible" : "exit"} transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}>
-                  Whether you need a fast landing page, a complex e-commerce platform, or a custom web application, I deliver solutions that exceed expectations and drive measurable results.
-                </motion.p>
+                </div>
+                <p className="leading-relaxed font-bold max-w-[700px]">Whether you need a fast landing page, a complex e-commerce platform, or a custom web application, I deliver solutions that exceed expectations and drive measurable results.</p>
               </div>
-              <motion.div ref={cardsRef} className="grid grid-cols-2 gap-4 w-2/5" variants={cardVariants} initial="hidden" animate={cardsInView ? "visible" : "exit"} transition={{ duration: 0.6, ease: "easeOut", delay: 0.8 }}>
+              <div className="grid grid-cols-2 gap-4 w-2/5">
                 {experienceCards.map((card, index) => (
-                  <motion.div
+                  <Card3D
                     key={index}
-                    className="experience-card-js bg-primary h-24 text-text relative rounded-md flex p-4 flex-col transition-all duration-700 border border-white/20"
-                    initial={{ opacity: 0, y: 50, filter: "blur(8px)" }}
-                    animate={cardsInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : { opacity: 0, y: 50, filter: "blur(8px)" }}
-                    transition={{ duration: 0.5, ease: "easeOut", delay: 0.1 * index }}
+                    className="experience-card-js"
+                    intensity={15}
+                    transitionDuration={0.4}
                   >
-                    <h3 className="font-semibold transition-colors duration-700">{card.company}</h3>
-                    <p className="text-xs font-medium text-gray-300 transition-colors duration-700">{card.position}</p>
-                    <p className="text-xs text-gray-500 transition-colors duration-700 absolute bottom-4 left-4">
-                      {card.startDate} - {card.endDate}
-                    </p>
-                    <button className="w-8 h-8 flex items-center justify-center bg-secondary rounded-full cursor-pointer hover:-rotate-45 hover:text-2xl text-text-reverse ml-auto transition-all duration-700 absolute top-1/2 -translate-y-1/2 right-4">
-                      <IoAddOutline />
-                    </button>
-                  </motion.div>
+                    <div className="bg-primary h-24 text-text relative rounded-md flex p-4 flex-col transition-all duration-700 border border-white/20 hover:border-white/40">
+                      <h3 className="font-semibold transition-colors duration-700">{card.company}</h3>
+                      <p className="text-xs font-medium text-gray-300 transition-colors duration-700">{card.position}</p>
+                      <p className="text-xs text-gray-500 transition-colors duration-700 absolute bottom-4 left-4">
+                        {card.startDate} - {card.endDate}
+                      </p>
+                      <button className="w-8 h-8 flex items-center justify-center bg-secondary rounded-full cursor-pointer hover:-rotate-45 hover:text-2xl text-text-reverse ml-auto transition-all duration-700 absolute top-1/2 -translate-y-1/2 right-4">
+                        <IoAddOutline />
+                      </button>
+                    </div>
+                  </Card3D>
                 ))}
-              </motion.div>
+              </div>
+            </div>
             </div>
           </div>
-        </div>
-        <div className="space-y-6 w-full">
-          <motion.div ref={skillsTitleRef} variants={skillsTitleVariants} initial="hidden" animate={skillsTitleInView ? "visible" : "exit"} transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}>
+          <div className="space-y-6 w-full">
+          <motion.div 
+            ref={skillsRef}
+            initial={{ opacity: 0, y: -30, filter: "blur(8px)" }}
+            animate={skillsInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : { opacity: 0, y: -30, filter: "blur(8px)" }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
+          >
             <h2 className="text-4xl font-bold text-end">Skills</h2>
             <h3 className="text-xs uppercase opacity-50 font-bold text-end">MY STACK</h3>
           </motion.div>
-          <div className="space-y-4">
+            <div className="space-y-4">
             <div className="relative max-w-[55%] text-end ml-auto">
               <VariableProximity
                 label="Turning ideas into digital experiences that matter. From front-end design. From front-end design to scalable back-end systems, I build solutions with performance, clarity, and impact."
@@ -254,7 +239,14 @@ export const AboutSection = () => {
             </div>
           </div>
         </div>
-        <motion.div ref={techRef} style={{ position: "relative" }} className="rounded-2xl overflow-hidden" variants={techVariants} initial="hidden" animate={techInView ? "visible" : "exit"} transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}>
+        <motion.div 
+          ref={containerRef}
+          style={{ position: "relative" }} 
+          className="rounded-2xl overflow-hidden"
+          initial={{ opacity: 0, y: 100, filter: "blur(10px)" }}
+          animate={techInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : { opacity: 0, y: 100, filter: "blur(10px)" }}
+          transition={{ duration: 1, ease: "easeOut", delay: 0.4 }}
+        >
           <ScrollVelocity texts={[generateTechString(technologies), generateTechString(technologies)]} velocity={50} className="text-2xl font-semibold tracking-wider" parallaxClassName="text-semibold" scrollerClassName="text-semibold" />
         </motion.div>
       </div>
