@@ -1,5 +1,5 @@
 "use client";
-import { useState, ReactNode } from "react";
+import { useState, type ReactNode } from "react";
 
 interface Card3DProps {
   children: ReactNode;
@@ -28,7 +28,7 @@ export function Card3D({
       const y = (offsetY / height - 0.5) * -intensity;
 
       setStyle({
-        transform: `rotateX(${y}deg) rotateY(${x}deg)`,
+        transform: `perspective(1000px) rotateX(${y}deg) rotateY(${x}deg)`,
         transition: `transform ${transitionDuration}s ease-out`,
       });
     }
@@ -36,7 +36,7 @@ export function Card3D({
 
   const handleMouseLeave = () => {
     setStyle({
-      transform: "rotateX(0deg) rotateY(0deg)",
+      transform: "perspective(1000px) rotateX(0deg) rotateY(0deg)",
       transition: `transform ${transitionDuration}s ease-out`,
     });
   };
@@ -48,7 +48,7 @@ export function Card3D({
       onMouseLeave={handleMouseLeave} 
       style={{ perspective }}
     >
-      <div style={{ ...style }}>
+      <div style={{ ...style, transformStyle: 'preserve-3d' }}>
         {children}
       </div>
     </div>

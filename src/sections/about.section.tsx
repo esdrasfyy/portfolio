@@ -1,5 +1,5 @@
 import { IoAddOutline } from "react-icons/io5";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import ScrollVelocity from "../components/ui/scroll-velocity.component";
 import VariableProximity from "../components/ui/variable-proximity.component";
@@ -13,31 +13,31 @@ const generateTechString = (techs: string[], separator: string = "   ⇢   ") =>
 
 const experienceCards = [
   {
-    company: "TechCorp Solutions",
-    position: "Senior Frontend Developer",
-    startDate: "2022",
+    company: "Aégis Capital",
+    position: "Tech Lead SR",
+    startDate: "Feb 2025",
     endDate: "Present",
     isFirst: true,
   },
   {
-    company: "Digital Agency Pro",
-    position: "Full Stack Developer",
-    startDate: "2020",
-    endDate: "2022",
+    company: "GroupLink One",
+    position: "Frontend SR",
+    startDate: " 2025",
+    endDate: "Ago 2025",
     isFirst: false,
   },
   {
-    company: "StartupX",
-    position: "React Developer",
-    startDate: "2019",
-    endDate: "2020",
+    company: "Snapic Tecnologia",
+    position: "FullStack PL",
+    startDate: "Dez 2024",
+    endDate: "Fev 2025",
     isFirst: false,
   },
   {
-    company: "WebStudio",
-    position: "Junior Developer",
-    startDate: "2018",
-    endDate: "2019",
+    company: "Cidade Alta RP",
+    position: "Frontend JR",
+    startDate: "Nov 2023",
+    endDate: "Out 2024",
     isFirst: false,
   },
 ];
@@ -49,114 +49,36 @@ export const AboutSection = () => {
   const meRef = useRef<HTMLDivElement>(null);
   const journeyRef = useRef<HTMLDivElement>(null);
   const skillsRef = useRef<HTMLDivElement>(null);
-  
+
   const aboutInView = useInView(aboutRef, { once: false });
   const meInView = useInView(meRef, { once: false });
   const journeyInView = useInView(journeyRef, { once: false });
   const skillsInView = useInView(skillsRef, { once: false });
   const techInView = useInView(containerRef, { once: false });
 
-  useEffect(() => {
-    const experienceCards = document.querySelectorAll(".experience-card-js");
-
-    const handleButtonMouseEnter = (e: Event) => {
-      const button = e.target as HTMLElement;
-      const card = button.closest(".experience-card-js") as HTMLElement;
-      const title = card?.querySelector("h3") as HTMLElement;
-      const descriptions = card?.querySelectorAll("p") as NodeListOf<HTMLElement>;
-
-      if (card) {
-        card.style.backgroundColor = "#ffffff";
-        card.style.boxShadow = "0 25px 50px -12px rgba(0, 0, 0, 0.25)";
-        if (title) title.style.color = "#000000";
-        if (descriptions) {
-          descriptions.forEach((desc) => {
-            desc.style.color = "#000000";
-          });
-        }
-        if (button) {
-          button.style.backgroundColor = "#000000";
-          button.style.color = "#ffffff";
-        }
-        card.classList.add("hover-border-inner");
-      }
-    };
-
-    const handleButtonMouseLeave = (e: Event) => {
-      const button = e.target as HTMLElement;
-      const card = button.closest(".experience-card-js") as HTMLElement;
-      const title = card?.querySelector("h3") as HTMLElement;
-      const descriptions = card?.querySelectorAll("p") as NodeListOf<HTMLElement>;
-
-      if (card) {
-        card.style.backgroundColor = "#000000";
-        card.style.boxShadow = "none";
-        if (title) title.style.color = "#ffffff";
-        if (descriptions) {
-          descriptions.forEach((desc, index) => {
-            if (index === 0) {
-              desc.style.color = "#d1d5db"; // text-gray-300
-            } else {
-              desc.style.color = "#6b7280"; // text-gray-500
-            }
-          });
-        }
-        if (button) {
-          button.style.backgroundColor = "#ffffff";
-          button.style.color = "#000000";
-        }
-        card.classList.remove("hover-border-inner");
-      }
-    };
-
-    experienceCards.forEach((card) => {
-      const button = card.querySelector("button");
-      if (button) {
-        button.addEventListener("mouseenter", handleButtonMouseEnter);
-        button.addEventListener("mouseleave", handleButtonMouseLeave);
-      }
-    });
-
-    return () => {
-      experienceCards.forEach((card) => {
-        const button = card.querySelector("button");
-        if (button) {
-          button.removeEventListener("mouseenter", handleButtonMouseEnter);
-          button.removeEventListener("mouseleave", handleButtonMouseLeave);
-        }
-      });
-    };
-  }, []);
-
   return (
     <section id="about" className="h-screen bg-secondary text-text-reverse py-16">
       <div className="max-w-[1500px] h-full mx-auto px-8 flex flex-col justify-between">
         <div className="col-span-4 flex justify-between">
           <h2 className="text-6xl font-light relative">
-            <motion.span 
-              ref={aboutRef} 
-              className="font-bold" 
-              initial={{ opacity: 0, y: -50, filter: "blur(10px)" }} 
-              animate={aboutInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : { opacity: 0, y: -50, filter: "blur(10px)" }} 
-              transition={{ duration: 0.8, ease: "easeOut" }}
-            >
+            <motion.span ref={aboutRef} className="font-bold" initial={{ opacity: 0, y: -50, filter: "blur(10px)" }} animate={aboutInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : { opacity: 0, y: -50, filter: "blur(10px)" }} transition={{ duration: 0.8, ease: "easeOut" }}>
               ABOUT
             </motion.span>
             <br />
-            <motion.span 
-              ref={meRef} 
-              className="text-4xl absolute bottom-2 left-0" 
-              initial={{ opacity: 0, y: 50, filter: "blur(10px)" }} 
-              animate={meInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : { opacity: 0, y: 50, filter: "blur(10px)" }} 
+            <motion.span
+              ref={meRef}
+              className="text-4xl absolute bottom-2 left-0"
+              initial={{ opacity: 0, y: 50, filter: "blur(10px)" }}
+              animate={meInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : { opacity: 0, y: 50, filter: "blur(10px)" }}
               transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
             >
               ME
             </motion.span>
           </h2>
           <div className="relative w-[600px] text-end">
-              <VariableProximity
-                label="I'm a full-stack engineer with a passion for designing and delivering scalable, secure, and robust applications."
-                className="text-3xl font-semibold"
+            <VariableProximity
+              label="I'm a full-stack engineer with a passion for designing and delivering scalable, secure, and robust applications."
+              className="text-3xl font-semibold"
               fromFontVariationSettings="'wght' 400"
               toFontVariationSettings="'wght' 900"
               containerRef={containerRef}
@@ -167,17 +89,12 @@ export const AboutSection = () => {
         </div>
         <div className="flex justify-between gap-8">
           <div className="w-full">
-            <motion.div 
-              ref={journeyRef}
-              initial={{ opacity: 0, y: -30, filter: "blur(8px)" }}
-              animate={journeyInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : { opacity: 0, y: -30, filter: "blur(8px)" }}
-              transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-            >
+            <motion.div ref={journeyRef} initial={{ opacity: 0, y: -30, filter: "blur(8px)" }} animate={journeyInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : { opacity: 0, y: -30, filter: "blur(8px)" }} transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}>
               <h2 className="text-4xl font-bold">Journey.</h2>
               <h3 className="text-xs uppercase opacity-50 font-bold">MY HISTORY</h3>
             </motion.div>
             <div className="flex justify-between items-center w-full">
-            <div className="space-y-4">
+              <div className="space-y-4">
                 <div className="relative max-w-[700px]">
                   <VariableProximity
                     label="With 4+ years in tech, I’m an independent full-stack developer delivering projects for startups, agencies, and enterprises, focused on performance, scalability, and real business impact."
@@ -193,12 +110,7 @@ export const AboutSection = () => {
               </div>
               <div className="grid grid-cols-2 gap-4 w-2/5">
                 {experienceCards.map((card, index) => (
-                  <Card3D
-                    key={index}
-                    className="experience-card-js"
-                    intensity={15}
-                    transitionDuration={0.4}
-                  >
+                  <Card3D key={index} className="experience-card-js" intensity={15} transitionDuration={0.4}>
                     <div className="bg-primary h-24 text-text relative rounded-md flex p-4 flex-col transition-all duration-700 border border-white/20 hover:border-white/40">
                       <h3 className="font-semibold transition-colors duration-700">{card.company}</h3>
                       <p className="text-xs font-medium text-gray-300 transition-colors duration-700">{card.position}</p>
@@ -213,19 +125,14 @@ export const AboutSection = () => {
                 ))}
               </div>
             </div>
-            </div>
           </div>
-          <div className="space-y-6 w-full">
-          <motion.div 
-            ref={skillsRef}
-            initial={{ opacity: 0, y: -30, filter: "blur(8px)" }}
-            animate={skillsInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : { opacity: 0, y: -30, filter: "blur(8px)" }}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}
-          >
+        </div>
+        <div className="space-y-6 w-full">
+          <motion.div ref={skillsRef} initial={{ opacity: 0, y: -30, filter: "blur(8px)" }} animate={skillsInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : { opacity: 0, y: -30, filter: "blur(8px)" }} transition={{ duration: 0.8, ease: "easeOut", delay: 0.3 }}>
             <h2 className="text-4xl font-bold text-end">Skills</h2>
             <h3 className="text-xs uppercase opacity-50 font-bold text-end">MY STACK</h3>
           </motion.div>
-            <div className="space-y-4">
+          <div className="space-y-4">
             <div className="relative max-w-[55%] text-end ml-auto">
               <VariableProximity
                 label="I architect scalable applications using Next.js, TypeScript, and Nest.js with Relational Databases. I implement CI/CD pipelines, Docker containerization, virtual machines deployment, and follow SOLID principles with Scrum for robust code."
@@ -239,9 +146,9 @@ export const AboutSection = () => {
             </div>
           </div>
         </div>
-        <motion.div 
+        <motion.div
           ref={containerRef}
-          style={{ position: "relative" }} 
+          style={{ position: "relative" }}
           className="rounded-2xl overflow-hidden"
           initial={{ opacity: 0, y: 100, filter: "blur(10px)" }}
           animate={techInView ? { opacity: 1, y: 0, filter: "blur(0px)" } : { opacity: 0, y: 100, filter: "blur(10px)" }}
