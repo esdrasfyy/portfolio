@@ -3,11 +3,17 @@ import { LightRaysComponent } from "./components/ui/light-rays.component";
 import { AboutSection } from "./sections/about.section";
 import { HeroSection } from "./sections/hero.section";
 import { useScrollSnap } from "./hooks/useScrollSnap";
+import { useEffect } from "react";
 
 function App() {
   // Configuração do scroll snap
   const sections = ['hero', 'about'];
   useScrollSnap({ sections, timeout: 1500 });
+
+  // Redirecionar para a home quando der reload
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
   return (
     <main
       className="text-text"
