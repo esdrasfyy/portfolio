@@ -26,6 +26,30 @@ const projects = [
     description: "Modern portfolio with interactive animations and responsive design",
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop",
   },
+  {
+    id: 5,
+    title: "SaaS Platform",
+    description: "Scalable software-as-a-service platform with microservices architecture",
+    image: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=400&h=300&fit=crop",
+  },
+  {
+    id: 6,
+    title: "IoT Monitoring",
+    description: "Internet of Things monitoring system with real-time data processing",
+    image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=300&fit=crop",
+  },
+  {
+    id: 7,
+    title: "Blockchain App",
+    description: "Decentralized application with smart contracts and Web3 integration",
+    image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=400&h=300&fit=crop",
+  },
+  {
+    id: 8,
+    title: "Data Analytics",
+    description: "Advanced data visualization and business intelligence platform",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop",
+  },
 ];
 
 export const MyWorkSection = () => {
@@ -63,29 +87,31 @@ export const MyWorkSection = () => {
           ></div>
         </div>
 
-        <div className="grid grid-cols-1 mx-4 gap-1">
+        <div className="grid grid-cols-2 mx-4 gap-1">
           {projects.map((project, index) => {
+            let borderClasses = "border border-white/10";
+            if (index === 0 || index === 1) {
+              borderClasses = "border-l border-r border-b border-white/10";
+            }
+            if (index === 6 || index === 7) {
+              borderClasses = "border-l border-r border-t border-white/10";
+            }
+            
             return (
-              <div key={project.id} className="h-full w-full border border-white/10 overflow-hidden flex">
-                <div className="w-full p-6 flex flex-col justify-center">
-                  <h3 className="text-2xl font-bold text-white mb-3">{project.title}</h3>
-                  <p className="text-gray-300 text-sm mb-4">{project.description}</p>
-                  <div className="text-xs text-gray-500 border-t border-gray-700 pt-3">
-                    <p>👆 Raspe o card ao lado para ver o projeto</p>
-                  </div>
-                </div>
-                <div className={`h-full w-full overflow-hidden flex border-l border-white/10`}>
-                  <ScratchCard {...scratchConfig}>
-                    <div className="flex w-full h-full items-center justify-center bg-gray-800">
-                      <div className="text-center">
-                        <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
-                        <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                          <h3 className="text-white text-xl font-bold">{project.title}</h3>
+              <div key={project.id} className={`h-full w-full ${borderClasses} overflow-hidden rounded-lg`}>
+                <ScratchCard {...scratchConfig}>
+                  <div className="flex w-full h-full items-center justify-center bg-gray-800">
+                    <div className="text-center relative">
+                      <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
+                      <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
+                        <div className="text-center">
+                          <h3 className="text-white text-xl font-bold mb-2">{project.title}</h3>
+                          <p className="text-white/80 text-sm">{project.description}</p>
                         </div>
                       </div>
                     </div>
-                  </ScratchCard>
-                </div>
+                  </div>
+                </ScratchCard>
               </div>
             );
           })}
