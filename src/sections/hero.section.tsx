@@ -12,7 +12,7 @@ import { motion, useInView } from "framer-motion";
 export const HeroSection = () => {
   const [activeSlide, setActiveSlide] = useState(0);
   const swiperRef = useRef<any>(null);
-  
+
   // Refs para animações
   const h1Ref = useRef<HTMLHeadingElement>(null);
   const h2Ref = useRef<HTMLHeadingElement>(null);
@@ -35,43 +35,43 @@ export const HeroSection = () => {
   const h1Variants = {
     hidden: { opacity: 0, y: -50, filter: "blur(10px)" },
     visible: { opacity: 1, y: 0, filter: "blur(0px)" },
-    exit: { opacity: 0, y: -50, filter: "blur(10px)" }
+    exit: { opacity: 0, y: -50, filter: "blur(10px)" },
   };
 
   const h2Variants = {
     hidden: { opacity: 0, y: -30, filter: "blur(8px)" },
     visible: { opacity: 1, y: 0, filter: "blur(0px)" },
-    exit: { opacity: 0, y: -30, filter: "blur(8px)" }
+    exit: { opacity: 0, y: -30, filter: "blur(8px)" },
   };
 
   const pVariants = {
     hidden: { opacity: 0, y: 30, filter: "blur(8px)" },
     visible: { opacity: 1, y: 0, filter: "blur(0px)" },
-    exit: { opacity: 0, y: 30, filter: "blur(8px)" }
+    exit: { opacity: 0, y: 30, filter: "blur(8px)" },
   };
 
   const buttonsVariants = {
     hidden: { opacity: 0, x: 50, filter: "blur(10px)" },
     visible: { opacity: 1, x: 0, filter: "blur(0px)" },
-    exit: { opacity: 0, x: 50, filter: "blur(10px)" }
+    exit: { opacity: 0, x: 50, filter: "blur(10px)" },
   };
 
   const swiperVariants = {
     hidden: { opacity: 0 },
     visible: { opacity: 1 },
-    exit: { opacity: 0 }
+    exit: { opacity: 0 },
   };
 
   const indicatorsVariants = {
     hidden: { opacity: 0, x: 50, scale: 0.5 },
     visible: { opacity: 1, x: 0, scale: 1 },
-    exit: { opacity: 0, x: 50, scale: 0.5 }
+    exit: { opacity: 0, x: 50, scale: 0.5 },
   };
 
   const scrollVariants = {
     hidden: { opacity: 0, y: 50, scale: 0.8 },
     visible: { opacity: 1, y: 0, scale: 1 },
-    exit: { opacity: 0, y: 50, scale: 0.8 }
+    exit: { opacity: 0, y: 50, scale: 0.8 },
   };
 
   const slideTypes = ["E-commerce", "CRM", "Landing", "Analytics"];
@@ -80,45 +80,18 @@ export const HeroSection = () => {
     <section id="hero" className="flex justify-between items-center w-full h-screen px-8 max-w-[1500px] mx-auto overflow-hidden" aria-label="Seção principal do portfolio">
       <div className="flex flex-col w-2/3 h-full justify-center relative">
         <div className="text-white text-7xl font-light relative mb-8 z-10">
-          <motion.h1 
-            ref={h1Ref}
-            className="relative w-fit"
-            variants={h1Variants}
-            initial="hidden"
-            animate={h1InView ? "visible" : "exit"}
-            transition={{ duration: 0.8, ease: "easeOut" }}
-          >
+          <motion.h1 ref={h1Ref} className="relative w-fit" variants={h1Variants} initial="hidden" animate={h1InView ? "visible" : "exit"} transition={{ duration: 0.8, ease: "easeOut" }}>
             <div className="absolute top-10 -left-20 w-16 h-px border-b border-dotted border-gray-500" aria-hidden="true"></div>
             <ShinyTextComponent text="Hi" speed={4} />, I'm <ShinyTextComponent text="Fernando Esdras" speed={4} />,
           </motion.h1>
-          <motion.h2
-            ref={h2Ref}
-            variants={h2Variants}
-            initial="hidden"
-            animate={h2InView ? "visible" : "exit"}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
-          >
+          <motion.h2 ref={h2Ref} variants={h2Variants} initial="hidden" animate={h2InView ? "visible" : "exit"} transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}>
             turning <ShinyTextComponent text="ideas" speed={4} /> into <ShinyTextComponent text="code" speed={4} />.
           </motion.h2>
-          <motion.p 
-            ref={pRef}
-            className="text-gray-200 mt-10 text-2xl leading-relaxed max-w-xl"
-            variants={pVariants}
-            initial="hidden"
-            animate={pInView ? "visible" : "exit"}
-            transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}
-          >
+          <motion.p ref={pRef} className="text-gray-200 mt-10 text-2xl leading-relaxed max-w-xl" variants={pVariants} initial="hidden" animate={pInView ? "visible" : "exit"} transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}>
             I build scalable <ShinyTextComponent text="web applications" speed={4} /> and <ShinyTextComponent text="digital products" speed={4} /> with clean code, performance, and modern design.
           </motion.p>
         </div>
-        <motion.div 
-          ref={buttonsRef}
-          className="flex items-center gap-4 mt-12"
-          variants={buttonsVariants}
-          initial="hidden"
-          animate={buttonsInView ? "visible" : "exit"}
-          transition={{ duration: 0.6, ease: "easeOut", delay: 0.6 }}
-        >
+        <motion.div ref={buttonsRef} className="flex items-center gap-4 mt-12" variants={buttonsVariants} initial="hidden" animate={buttonsInView ? "visible" : "exit"} transition={{ duration: 0.6, ease: "easeOut", delay: 0.6 }}>
           <SilverButton size="lg" className="w-48" aria-label="Explorar meu trabalho">
             Explore My Work
           </SilverButton>
@@ -127,14 +100,7 @@ export const HeroSection = () => {
           </SilverButton>
         </motion.div>
       </div>
-      <motion.div 
-        ref={swiperRef_anim}
-        className="w-1/3 h-full flex justify-center items-center"
-        variants={swiperVariants}
-        initial="hidden"
-        animate={swiperInView ? "visible" : "exit"}
-        transition={{ duration: 0.4, ease: "easeOut", delay: 0.3 }}
-      >
+      <motion.div ref={swiperRef_anim} className="w-1/3 h-full flex justify-center items-center" variants={swiperVariants} initial="hidden" animate={swiperInView ? "visible" : "exit"} transition={{ duration: 0.4, ease: "easeOut", delay: 0.3 }}>
         <div className="w-96 h-screen">
           <Swiper
             direction="vertical"
@@ -370,38 +336,18 @@ export const HeroSection = () => {
           </Swiper>
         </div>
       </motion.div>
-      <motion.div 
-        ref={indicatorsRef}
-        className="gap-10 absolute right-16 top-1/2 -translate-y-1/2 flex flex-col w-20"
-        variants={indicatorsVariants}
-        initial="hidden"
-        animate={indicatorsInView ? "visible" : "exit"}
-        transition={{ duration: 0.6, ease: "easeOut", delay: 0.7 }}
-      >
+      <motion.div ref={indicatorsRef} className="gap-10 absolute right-16 top-1/2 -translate-y-1/2 flex flex-col w-20" variants={indicatorsVariants} initial="hidden" animate={indicatorsInView ? "visible" : "exit"} transition={{ duration: 0.6, ease: "easeOut", delay: 0.7 }}>
         {slideTypes.map((type, index) => (
           <div key={type} className={`h-1 border border-dotted transition-all duration-300 rounded-lg relative ${index === activeSlide % 4 ? "w-20 border-white" : "w-12 border-gray-500 hover:border-gray-300"}`} title={`${type}`}></div>
         ))}
       </motion.div>
 
-      <motion.div 
-        ref={scrollRef}
-        className="absolute bottom-8 flex flex-col items-center group w-5 h-32 cursor-pointer"
-        variants={scrollVariants}
-        initial="hidden"
-        animate={scrollInView ? "visible" : "exit"}
-        transition={{ duration: 0.8, ease: "easeOut", delay: 0.9 }}
-      >
+      <motion.div ref={scrollRef} className="absolute bottom-8 flex flex-col items-center group w-5 h-32 cursor-pointer" variants={scrollVariants} initial="hidden" animate={scrollInView ? "visible" : "exit"} transition={{ duration: 0.8, ease: "easeOut", delay: 0.9 }}>
         <div className="writing-mode-vertical text-sm tracking-wider mb-4">Demos</div>
         <span className="h-16 w-[2px] bg-white"></span>
         <MdKeyboardArrowDown className="-mt-3 group-hover:translate-y-2 text-2xl group-hover:text-5xl transition-all duration-300" />
       </motion.div>
-      <motion.span 
-        className="absolute bottom-8 animate-bounce left-1/2 -translate-x-1/2"
-        variants={scrollVariants}
-        initial="hidden"
-        animate={scrollInView ? "visible" : "exit"}
-        transition={{ duration: 0.8, ease: "easeOut", delay: 1.1 }}
-      >
+      <motion.span className="absolute bottom-8 animate-bounce left-1/2 -translate-x-1/2" variants={scrollVariants} initial="hidden" animate={scrollInView ? "visible" : "exit"} transition={{ duration: 0.8, ease: "easeOut", delay: 1.1 }}>
         <CgScrollV size={20} />
       </motion.span>
     </section>

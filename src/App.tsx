@@ -6,6 +6,8 @@ import { HeroSection } from "./sections/hero.section";
 import { useEffect } from "react";
 import { ServicesSection } from "./sections/services.section";
 import { FeedbacksSection } from "./sections/feedbacks.section";
+import { MyWorkSection } from "./sections/my-work.section";
+import { WorkSection } from "./sections/work.section";
 
 function App() {
   // Configuração do scroll snap
@@ -32,7 +34,7 @@ function App() {
       <AboutSection />
       <ServicesSection />
       <FeedbacksSection />
-      {/* <WorkSection /> */}
+      <MyWorkSection />
     </main>
   );
 }

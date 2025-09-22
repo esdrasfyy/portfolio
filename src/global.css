@@ -74,12 +74,12 @@ html {
   transform: rotate(180deg);
 }
 
-#feedbacks .swiper-wrapper{
+#feedbacks .swiper-wrapper {
   display: flex;
 }
 
 #feedbacks .swiper-slide {
-  max-width : 400px !important;
+  max-width: 400px !important;
 }
 
 /* Text 3D Animation Styles - Exactly like original */
@@ -128,4 +128,27 @@ html {
 
 .char {
   backface-visibility: hidden;
+}
+
+@keyframes float-gentle {
+  0%,
+  100% {
+    transform: translate(0%, 0%) translateY(0px) translateX(0px);
+  }
+
+  25% {
+    transform: translate(0%, 0%) translateY(-25px) translateX(20px);
+  }
+
+  50% {
+    transform: translate(0%, 0%) translateY(-15px) translateX(-15px);
+  }
+
+  75% {
+    transform: translate(0%, 0%) translateY(20px) translateX(15px);
+  }
+}
+
+.animate-float-gentle {
+  animation: float-gentle 8s ease-in-out infinite;
 }
