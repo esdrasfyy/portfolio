@@ -5,6 +5,7 @@ import { HeroSection } from "./sections/hero.section";
 // import { useScrollSnap } from "./hooks/useScrollSnap";
 import { useEffect } from "react";
 import { ServicesSection } from "./sections/services.section";
+import { FeedbacksSection } from "./sections/feedbacks.section";
 
 function App() {
   // Configuração do scroll snap
@@ -30,6 +31,7 @@ function App() {
       <HeroSection />
       <AboutSection />
       <ServicesSection />
+      <FeedbacksSection />
       {/* <WorkSection /> */}
     </main>
   );

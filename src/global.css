@@ -26,11 +26,15 @@ html {
   user-select: none;
   -webkit-touch-callout: none;
   -webkit-tap-highlight-color: transparent;
-  cursor: none !important;
+  /* cursor: none !important; */
 }
 
 .animate-scroll {
   animation: scroll 30s linear infinite;
+}
+
+.animate-scroll-slow {
+  animation: scroll-slow 40s linear infinite;
 }
 
 @keyframes scroll {
@@ -39,6 +43,15 @@ html {
   }
   100% {
     transform: translateX(-50%);
+  }
+}
+
+@keyframes scroll-slow {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
   }
 }
 
@@ -59,4 +72,60 @@ html {
   writing-mode: vertical-lr;
   text-orientation: mixed;
   transform: rotate(180deg);
+}
+
+#feedbacks .swiper-wrapper{
+  display: flex;
+}
+
+#feedbacks .swiper-slide {
+  max-width : 400px !important;
+}
+
+/* Text 3D Animation Styles - Exactly like original */
+.text-3d-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  visibility: hidden;
+}
+
+.tube {
+  position: relative;
+  width: 100%;
+  height: 24vw;
+}
+
+.line {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  line-height: 1;
+  margin: 0;
+  letter-spacing: -0.6vw;
+  font-size: 18vw;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.final__wrap {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.final {
+  line-height: 1;
+  margin: 0;
+  font-size: 13vw;
+  letter-spacing: -0.5vw;
+  white-space: nowrap;
+}
+
+.char {
+  backface-visibility: hidden;
 }

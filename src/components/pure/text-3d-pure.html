@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Text 3D Animation - Pure HTML/CSS/JS</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <style>
+        html {
+            box-sizing: border-box;
+        }
+        *,
+        *:before,
+        *:after {
+            box-sizing: inherit;
+        }
+
+        body {
+            background: #191414;
+            font-family: 'Montserrat', sans-serif;
+            color: #F59B23;
+            margin: 0;
+            padding: 0;
+            height: 100vh;
+            width: 100vw;
+            overflow: hidden;
+        }
+
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100%;
+            visibility: hidden;
+        }
+
+        .tube {
+            position: relative;
+            width: 100%;
+            height: 24vw;
+        }
+
+        .line {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            line-height: 1;
+            margin: 0;
+            letter-spacing: -0.6vw;
+            font-size: 18vw;
+            white-space: nowrap;
+            text-align: center;
+        }
+
+        .final__wrap {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .final {
+            line-height: 1;
+            margin: 0;
+            font-size: 13vw;
+            letter-spacing: -0.5vw;
+            white-space: nowrap;
+        }
+
+        .char {
+            backface-visibility: hidden;
+        }
+
+        .logo {
+            position: absolute;
+            top: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="tube">
+            <h1 class="clone">Testimonials</h1>
+        </div>
+        <div class="final__wrap"></div>
+    </div>
+
+    <a href="https://spotifywrapped.com/en/" target="_blank" class="logo">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 558.43 167.49">
+            <title>Spotify Logo</title>
+            <g>
+                <path d="M88,1.28A83.74,83.74,0,1,0,171.74,85,83.75,83.75,0,0,0,88,1.28Zm38.4,120.78a5.22,5.22,0,0,1-7.18,1.74c-19.66-12-44.41-14.73-73.56-8.07a5.22,5.22,0,0,1-2.33-10.18c31.9-7.29,59.27-4.15,81.34,9.34A5.21,5.21,0,0,1,126.4,122.06Zm10.25-22.8a6.53,6.53,0,0,1-9,2.15c-22.51-13.83-56.82-17.84-83.45-9.76a6.53,6.53,0,1,1-3.79-12.49c30.41-9.23,68.22-4.76,94.07,11.12A6.53,6.53,0,0,1,136.65,99.26Zm.88-23.74c-27-16-71.52-17.51-97.29-9.69a7.83,7.83,0,0,1-4.54-15c29.58-9,78.75-7.24,109.83,11.21a7.83,7.83,0,0,1-8,13.47Z" transform="translate(-4.25 -1.28)" fill="#1ed760"/>
+                <g>
+                    <g>
+                        <path d="M232.09,78.59c-14.46-3.45-17-5.87-17-11,0-4.8,4.52-8,11.24-8,6.52,0,13,2.45,19.77,7.51a1,1,0,0,0,1.34-.22l7.06-10a1,1,0,0,0-.18-1.29A42.74,42.74,0,0,0,226.52,46C210.91,46,200,55.4,200,68.81c0,14.37,9.41,19.46,25.66,23.39,13.84,3.19,16.18,5.86,16.18,10.63,0,5.29-4.73,8.58-12.32,8.58-8.44,0-15.33-2.84-23-9.51a1,1,0,0,0-.69-.23.91.91,0,0,0-.65.34l-7.92,9.42a.94.94,0,0,0,.09,1.31A47.19,47.19,0,0,0,229.2,125c16.82,0,27.69-9.19,27.69-23.42C256.89,89.52,249.71,82.87,232.09,78.59Z" transform="translate(-4.25 -1.28)" fill="#1ed760"/>
+                        <path d="M295,64.33c-7.29,0-13.27,2.87-18.21,8.75V66.46a1,1,0,0,0-.94-.95H262.85a1,1,0,0,0-.94.95v73.6a1,1,0,0,0,.94.95H275.8a1,1,0,0,0,.94-.95V116.83A23.29,23.29,0,0,0,295,125.07c13.55,0,27.27-10.43,27.27-30.37S308.5,64.33,295,64.33ZM307.16,94.7c0,10.15-6.25,17.24-15.21,17.24s-15.53-7.41-15.53-17.24S283.1,77.46,292,77.46,307.16,84.71,307.16,94.7Z" transform="translate(-4.25 -1.28)" fill="#1ed760"/>
+                        <path d="M357.37,64.33c-17.45,0-31.12,13.43-31.12,30.59,0,17,13.58,30.26,30.91,30.26,17.51,0,31.22-13.39,31.22-30.48S374.76,64.33,357.37,64.33Zm0,47.72c-9.28,0-16.28-7.46-16.28-17.35s6.76-17.13,16.07-17.13S373.54,85,373.54,94.92,366.74,112.05,357.37,112.05Z" transform="translate(-4.25 -1.28)" fill="#1ed760"/>
+                        <path d="M425.64,65.51H411.4V50.94a1,1,0,0,0-.95-.94H397.51a.94.94,0,0,0-.95.94V65.51h-6.23a1,1,0,0,0-.94.95V77.59a.94.94,0,0,0,.94.94h6.23v28.8c0,11.63,5.79,17.53,17.21,17.53a23.62,23.62,0,0,0,12.13-3,1,1,0,0,0,.48-.82V110.43a1,1,0,0,0-.45-.81.94.94,0,0,0-.93,0,16.35,16.35,0,0,1-7.6,1.83c-4.15,0-6-1.89-6-6.11V78.53h14.24a.94.94,0,0,0,.95-.94V66.46A1,1,0,0,0,425.64,65.51Z" transform="translate(-4.25 -1.28)" fill="#1ed760"/>
+                        <path d="M475.28,65.57V63.78c0-5.27,2-7.61,6.55-7.61a21.86,21.86,0,0,1,7.29,1.34.92.92,0,0,0,.85-.13.94.94,0,0,0,.4-.77V45.7a1,1,0,0,0-.67-.91,35.73,35.73,0,0,0-10.77-1.54c-11.95,0-18.27,6.73-18.27,19.46v2.74h-6.22a1,1,0,0,0-.95,1V77.59a.94.94,0,0,0,.95.94h6.22v44.41a.94.94,0,0,0,.94,1h12.95a1,1,0,0,0,.95-1V78.53h12.08l18.52,44.4c-2.1,4.67-4.17,5.6-7,5.6a15,15,0,0,1-7.14-2,.93.93,0,0,0-1.31.44l-4.39,9.63a.93.93,0,0,0,.41,1.22,27.25,27.25,0,0,0,13.82,3.54c9.56,0,14.85-4.45,19.5-16.43l22.47-58a1,1,0,0,0-.1-.88,1,1,0,0,0-.78-.41H528.11a1,1,0,0,0-.9.63l-13.8,39.44L498.28,66.18a.94.94,0,0,0-.88-.61Z" transform="translate(-4.25 -1.28)" fill="#1ed760"/>
+                        <rect x="428.36" y="64.23" width="14.84" height="58.38" rx="0.95" ry="0.95" fill="#1ed760"/>
+                        <path d="M440.1,39.79a9.29,9.29,0,1,0,9.28,9.28A9.28,9.28,0,0,0,440.1,39.79Z" transform="translate(-4.25 -1.28)" fill="#1ed760"/>
+                    </g>
+                    <path d="M553.52,83.67a9.14,9.14,0,1,1,9.16-9.16A9.16,9.16,0,0,1,553.52,83.67Zm.05-17.36a8.23,8.23,0,1,0,8.15,8.2A8.15,8.15,0,0,0,553.57,66.31Zm2,9.13,2.57,3.61H556l-2.32-3.31h-2v3.31h-1.82V69.49h4.26c2.22,0,3.69,1.14,3.69,3.05A2.85,2.85,0,0,1,555.59,75.44Zm-1.54-4.31h-2.37v3h2.37c1.18,0,1.89-.58,1.89-1.51S555.23,71.13,554.05,71.13Z" transform="translate(-4.25 -1.28)" fill="#1ed760"/>
+                </g>
+            </g>
+        </svg>
+    </a>
+
+    <script>
+        console.clear();
+
+        // Get the core elements
+        var container = document.getElementsByClassName("container");
+        var tube = document.getElementsByClassName("tube");
+        var clone = document.getElementsByClassName("clone");
+        var finalWrap = document.getElementsByClassName("final__wrap");
+
+        // Create the cloned nodes, append and add classes for required HTML structure - WARNING: Ugly code below 💩
+        var finalClone = clone[0].cloneNode(true); // clone the clean node and append to final__wrap
+        finalWrap[0].appendChild(finalClone).classList.add("final");
+
+        for (var i = 0; i < 2; i++) {
+            var newClone = clone[0].cloneNode(true); // clone the header
+            var lineClass = "line"+(i+2); // create class name to append
+            tube[0].appendChild(newClone); // append the clone
+            clone[i].classList.add("line"); // add cline lass
+            clone[i+1].classList.add(lineClass); // add incremented line class
+        }
+        clone[0].classList.add("line1"); // add line1 class to the first node
+
+        // Yuk! Now for the fun stuff…
+
+        // Show it to me!
+        gsap.set('.container', {
+            visibility: 'visible'
+        });
+
+        // Get cloned elements
+        var lines = document.getElementsByClassName("line");
+        var line1 = document.getElementsByClassName("line1");
+        var line2 = document.getElementsByClassName("line2");
+        var line3 = document.getElementsByClassName("line3");
+        var final = document.getElementsByClassName("final");
+
+        // Split text characters manually (since we don't have SplitText)
+        function splitText(element) {
+            const text = element.textContent || '';
+            const chars = [];
+            for (let i = 0; i < text.length; i++) {
+                const span = document.createElement('span');
+                span.textContent = text[i];
+                span.classList.add('char');
+                chars.push(span);
+            }
+            element.innerHTML = '';
+            chars.forEach(char => element.appendChild(char));
+            return chars;
+        }
+
+        var splitLine1 = splitText(line1[0]);
+        var splitLine2 = splitText(line2[0]);
+        var splitLine3 = splitText(line3[0]);
+        var splitFinal = splitText(final[0]);
+
+        // Set up vars
+        var animTime = 0.9; // baseline animation time for each stagger
+        var width = document.documentElement.clientWidth; // viewport width
+        var height = document.documentElement.clientHeight; // viewport height
+        var depth = -width/8; // rotation depth based on viewport width
+        var tOrigin = "50% 50% "+depth; // transform origin as a factor of viewport width to allow for different device widths
+
+        // Init 3D perspective
+        gsap.set([lines, final], { perspective:700, transformStyle:"preserve-3d"});
+
+        // Animate Timeline
+        var linesTL = gsap.timeline();
+        linesTL.fromTo(splitLine1, animTime, { rotationX: -90  }, { rotationX: 90, ease:"none", transformOrigin: tOrigin }, 0.08)
+            .fromTo(splitLine2, animTime, { rotationX: -90 }, { rotationX: 90, ease:"none", transformOrigin: tOrigin }, 0.08, 0.45)
+            .fromTo(splitLine3, animTime, { rotationX: -90 }, { rotationX: 90, ease:"none", transformOrigin: tOrigin }, 0.08, 0.9)
+            .fromTo(splitFinal, animTime*1.8, { rotationX: -90, alpha: 0 }, { rotationX: 0, alpha: 1, ease:"power2.out", transformOrigin: tOrigin }, 0.06, 1.6)
+            .fromTo(final, animTime*5, { y:height/6 }, { y:-height/6 , ease:"power4.out" }, 2.0 )
+
+        // Rotate final text on mouse move
+        window.addEventListener("mousemove", onMouseMove);
+
+        function onMouseMove(e) {
+            var sxPos = (e.pageX / width*100 - 50)*2 ;
+            var syPos = (e.pageY / height*100 - 50)*2;
+            gsap.to(finalWrap, 3, {
+                rotationY: 0.04 * sxPos,
+                rotationX: -0.04 * syPos,
+                transformOrigin: "center center -800",
+                ease: "power2.out"
+            });
+        }
+    </script>
+</body>
+</html>
