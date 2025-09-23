@@ -1,5 +1,11 @@
 import ScratchCard from "react-scratchcard-v2";
-import bgCover from "../../public/791.jpg";
+import bgCover from "../../public/hm.jpg";
+import { GlowingEffectComponent } from "../components/ui/glowing-effect.component";
+import { useRef, useEffect, useState } from "react";
+import { ShinyTextComponent } from "../components/ui/shiny-text.component";
+import gsap from "gsap";
+import { TbHandMove } from "react-icons/tb";
+import { FaShoppingCart, FaMobileAlt, FaChartLine, FaLaptopCode, FaCogs, FaCloud } from "react-icons/fa";
 
 const projects = [
   {
@@ -7,58 +13,149 @@ const projects = [
     title: "E-commerce Platform",
     description: "Full-stack e-commerce solution with React, Node.js, and MongoDB",
     image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=300&fit=crop",
+    icon: FaShoppingCart,
   },
   {
     id: 2,
     title: "Mobile Banking App",
     description: "Secure banking application with React Native and biometric authentication",
     image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400&h=300&fit=crop",
+    icon: FaMobileAlt,
   },
   {
     id: 3,
     title: "AI Dashboard",
     description: "Real-time analytics dashboard with machine learning insights",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop",
+    icon: FaChartLine,
   },
   {
     id: 4,
     title: "Portfolio Website",
     description: "Modern portfolio with interactive animations and responsive design",
     image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop",
+    icon: FaLaptopCode,
   },
   {
     id: 5,
     title: "SaaS Platform",
     description: "Scalable software-as-a-service platform with microservices architecture",
     image: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=400&h=300&fit=crop",
+    icon: FaCloud,
   },
   {
     id: 6,
     title: "IoT Monitoring",
     description: "Internet of Things monitoring system with real-time data processing",
     image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=300&fit=crop",
+    icon: FaCogs,
   },
   {
     id: 7,
-    title: "Blockchain App",
-    description: "Decentralized application with smart contracts and Web3 integration",
-    image: "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=400&h=300&fit=crop",
+    title: "CRM System",
+    description: "Customer relationship management system with real-time data processing",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop",
+    icon: FaChartLine,
   },
   {
     id: 8,
-    title: "Data Analytics",
-    description: "Advanced data visualization and business intelligence platform",
+    title: "ERP System",
+    description: "Enterprise resource planning system with real-time data processing",
     image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop",
+    icon: FaCogs,
   },
 ];
 
 export const MyWorkSection = () => {
+  const parentRef = useRef<HTMLDivElement>(null);
+  const [parentWidth, setParentWidth] = useState(0);
+  const handRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const overlayRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const [completedCards, setCompletedCards] = useState<Set<number>>(() => {
+    const saved = localStorage.getItem('completedCards');
+    return saved ? new Set(JSON.parse(saved)) : new Set();
+  });
+
+  useEffect(() => {
+    const updateWidth = () => {
+      if (parentRef.current) {
+        setParentWidth(parentRef.current.offsetWidth / 2);
+      }
+    };
+
+    updateWidth();
+    window.addEventListener("resize", updateWidth);
+    return () => window.removeEventListener("resize", updateWidth);
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('completedCards', JSON.stringify([...completedCards]));
+  }, [completedCards]);
+
+  useEffect(() => {
+    const cleanupFunctions: (() => void)[] = [];
+
+    if (handRefs.current.length > 0) {
+      handRefs.current.forEach((handRef) => {
+        if (handRef) {
+          gsap.to(handRef, {
+            scale: 1.2,
+            duration: 1,
+            ease: "power2.inOut",
+            yoyo: true,
+            repeat: -1,
+          });
+        }
+      });
+
+      overlayRefs.current.forEach((overlayRef) => {
+        if (overlayRef) {
+          const cardElement = overlayRef.closest('.group');
+          if (cardElement) {
+            const handleMouseEnter = () => {
+              gsap.killTweensOf(overlayRef);
+              gsap.to(overlayRef, {
+                opacity: 0,
+                duration: 0.7,
+                ease: "power2.inOut",
+                onComplete: () => {
+                  gsap.set(overlayRef, { zIndex: -1000, display: 'none' });
+                }
+              });
+            };
+
+            const handleMouseLeave = () => {
+              gsap.killTweensOf(overlayRef);
+              gsap.set(overlayRef, { zIndex: 10, display: 'flex' });
+              gsap.to(overlayRef, {
+                opacity: 1,
+                duration: 0.7,
+                ease: "power2.inOut"
+              });
+            };
+
+            cardElement.addEventListener('mouseenter', handleMouseEnter);
+            cardElement.addEventListener('mouseleave', handleMouseLeave);
+
+            cleanupFunctions.push(() => {
+              cardElement.removeEventListener('mouseenter', handleMouseEnter);
+              cardElement.removeEventListener('mouseleave', handleMouseLeave);
+            });
+          }
+        }
+      });
+    }
+
+    return () => {
+      cleanupFunctions.forEach(cleanup => cleanup());
+    };
+  }, []);
+
   const scratchConfig = {
-    height: 240,
-    width: 500,
+    height: window.innerHeight * 0.25 - 5,
+    width: parentWidth - 5,
     image: bgCover,
     finishPercent: 70,
-    onComplete: () => console.log("Complete! 🎉"),
   };
   return (
     <section id="work" className="h-screen text-white bg-black/50">
@@ -68,9 +165,9 @@ export const MyWorkSection = () => {
           {/* Top Left - Title */}
           <div>
             <h2 className="text-2xl font-light relative">
-              <span>MY</span>
+              <ShinyTextComponent text="MY" speed={4} />
               <br />
-              <span className="text-7xl absolute -bottom-20 left-0 font-semibold">WORK</span>
+              <span className="text-7xl absolute -bottom-20 left-0 font-semibold"><ShinyTextComponent text="WORK" speed={4} /></span>
             </h2>
             <div className="space-y-2 text-white text-lg max-w-lg mt-28 flex items-center gap-4">
               <div className="h-[1px] w-32 bg-white"></div>
@@ -87,7 +184,7 @@ export const MyWorkSection = () => {
           ></div>
         </div>
 
-        <div className="grid grid-cols-2 mx-4 gap-1">
+        <div ref={parentRef} className="grid grid-cols-2 mx-4 gap-1 w-2/3">
           {projects.map((project, index) => {
             let borderClasses = "border border-white/10";
             if (index === 0 || index === 1) {
@@ -96,22 +193,83 @@ export const MyWorkSection = () => {
             if (index === 6 || index === 7) {
               borderClasses = "border-l border-r border-t border-white/10";
             }
-            
+
             return (
-              <div key={project.id} className={`h-full w-full ${borderClasses} overflow-hidden rounded-lg`}>
-                <ScratchCard {...scratchConfig}>
-                  <div className="flex w-full h-full items-center justify-center bg-gray-800">
-                    <div className="text-center relative">
-                      <img src={project.image} alt={project.title} className="w-full h-full object-cover" />
-                      <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
-                        <div className="text-center">
-                          <h3 className="text-white text-xl font-bold mb-2">{project.title}</h3>
-                          <p className="text-white/80 text-sm">{project.description}</p>
-                        </div>
+              <div key={project.id} className={`h-full w-full ${borderClasses} cursor-grab border-dotted border-gray-500 rounded-xs relative group`}>
+                <GlowingEffectComponent spread={50} glow={true} disabled={false} proximity={200} inactiveZone={0.01} borderWidth={1} />
+
+                 {!completedCards.has(project.id) && (
+                   <div 
+                     ref={(el) => {
+                       if (el) overlayRefs.current[index] = el;
+                     }}
+                     className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-black/20 backdrop-blur-sm"
+                   >
+                   <div className="flex items-center justify-center">
+                     <div 
+                       ref={(el) => {
+                         if (el) handRefs.current[index] = el;
+                       }}
+                       className="text-[#b5b5b5]"
+                     >
+                       <TbHandMove size={40} />
+                     </div>
+                   </div>
+
+                   <p className="text-white font-semibold tracking-wide absolute top-2/3 left-1/2 -translate-x-1/2">
+                     <ShinyTextComponent text="Scratch to reveal" speed={4} />
+                   </p>
+                   </div>
+                 )}
+
+                {completedCards.has(project.id) ? (
+                  <div className="flex w-full h-full bg-white/5 backdrop-blur-sm relative">
+                    <div className="absolute top-4 left-4 p-2 rounded-full text-white border border-white/50 bg-white/30 backdrop-blur-sm">
+                      <project.icon size={14} />
+                    </div>
+                    <div className="absolute top-4 right-4 text-white/60 text-xs font-mono">
+                      Nov 2024
+                    </div>
+                    <div className="p-6 flex mt-12 flex-col justify-between w-full">
+                      <div>
+                        <h3 className="text-white text-lg font-bold mb-2">{project.title}</h3>
+                        <p className="text-white/80 text-sm leading-relaxed">{project.description}</p>
+                      </div>
+                      <div className="flex justify-center mt-4">
+                        <button className="bg-white cursor-pointer text-black px-6 py-1 rounded-full font-medium hover:bg-white/90 transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:shadow-[0_15px_35px_rgba(255,255,255,0.4)]">
+                          More
+                        </button>
                       </div>
                     </div>
                   </div>
-                </ScratchCard>
+                ) : (
+                  <ScratchCard 
+                    {...scratchConfig}
+                    onComplete={() => {
+                      setCompletedCards(prev => new Set([...prev, project.id]));
+                    }}
+                  >
+                    <div className="flex w-full h-full bg-white/5 backdrop-blur-sm relative">
+                      <div className="absolute top-4 left-4 p-2 rounded-full text-white border border-white/50 bg-white/30 backdrop-blur-sm">
+                        <project.icon size={14} />
+                      </div>
+                      <div className="absolute top-4 right-4 text-white/60 text-xs font-mono">
+                        Nov 2024
+                      </div>
+                      <div className="p-6 flex mt-12 flex-col justify-between w-full">
+                        <div>
+                          <h3 className="text-white text-lg font-bold mb-2">{project.title}</h3>
+                          <p className="text-white/80 text-sm leading-relaxed">{project.description}</p>
+                        </div>
+                        <div className="flex justify-center mt-4">
+                          <button className="bg-white text-black px-6 py-1 rounded-full font-medium hover:bg-white/90 transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:shadow-[0_15px_35px_rgba(255,255,255,0.4)]">
+                            More
+                          </button>
+                        </div>
+                      </div>
+                    </div>
+                  </ScratchCard>
+                )}
               </div>
             );
           })}
