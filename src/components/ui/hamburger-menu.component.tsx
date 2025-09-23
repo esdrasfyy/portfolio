@@ -4,18 +4,17 @@ import gsap from "gsap";
 
 const navigationItems = [
   { id: 1, name: "Home", href: "#home", isActive: true },
-  { id: 2, name: "Portfolio", href: "#portfolio", isActive: false },
-  { id: 3, name: "About", href: "#about", isActive: false },
-  { id: 4, name: "Blog", href: "#blog", isActive: false },
-  { id: 5, name: "Contact", href: "#contact", isActive: false },
+  { id: 2, name: "About", href: "#about", isActive: false },
+  { id: 3, name: "Services", href: "#services", isActive: false },
+  { id: 4, name: "Projects", href: "#projects", isActive: false },
+  { id: 5, name: "Contact Me", href: "#contact", isActive: false },
 ];
 
 const socialLinks = [
-  { id: 1, name: "Facebook", href: "#" },
-  { id: 2, name: "Twitter", href: "#" },
-  { id: 3, name: "Youtube", href: "#" },
-  { id: 4, name: "Dribbble", href: "#" },
-  { id: 5, name: "Behance", href: "#" },
+  { id: 3, name: "Instagram", href: "#" },
+  { id: 4, name: "Whatsapp", href: "#" },
+  { id: 1, name: "Linkedin", href: "#" },
+  { id: 2, name: "Github", href: "#" },
 ];
 
 export const HamburgerMenu = () => {
