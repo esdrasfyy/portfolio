@@ -1,13 +1,8 @@
-import { CustomCursor } from "./components/ui/custom-cursor.component";
 import { LightRaysComponent } from "./components/ui/light-rays.component";
 import { HamburgerMenu } from "./components/ui/hamburger-menu.component";
-import { AboutSection } from "./sections/about.section";
 import { HeroSection } from "./sections/hero.section";
 // import { useScrollSnap } from "./hooks/useScrollSnap";
 import { useEffect } from "react";
-import { ServicesSection } from "./sections/services.section";
-import { FeedbacksSection } from "./sections/feedbacks.section";
-import { MyWorkSection } from "./sections/my-work.section";
 
 function App() {
   // Configuração do scroll snap
@@ -28,14 +23,14 @@ function App() {
         backgroundSize: "100px 100px",
       }}
     >
-      <CustomCursor />
+      {/* <CustomCursor /> */}
       <LightRaysComponent raysOrigin="top-center" raysColor="#ffffff" raysSpeed={1.5} lightSpread={0.8} rayLength={1.2} followMouse={true} mouseInfluence={0.1} noiseAmount={0.1} distortion={0.05} className="custom-rays" />
       <HamburgerMenu />
       <HeroSection />
-      <AboutSection />
-      <ServicesSection />
-      <FeedbacksSection />
-      <MyWorkSection />
+      {/* <AboutSection /> */}
+      {/* <ServicesSection /> */}
+      {/* <FeedbacksSection /> */}
+      {/* <MyWorkSection /> */}
     </main>
   );
 }
