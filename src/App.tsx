@@ -3,6 +3,7 @@ import { HamburgerMenu } from "./components/ui/hamburger-menu.component";
 import { HeroSection } from "./sections/hero.section";
 // import { useScrollSnap } from "./hooks/useScrollSnap";
 import { useEffect } from "react";
+import { AboutSection } from "./sections/about.section";
 
 function App() {
   // Configuração do scroll snap
@@ -27,7 +28,7 @@ function App() {
       <LightRaysComponent raysOrigin="top-center" raysColor="#ffffff" raysSpeed={1.5} lightSpread={0.8} rayLength={1.2} followMouse={true} mouseInfluence={0.1} noiseAmount={0.1} distortion={0.05} className="custom-rays" />
       <HamburgerMenu />
       <HeroSection />
-      {/* <AboutSection /> */}
+      <AboutSection />
       {/* <ServicesSection /> */}
       {/* <FeedbacksSection /> */}
       {/* <MyWorkSection /> */}
