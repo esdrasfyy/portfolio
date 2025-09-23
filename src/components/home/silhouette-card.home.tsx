@@ -17,18 +17,18 @@ export const SilhouetteCardHome = ({ type, icon: Icon, children }: { type: strin
           <ShinyTextComponent text={type} speed={3} />
         </span>
       </div>
-      <div className="group relative flex-1 w-full p-2 overflow-hidden">
+      <div className="group relative flex-1 w-full p-2 overflow-hidden flex flex-col gap-2">
         {children}
-        <div className="absolute inset-0 bg-white/5 backdrop-blur-[8px] rounded-sm opacity-0 scale-75 transition-all duration-300 ease-out pointer-events-none z-10 group-hover:opacity-100 group-hover:scale-100"></div>
         <a
           href="#"
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-0 bg-white text-black px-4 py-2 rounded-full text-xs font-semibold opacity-0 transition-all duration-300 delay-100 z-20 border-none cursor-pointer group-hover:opacity-100 group-hover:scale-100 flex items-center gap-2"
         >
           <span>View More</span>
-          <span className="-rotate-45 group-hover:rotate-0 duration-300">
+          <span className="hover:rotate-45 duration-300">
             <RiArrowRightSLine size={16} />
           </span>
         </a>
+        <div className="absolute inset-0 bg-black/5 backdrop-blur-sm rounded-sm opacity-0 transition-all duration-300 ease-out pointer-events-none z-10 group-hover:opacity-100"></div>
       </div>
     </div>
   </div>

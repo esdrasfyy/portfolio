@@ -10,11 +10,11 @@ export const HeaderComponent = () => {
           <Hamburger size={16} toggled={menu} />
         </span>
         {menu ? (
-          <span className="mb-1 ml-1">Close</span>
+          <span className="mb-0.5 ml-1">Close</span>
         ) : (
-          <span className="relative w-11 h-11 overflow-hidden pb-[2em] -mt-1 group z-50">
+          <span className="relative w-11 h-11 overflow-hidden pb-[2em] -mt-0.5 group z-50">
             <div className="text absolute w-full h-full flex items-center justify-center transition-all duration-200 ease-out">
-            <span className="transition-all duration-200 ease-out ml-1 cursor-pointer group-hover:-translate-y-[60px] mix-blend-difference text-white">Menu</span>            </div>
+            <span className="transition-all duration-200 ease-out ml-1 cursor-pointer group-hover:-translate-y-[60px] mix-blend-difference text-white tracking-wider">Menu</span>            </div>
             <div className="clone absolute w-full h-full flex items-center justify-center">
               <span className="transition-all duration-200 ease-out ml-1 cursor-pointer translate-y-[60px] group-hover:translate-y-0">Open</span>
             </div>
