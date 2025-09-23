@@ -1,6 +1,7 @@
 import { TextTube } from "../components/ui/text-tube.component";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { VscQuote } from "react-icons/vsc";
 
 interface Testimonial {
   id: number;
@@ -10,92 +11,58 @@ interface Testimonial {
   avatar: string;
 }
 
-const feedbacksData: Testimonial[] = [
+const originalFeedbacks: Testimonial[] = [
   {
     id: 1,
-    name: "Vitus",
-    role: "Student Journalist",
-    content: "Dia cuts the busywork. With just a prompt and tabs, I find sources in minutes, not hours.",
+    name: "Igor 'Tony'",
+    role: "CEO Cidade Alta RP",
+    content: "Fernando is a qualified and committed developer, who contributed to improving Cidade Alta's technology. I recommend him to anyone looking for innovation and professionalism!",
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
   },
   {
     id: 2,
-    name: "Kimberly",
-    role: "Agency Director",
-    content: "Personalization in Dia is a secret weapon to stay pitch perfect across all our client brands.",
-    avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face",
+    name: "Gerson Aguiar",
+    role: "Senior Developer at @loggi",
+    content: "Esdras delivered secure and scalable solutions with clean code. I recommend him to anyone looking for quality and efficiency.",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
   },
   {
     id: 3,
-    name: "Los",
-    role: "Product Engineer",
-    content: "I make new apps all the time. There's a ton of context, but Dia helps me solve problems super fast.",
-    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face",
+    name: "Anonymous",
+    role: "CEO Snapic",
+    content: "Fernando partnership was essential for Snapic. He developed scalable and high-performance systems, such as lives, OAuth authentication and integration with Facebook Meta.",
+    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
   },
   {
     id: 4,
-    name: "Pedro",
-    role: "Digital Strategist",
-    content: "Dia helps me localize content for Brazil. When I'm stuck, Dia suggests words for a Brazilian audience.",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face",
-  },
-  {
-    id: 5,
-    name: "Quinn",
-    role: "Engineering Student",
-    content: "Dia is my eng tutor: it answers questions in-line and gives me practice problems to test myself.",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
-  },
-  {
-    id: 6,
-    name: "Sarah",
-    role: "UX Designer",
-    content: "Dia helps me understand user feedback better. It's like having a research assistant that never sleeps.",
-    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face",
-  },
-  {
-    id: 1,
-    name: "Vitus",
-    role: "Student Journalist",
-    content: "Dia cuts the busywork. With just a prompt and tabs, I find sources in minutes, not hours.",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
-  },
-  {
-    id: 2,
-    name: "Kimberly",
-    role: "Agency Director",
-    content: "Personalization in Dia is a secret weapon to stay pitch perfect across all our client brands.",
+    name: "DRA Franciele Cruz",
+    role: "Advogada",
+    content: "Fernando created a page that expanded my reach and brought new clients, generating real results and strengthening my online presence. I recommend him to anyone looking for impact and quality!",
     avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face",
   },
   {
-    id: 3,
-    name: "Los",
-    role: "Product Engineer",
-    content: "I make new apps all the time. There's a ton of context, but Dia helps me solve problems super fast.",
+    id: 5,
+    name: "Gustavo Delmondes",
+    role: "Owner Aegis Capital",
+    content: "Fe technical expertise transformed our financial platform. His solutions are robust, secure, and perfectly aligned with our business needs. Exceptional professional!",
     avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face",
   },
   {
-    id: 4,
-    name: "Pedro",
-    role: "Digital Strategist",
-    content: "Dia helps me localize content for Brazil. When I'm stuck, Dia suggests words for a Brazilian audience.",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face",
-  },
-  {
-    id: 5,
-    name: "Quinn",
-    role: "Engineering Student",
-    content: "Dia is my eng tutor: it answers questions in-line and gives me practice problems to test myself.",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
-  },
-  {
     id: 6,
-    name: "Sarah",
-    role: "UX Designer",
-    content: "Dia helps me understand user feedback better. It's like having a research assistant that never sleeps.",
-    avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&h=100&fit=crop&crop=face",
+    name: "Celso Rodrigues",
+    role: "Consultor e CEO da OpcaoConvenios",
+    content: "Esdras partnership was crucial for our digital transformation. He delivered innovative solutions that optimized our processes and increased our efficiency significantly.",
+    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face",
   },
 ];
+
+// Duplicar os testimonials usando JavaScript
+const feedbacksData: Testimonial[] = Array.from({ length: 3 }, (_, index) =>
+  originalFeedbacks.map((testimonial, testimonialIndex) => ({
+    ...testimonial,
+    id: index * originalFeedbacks.length + testimonialIndex + 1,
+  }))
+).flat();
 
 const TestimonialCard = ({ testimonial, index }: { testimonial: Testimonial; index: number }) => {
   const cardRef = useRef<HTMLDivElement>(null);
@@ -106,18 +73,21 @@ const TestimonialCard = ({ testimonial, index }: { testimonial: Testimonial; ind
       ref={cardRef}
       initial={{ opacity: 0, y: 50, scale: 0.9 }}
       animate={isInView ? { opacity: 1, y: 0, scale: 1 } : { opacity: 0, y: 50, scale: 0.9 }}
-      transition={{ 
-        duration: 0.6, 
-        ease: "easeOut", 
-        delay: index * 0.1 
+      transition={{
+        duration: 0.6,
+        ease: "easeOut",
+        delay: index * 0.1,
       }}
-      className="bg-white rounded-2xl shadow-lg p-6 flex flex-col gap-4 h-80 w-96 flex-shrink-0"
+      className="bg-white rounded-lg shadow-md p-6 flex flex-col gap-4 h-80 w-96 flex-shrink-0 relative"
     >
-      <p className="text-gray-700 text-lg leading-relaxed">{testimonial.content}</p>
+      <div className="text-6xl text-gray-300 font-bold  leading-none">
+        <VscQuote />
+      </div>
+      <p className="text-gray-800 text-base leading-relaxed">"{testimonial.content}"</p>
       <div className="flex items-center gap-3 mt-auto">
         <img src={testimonial.avatar} alt={testimonial.name} className="w-12 h-12 rounded-full object-cover" />
         <div>
-          <p className="font-semibold text-gray-900 text-lg">{testimonial.name}</p>
+          <p className="font-bold text-gray-900 text-base">{testimonial.name}</p>
           <p className="text-gray-500 text-sm">{testimonial.role}</p>
         </div>
       </div>
@@ -143,20 +113,14 @@ const AnimatedTestimonials = () => {
 export const FeedbacksSection = () => {
   return (
     <section id="feedbacks" className="h-screen bg-white w-full relative overflow-hidden">
-      <div 
+      <div
         className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-15"
         style={{
           backgroundImage: "url('/services.jpg')",
           filter: "invert(1)",
         }}
       ></div>
-      <TextTube 
-        text="Endorsements" 
-        color="black" 
-        fontSize="14vw" 
-        className="flex items-center justify-center"
-        finalPosition="0"
-      />
+      <TextTube text="Endorsements" color="black" fontSize="14vw" className="flex items-center justify-center" finalPosition="0" />
 
       <div className="w-full py-10 bg-white pb-24">
         <AnimatedTestimonials />
