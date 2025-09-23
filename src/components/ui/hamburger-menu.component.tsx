@@ -22,7 +22,6 @@ export const HamburgerMenu = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
-  // Bloquear scroll quando menu estiver aberto
   useEffect(() => {
     if (menu) {
       document.body.style.overflow = 'hidden';
@@ -30,7 +29,6 @@ export const HamburgerMenu = () => {
       document.body.style.overflow = 'unset';
     }
 
-    // Cleanup function
     return () => {
       document.body.style.overflow = 'unset';
     };
@@ -44,7 +42,6 @@ export const HamburgerMenu = () => {
     const bar3 = containerRef.current.querySelector("div:nth-child(3)");
     const bar4 = containerRef.current.querySelector("div:nth-child(4)");
 
-    // Menu content elements
     const menuContent = containerRef.current.querySelector(".menu-content");
     const navItems = containerRef.current.querySelectorAll(".nav-item");
     const socialItems = containerRef.current.querySelectorAll(".social-item");
@@ -53,7 +50,6 @@ export const HamburgerMenu = () => {
     if (menu) {
       setIsVisible(true);
 
-      // Timeline de abertura
       const tlOpen = gsap.timeline();
 
       tlOpen
@@ -123,7 +119,6 @@ export const HamburgerMenu = () => {
 
       tlClose
         .add("close")
-        // Animações de saída do conteúdo
         .to(exploreChars, { opacity: 0, y: 100, duration: 0.4, ease: "power4.easeIn", stagger: 0.05 }, "close")
         .to(socialItems, { opacity: 0, x: 50, duration: 0.4, ease: "power4.easeIn", stagger: 0.05 }, "close")
         .to(navItems, { opacity: 0, x: -50, duration: 0.4, ease: "power4.easeIn", stagger: 0.05 }, "close")
@@ -138,15 +133,12 @@ export const HamburgerMenu = () => {
 
   return (
     <div className={`fixed inset-0 z-50 w-screen h-screen flex transition-all duration-1000 ease-in-out ${menu ? "bg-black/80 backdrop-blur-md" : "bg-transparent"}`} ref={containerRef}>
-      {/* Animated Bars */}
       <div className="bg-white absolute left-[2vw] -top-[23vh] w-[200px] h-[50vw] rotate-45"></div>
       <div className="bg-white absolute left-[5vw] -top-[55vh] w-[400px] h-[100vw] rotate-45"></div>
       <div className="bg-white absolute right-[2vw] -bottom-[23vh] w-[200px] h-[50vw] rotate-45"></div>
       <div className="bg-white absolute right-[15vw] -bottom-[48vh] w-[400px] h-[100vw] rotate-45"></div>
 
-        {/* Menu Content */}
         <div className="menu-content relative z-10 max-w-[1500px] w-full h-full flex mx-auto justify-between">
-          {/* Left Side - Main Navigation */}
           <div className="flex flex-col justify-center pl-20">
             <div className="space-y-8">
               {navigationItems.map((item) => (

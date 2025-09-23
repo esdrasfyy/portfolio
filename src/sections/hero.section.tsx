@@ -13,7 +13,6 @@ export const HeroSection = () => {
   const [activeSlide, setActiveSlide] = useState(0);
   const swiperRef = useRef<any>(null);
 
-  // Refs para animações
   const h1Ref = useRef<HTMLHeadingElement>(null);
   const h2Ref = useRef<HTMLHeadingElement>(null);
   const pRef = useRef<HTMLParagraphElement>(null);
@@ -22,7 +21,6 @@ export const HeroSection = () => {
   const indicatorsRef = useRef<HTMLDivElement>(null);
   const scrollRef = useRef<HTMLDivElement>(null);
 
-  // useInView para cada elemento
   const h1InView = useInView(h1Ref, { once: false });
   const h2InView = useInView(h2Ref, { once: false });
   const pInView = useInView(pRef, { once: false });
@@ -30,8 +28,6 @@ export const HeroSection = () => {
   const swiperInView = useInView(swiperRef_anim, { once: false });
   const indicatorsInView = useInView(indicatorsRef, { once: false });
   const scrollInView = useInView(scrollRef, { once: false });
-
-  // Variantes de animação
   const h1Variants = {
     hidden: { opacity: 0, y: -50, filter: "blur(10px)" },
     visible: { opacity: 1, y: 0, filter: "blur(0px)" },
@@ -77,11 +73,11 @@ export const HeroSection = () => {
   const slideTypes = ["E-commerce", "CRM", "Landing", "Analytics"];
 
   return (
-    <section id="hero" className="flex justify-between items-center w-full h-screen px-8 max-w-[1500px] mx-auto overflow-hidden" aria-label="Seção principal do portfolio">
+    <section id="hero" className="flex justify-between items-center w-full h-screen px-8 max-w-[1500px] mx-auto overflow-hidden">
       <div className="flex flex-col w-2/3 h-full justify-center relative">
         <div className="text-white text-7xl font-light relative mb-8 z-10">
           <motion.h1 ref={h1Ref} className="relative w-fit" variants={h1Variants} initial="hidden" animate={h1InView ? "visible" : "exit"} transition={{ duration: 0.8, ease: "easeOut" }}>
-            <div className="absolute top-10 -left-20 w-16 h-px border-b border-dotted border-gray-500" aria-hidden="true"></div>
+            <div className="absolute top-10 -left-20 w-16 h-px border-b border-dotted border-gray-500"></div>
             <ShinyTextComponent text="Hi" speed={4} />, I'm <ShinyTextComponent text="Fernando Esdras" speed={4} />,
           </motion.h1>
           <motion.h2 ref={h2Ref} variants={h2Variants} initial="hidden" animate={h2InView ? "visible" : "exit"} transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}>

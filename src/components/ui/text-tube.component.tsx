@@ -19,24 +19,26 @@ export const TextTube = ({ text, color = "white", fontSize = "18vw", className =
   const isInView = useInView(containerRef, { once: true });
   const [hasAnimated, setHasAnimated] = useState(false);
 
-  // Mouse move efeito 3D - separado do useEffect principal
   useEffect(() => {
-    if (!finalWrapRef.current || !isInView || !hasAnimated) return;
+    if (!finalWrapRef.current || !isInView) return;
 
     const handleMouseMove = (e: MouseEvent) => {
-      const width = window.innerWidth;
-      const height = window.innerHeight;
-      const sxPos = (e.pageX / width) * 100 - 50;
-      const syPos = (e.pageY / height) * 100 - 50;
+      if (!finalWrapRef.current) return;
+      
+      const rect = finalWrapRef.current.getBoundingClientRect();
+      const centerX = rect.left + rect.width / 2;
+      const centerY = rect.top + rect.height / 2;
+      
+      const sxPos = ((e.clientX - centerX) / rect.width) * 100;
+      const syPos = ((e.clientY - centerY) / rect.height) * 100;
       
       gsap.to(finalWrapRef.current, {
-        rotationY: 0.08 * sxPos,
-        rotationX: -0.08 * syPos,
+        rotationY: 0.02 * sxPos,
+        rotationX: -0.02 * syPos,
         transformOrigin: "center center -800",
         ease: "expo.out",
-        duration: 3,
-        // Preserva a posição Y final da animação
-        y: -height / 6 + parseInt(finalPosition),
+        duration: 1.5,
+        y: -window.innerHeight / 6 + parseInt(finalPosition),
       });
     };
 
@@ -45,17 +47,15 @@ export const TextTube = ({ text, color = "white", fontSize = "18vw", className =
     return () => {
       window.removeEventListener("mousemove", handleMouseMove);
     };
-  }, [isInView, hasAnimated, finalPosition]);
+  }, [isInView, finalPosition]);
 
   useEffect(() => {
     if (!tubeRef.current || !finalWrapRef.current || !cloneRef.current || !isInView || hasAnimated) return;
 
-    // cria final clone
     const finalClone = cloneRef.current.cloneNode(true) as HTMLElement;
     finalClone.classList.add("final");
     finalWrapRef.current.appendChild(finalClone);
 
-    // cria os 3 clones de linhas
     for (let i = 0; i < 2; i++) {
       const newClone = cloneRef.current.cloneNode(true) as HTMLElement;
       tubeRef.current.appendChild(newClone);
@@ -65,19 +65,15 @@ export const TextTube = ({ text, color = "white", fontSize = "18vw", className =
     }
     cloneRef.current.classList.add("line1");
 
-    // pegar linhas e final
     const line1 = tubeRef.current.querySelector(".line1") as HTMLElement;
     const line2 = tubeRef.current.querySelector(".line2") as HTMLElement;
     const line3 = tubeRef.current.querySelector(".line3") as HTMLElement;
     const final = finalWrapRef.current.querySelector(".final") as HTMLElement;
 
-    // Verifica se todos os elementos existem
     if (!line1 || !line2 || !line3 || !final) {
-      console.warn("Elementos não encontrados para animação");
       return;
     }
 
-    // SplitType para quebrar em chars
     let splitLine1, splitLine2, splitLine3, splitFinal;
 
     try {
@@ -86,7 +82,6 @@ export const TextTube = ({ text, color = "white", fontSize = "18vw", className =
       splitLine3 = new SplitType(line3, { types: "chars" });
       splitFinal = new SplitType(final, { types: "chars" });
     } catch (error) {
-      console.warn("Erro ao criar SplitType:", error);
       return;
     }
 
@@ -95,7 +90,6 @@ export const TextTube = ({ text, color = "white", fontSize = "18vw", className =
     const depth = -width / 8;
     const tOrigin = `50% 50% ${depth}`;
 
-    // Timeline GSAP
     const tl = gsap.timeline();
     tl.set(containerRef.current, { visibility: "visible" })
       .set([line1, line2, line3, final], {
@@ -154,7 +148,6 @@ export const TextTube = ({ text, color = "white", fontSize = "18vw", className =
       .call(() => setHasAnimated(true));
 
     return () => {
-      // Cleanup GSAP animations
       gsap.killTweensOf([tubeRef.current, finalWrapRef.current]);
       if (line1) gsap.killTweensOf(line1);
       if (line2) gsap.killTweensOf(line2);

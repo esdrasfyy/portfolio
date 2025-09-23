@@ -143,12 +143,19 @@ const AnimatedTestimonials = () => {
 export const FeedbacksSection = () => {
   return (
     <section id="feedbacks" className="h-screen bg-white w-full relative overflow-hidden">
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-15"
+        style={{
+          backgroundImage: "url('/services.jpg')",
+          filter: "invert(1)",
+        }}
+      ></div>
       <TextTube 
         text="Endorsements" 
         color="black" 
         fontSize="14vw" 
         className="flex items-center justify-center"
-        finalPosition="-150"
+        finalPosition="0"
       />
 
       <div className="w-full py-10 bg-white pb-24">

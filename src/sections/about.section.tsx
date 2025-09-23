@@ -57,7 +57,13 @@ export const AboutSection = () => {
   const techInView = useInView(containerRef, { once: false });
 
   return (
-    <section id="about" className="h-screen bg-secondary text-text-reverse py-16">
+    <section id="about" className="h-screen bg-secondary text-text-reverse py-16 relative">
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-20"
+        style={{
+          backgroundImage: "url('/about.jpg')",
+        }}
+      ></div>
       <div className="max-w-[1500px] h-full mx-auto px-8 flex flex-col justify-between">
         <div className="col-span-4 flex justify-between">
           <h2 className="text-6xl font-light relative">

@@ -61,7 +61,7 @@ export const MyWorkSection = () => {
     onComplete: () => console.log("Complete! 🎉"),
   };
   return (
-    <section id="work" className="h-screen text-white">
+    <section id="work" className="h-screen text-white bg-black/50">
       <div className="max-w-[1500px] mx-auto flex h-full">
         {/* Left Section - 2/3 width */}
         <div className="w-2/3 pr-8 flex flex-col justify-between relative py-20 px-8">

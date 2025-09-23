@@ -1,57 +1,266 @@
+import { FaCode } from "react-icons/fa";
+import { ShinyTextComponent } from "../components/ui/shiny-text.component";
+import { TbAutomaticGearbox } from "react-icons/tb";
+import { RiPenNibFill } from "react-icons/ri";
+import { GrVirtualStorage } from "react-icons/gr";
+import { motion, useInView } from "framer-motion";
+import { useRef } from "react";
+
 const servicesData = [
   {
     number: "1",
-    title: "Web Development",
-    description: "Desenvolvimento de aplicações web modernas e responsivas",
+    title: "Web & Mobile Solutions",
+    description: "End-to-end web and mobile apps with seamless API integrations and scalable architecture.",
+    icon: FaCode,
   },
   {
     number: "2",
-    title: "Mobile Apps",
-    description: "Criação de aplicativos móveis nativos e híbridos",
+    title: "Workflow Automation",
+    description: "Smart automations to cut manual work, save time, and boost efficiency.",
+    icon: TbAutomaticGearbox,
   },
   {
     number: "3",
     title: "UI/UX Design",
-    description: "Design de interfaces intuitivas e experiências digitais",
+    description: "Intuitive, user-centered interfaces that enhance engagement and usability.",
+    icon: RiPenNibFill,
   },
   {
     number: "4",
-    title: "Consulting",
-    description: "Consultoria em tecnologia e arquitetura de software",
+    title: "Cloud & Scalability",
+    description: "Robust cloud setups, CI/CD pipelines, and performance optimization.",
+    icon: GrVirtualStorage,
   },
 ];
 
 export const ServicesSection = () => {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const titleRef = useRef<HTMLDivElement>(null);
+  const descriptionRef = useRef<HTMLDivElement>(null);
+  const cardsRef = useRef<HTMLDivElement>(null);
+  const sideTextRef = useRef<HTMLDivElement>(null);
+
+  const containerInView = useInView(containerRef, { once: true, amount: 0.1 });
+  const titleInView = useInView(titleRef, { once: true, amount: 0.3 });
+  const descriptionInView = useInView(descriptionRef, { once: true, amount: 0.3 });
+  const cardsInView = useInView(cardsRef, { once: true, amount: 0.1 });
+  const sideTextInView = useInView(sideTextRef, { once: true, amount: 0.3 });
+
+  const handleMouseEnter = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const card = e.currentTarget.closest('.service-card');
+    if (!card) return;
+    
+    const barsH = card.querySelectorAll('.service-bar-h');
+    const barsV = card.querySelectorAll('.service-bar-v');
+    
+    barsH.forEach((bar) => {
+      const barElement = bar as HTMLElement;
+      barElement.style.transition = 'all 0.6s ease';
+      barElement.style.width = '20px';
+      setTimeout(() => {
+        barElement.style.backgroundColor = 'white';
+        barElement.style.width = '100%';
+      }, 100);
+    });
+    
+    barsV.forEach((bar) => {
+      const barElement = bar as HTMLElement;
+      barElement.style.transition = 'all 0.3s ease';
+      barElement.style.height = '20px';
+      setTimeout(() => {
+        barElement.style.backgroundColor = 'white';
+        barElement.style.height = '100%';
+      }, 200);
+    });
+  };
+
+  const handleMouseLeave = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const card = e.currentTarget.closest('.service-card');
+    if (!card) return;
+    
+    const barsH = card.querySelectorAll('.service-bar-h');
+    const barsV = card.querySelectorAll('.service-bar-v');
+    const cardElement = card as HTMLElement;
+    
+    barsH.forEach((bar) => {
+      const barElement = bar as HTMLElement;
+      barElement.style.transition = 'all 0.6s ease';
+      barElement.style.width = '66.33%';
+      barElement.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
+    });
+    
+    barsV.forEach((bar) => {
+      const barElement = bar as HTMLElement;
+      barElement.style.transition = 'all 0.3s ease';
+      barElement.style.height = '100%';
+      barElement.style.backgroundColor = 'rgba(255, 255, 255, 0.2)';
+    });
+    
+    cardElement.style.backgroundColor = '';
+  };
 
   return (
-    <section id="services" className="min-h-screen text-white">
-      <div className="max-w-[1500px] mx-auto px-8 py-24  h-screen flex flex-col justify-between">
+    <section id="services" className="min-h-screen text-white bg-black/50 relative overflow-hidden" ref={containerRef}>
+      <motion.div
+        className="absolute inset-0 opacity-30"
+        style={{
+          background: "linear-gradient(45deg, transparent 30%, rgba(192, 192, 192, 0.3) 50%, transparent 70%)",
+          backgroundSize: "200% 200%",
+          animation: "shimmer 20s ease-in-out infinite",
+        }}
+        initial={{ opacity: 0, scale: 1.1 }}
+        animate={containerInView ? { opacity: 0.3, scale: 1 } : { opacity: 0, scale: 1.1 }}
+        transition={{ duration: 2, ease: "easeOut" }}
+      ></motion.div>
+      <style>{`
+        @keyframes shimmer {
+          0% { background-position: -200% 0; }
+          50% { background-position: 200% 0; }
+          100% { background-position: -200% 0; }
+        }
+      `}</style>
+      <div className="max-w-[1500px] mx-auto px-8 py-24 h-screen flex flex-col justify-between">
         <div className="mb-8">
-          <div className="flex items-center gap-8 mb-8">
-            <h2 className="text-4xl font-bold">My Services</h2>
-            <div className="flex-1 h-px bg-white"></div>
-          </div>
-          <div className="mb-12">
-            <h1 className="text-2xl font-light leading-tight max-w-4xl">Aumente o desempenho e viabilidade das suas baterias EV com a tecnologia revolucionária de carregamento MagLiB™ da Gaussion.</h1>
-          </div>
+          <motion.div 
+            ref={titleRef}
+            className="flex items-center gap-8 mb-8"
+            initial={{ opacity: 0, y: -80, filter: "blur(15px)", scale: 0.8 }}
+            animate={titleInView ? { opacity: 1, y: 0, filter: "blur(0px)", scale: 1 } : { opacity: 0, y: -80, filter: "blur(15px)", scale: 0.8 }}
+            transition={{ duration: 1.2, ease: "easeOut", type: "spring", stiffness: 100 }}
+          >
+            <motion.h2 
+              className="text-4xl font-bold"
+              initial={{ opacity: 0, x: -30 }}
+              animate={titleInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}
+            >
+              <ShinyTextComponent text="My Services" speed={4} />
+            </motion.h2>
+            <motion.div 
+              className="flex-1 h-px bg-white/20 mt-2"
+              initial={{ width: 0, opacity: 0 }}
+              animate={titleInView ? { width: "100%", opacity: 1 } : { width: 0, opacity: 0 }}
+              transition={{ duration: 1.5, ease: "easeOut", delay: 0.5 }}
+            ></motion.div>
+          </motion.div>
+          <motion.div 
+            ref={descriptionRef}
+            className="mb-12"
+            initial={{ opacity: 0, y: 50, filter: "blur(12px)", scale: 0.95 }}
+            animate={descriptionInView ? { opacity: 1, y: 0, filter: "blur(0px)", scale: 1 } : { opacity: 0, y: 50, filter: "blur(12px)", scale: 0.95 }}
+            transition={{ duration: 1, ease: "easeOut", delay: 0.4, type: "spring", stiffness: 80 }}
+          >
+            <motion.h1 
+              className="text-2xl font-light leading-tight max-w-4xl"
+              initial={{ opacity: 0, x: -20 }}
+              animate={descriptionInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
+            >
+              Aumente o desempenho e viabilidade das suas baterias EV com a tecnologia revolucionária de carregamento MagLiB™ da Gaussion.
+            </motion.h1>
+          </motion.div>
         </div>
         <div className="relative flex justify-end w-full">
-          <div className="text-xl max-w-64 -rotate-90 text-center tracking-wider absolute top-1/2 -translate-y-1/2 -left-28">Aumente o desempenho e viabilidade das suas</div>
-          <div className="grid grid-cols-2 gap-8 md:gap-16 w-2/3">
+          <motion.div 
+            ref={sideTextRef}
+            className="text-xl max-w-64 -rotate-90 text-center tracking-wider absolute top-1/2 -translate-y-1/2 -left-28"
+            initial={{ opacity: 0, x: -150, y: 20, filter: "blur(15px)", scale: 0.8 }}
+            animate={sideTextInView ? { opacity: 1, x: 0, y: 0, filter: "blur(0px)", scale: 1 } : { opacity: 0, x: -150, y: 20, filter: "blur(15px)", scale: 0.8 }}
+            transition={{ duration: 1.2, ease: "easeOut", delay: 0.8, type: "spring", stiffness: 60 }}
+          >
+            <motion.span
+              initial={{ opacity: 0, y: 20 }}
+              animate={sideTextInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 1.2 }}
+            >
+              Aumente o desempenho e viabilidade das suas
+            </motion.span>
+          </motion.div>
+          <motion.div 
+            ref={cardsRef}
+            className="grid grid-cols-2 gap-8 md:gap-16 w-2/3"
+            initial={{ opacity: 0, y: 120, filter: "blur(15px)", scale: 0.9 }}
+            animate={cardsInView ? { opacity: 1, y: 0, filter: "blur(0px)", scale: 1 } : { opacity: 0, y: 120, filter: "blur(15px)", scale: 0.9 }}
+            transition={{ duration: 1.2, ease: "easeOut", delay: 0.5, type: "spring", stiffness: 100 }}
+          >
             {servicesData.map((service, index) => (
-              <div key={index} className="relative group h-52">
-                <span className="h-full w-[1px] bg-white absolute top-0 left-0 z-0"></span>
-                <span className="h-[1px] w-2/3 bg-white absolute bottom-0 left-0 z-0"></span>
-                <div className="text-9xl font-bold absolute top-1/2 -left-11 -translate-y-1/2 z-10">{service.number}</div>
-                <button className="absolute -bottom-4 px-8 py-2 text-black cursor-pointer bg-white right-4">Call me</button>
-                {/* <h3 className="text-xl md:text-2xl font-bold mb-2">{service.title}</h3> */}
-                {/* <p className="text-sm md:text-base text-gray-300 leading-relaxed">{service.description}</p> */}
-                <span className="h-[1px] w-2/3 bg-white absolute top-0 right-0"></span>
-                <span className="h-full w-[1px] bg-white absolute top-0 right-0"></span>
-            
+              <div 
+                key={index} 
+                className="service-card relative py-4 px-8 group h-52"
+              >
+                <span className="service-bar-v h-full w-[1px] bg-white/20 absolute top-0 left-0 z-0"></span>
+                <span className="service-bar-h h-[1px] w-2/3 bg-white/20 absolute bottom-0 left-0 z-0"></span>
+                <motion.div 
+                  className="text-9xl font-bold absolute top-1/2 -left-11 -translate-y-1/2 z-10 opacity-100"
+                  initial={{ opacity: 0, scale: 0.3, rotate: -180, y: 50 }}
+                  animate={cardsInView ? { opacity: 1, scale: 1, rotate: 0, y: 0 } : { opacity: 0, scale: 0.3, rotate: -180, y: 50 }}
+                  transition={{ 
+                    duration: 1.2, 
+                    ease: "easeOut", 
+                    delay: 1.2 + (index * 0.15),
+                    type: "spring",
+                    stiffness: 100
+                  }}
+                >
+                  <ShinyTextComponent text={service.number} speed={4} />
+                </motion.div>
+                <motion.button 
+                  className="absolute -bottom-4 px-8 py-2 text-black cursor-pointer bg-white rounded-lg font-semibold right-4"
+                  onMouseEnter={handleMouseEnter}
+                  onMouseLeave={handleMouseLeave}
+                  whileHover={{ 
+                    scale: 1.08,
+                    y: -2,
+                    boxShadow: "0 15px 35px rgba(255, 255, 255, 0.4)",
+                    transition: { duration: 0.3, ease: "easeOut" }
+                  }}
+                  whileTap={{ scale: 0.92, y: 1 }}
+                  initial={{ opacity: 0, y: 30, scale: 0.8, rotateX: 20 }}
+                  animate={cardsInView ? { opacity: 1, y: 0, scale: 1, rotateX: 0 } : { opacity: 0, y: 30, scale: 0.8, rotateX: 20 }}
+                  transition={{ 
+                    duration: 0.8, 
+                    ease: "easeOut", 
+                    delay: 1.4 + (index * 0.15),
+                    type: "spring",
+                    stiffness: 120
+                  }}
+                >
+                  Call me
+                </motion.button>
+                <div className="flex items-center gap-3 mb-2">
+                  <service.icon className="text-9xl text-[#7272722c] absolute top-3 right-3 z-10" />
+                  <motion.h3 
+                    className="text-xl md:text-xl font-bold text-white"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={cardsInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+                    transition={{ 
+                      duration: 0.6, 
+                      ease: "easeOut", 
+                      delay: 1.5 + (index * 0.15) 
+                    }}
+                  >
+                    <ShinyTextComponent text={service.title} speed={4} />
+                  </motion.h3>
+                </div>
+                <motion.p 
+                  className="text-sm max-w-44 text-gray-300 leading-relaxed"
+                  initial={{ opacity: 0, y: 30, x: 20, filter: "blur(5px)" }}
+                  animate={cardsInView ? { opacity: 1, y: 0, x: 0, filter: "blur(0px)" } : { opacity: 0, y: 30, x: 20, filter: "blur(5px)" }}
+                  transition={{ 
+                    duration: 0.8, 
+                    ease: "easeOut", 
+                    delay: 1.6 + (index * 0.15),
+                    type: "spring",
+                    stiffness: 100
+                  }}
+                >
+                  {service.description}
+                </motion.p>
+                <span className="service-bar-h h-[1px] w-2/3 bg-white/20 absolute top-0 right-0"></span>
+                <span className="service-bar-v h-full w-[1px] bg-white/20 absolute top-0 right-0"></span>
               </div>
             ))}
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
