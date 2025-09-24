@@ -6,11 +6,21 @@ import { AboutSection } from "./sections/about.section";
 import { FeedbacksSection } from "./sections/feedbacks.section";
 import { ServicesSection } from "./sections/services.section";
 import { MyWorkSection } from "./sections/my-work.section";
+import { ContactSection } from "./sections/contact.section";
+import { useScrollSnap } from "./hooks/useScrollSnap";
 
 function App() {
+  const sections = ['hero', 'about', 'services', 'feedbacks', 'work', 'contact'];
+  
+  useScrollSnap({ 
+    sections, 
+    timeout: 1000 
+  });
+
   useEffect(() => {
     window.scrollTo(0, 0);
   }, []);
+  
   return (
     <main
       className="text-text"
@@ -28,6 +38,7 @@ function App() {
       <ServicesSection />
       <FeedbacksSection />
       <MyWorkSection />
+      <ContactSection />
     </main>
   );
 }

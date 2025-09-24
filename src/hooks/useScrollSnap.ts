@@ -30,18 +30,23 @@ export const useScrollSnap = ({ sections, timeout = 4000 }: UseScrollSnapOptions
     }
   }, [sections]);
 
-  const getNextSectionIndex = useCallback(() => {
+  const getNextSectionIndex = useCallback((direction: 'up' | 'down') => {
     const currentIndex = currentSectionIndex.current;
-    return (currentIndex + 1) % sections.length;
+    if (direction === 'down') {
+      return (currentIndex + 1) % sections.length;
+    } else {
+      return currentIndex === 0 ? sections.length - 1 : currentIndex - 1;
+    }
   }, [sections]);
 
-  const handleScroll = useCallback(() => {
+  const handleScroll = useCallback((direction: 'up' | 'down') => {
+    // Se já está processando, ignora completamente
     if (isScrolling.current) return;
     
     const now = Date.now();
     const timeSinceLastScroll = now - lastScrollTime.current;
     
-    // Se ainda está no timeout, não faz nada
+    // Se ainda está no timeout, ignora
     if (timeSinceLastScroll < timeout) return;
     
     // Limpa timeout anterior se existir
@@ -51,7 +56,7 @@ export const useScrollSnap = ({ sections, timeout = 4000 }: UseScrollSnapOptions
     
     // Define novo timeout
     scrollTimeout.current = setTimeout(() => {
-      const nextIndex = getNextSectionIndex();
+      const nextIndex = getNextSectionIndex(direction);
       scrollToSection(nextIndex);
       lastScrollTime.current = Date.now();
     }, 100); // Pequeno delay para evitar spam
@@ -60,18 +65,23 @@ export const useScrollSnap = ({ sections, timeout = 4000 }: UseScrollSnapOptions
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
       e.preventDefault();
-      handleScroll();
+      const direction = e.deltaY > 0 ? 'down' : 'up';
+      handleScroll(direction);
     };
 
     const handleTouchMove = (e: TouchEvent) => {
       e.preventDefault();
-      handleScroll();
+      // Para touch, assumimos direção para baixo por padrão
+      handleScroll('down');
     };
 
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowDown' || e.key === 'ArrowUp' || e.key === ' ') {
+      if (e.key === 'ArrowDown' || e.key === ' ') {
         e.preventDefault();
-        handleScroll();
+        handleScroll('down');
+      } else if (e.key === 'ArrowUp') {
+        e.preventDefault();
+        handleScroll('up');
       }
     };
 

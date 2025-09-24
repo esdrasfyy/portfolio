@@ -2,6 +2,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Flex:wght@100..1000&display=swap");
 @import "tailwindcss";
 
+html {
+  scroll-behavior: smooth;
+}
+
 @theme {
   --color-primary: #0e0e0e;
   --color-secondary: #fff;
