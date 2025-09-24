@@ -6,6 +6,7 @@ import { ShinyTextComponent } from "../components/ui/shiny-text.component";
 import gsap from "gsap";
 import { TbHandMove } from "react-icons/tb";
 import { FaShoppingCart, FaMobileAlt, FaChartLine, FaLaptopCode, FaCogs, FaCloud } from "react-icons/fa";
+import { motion } from "motion/react";
 
 const projects = [
   {
@@ -72,7 +73,7 @@ export const MyWorkSection = () => {
   const handRefs = useRef<(HTMLDivElement | null)[]>([]);
   const overlayRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [completedCards, setCompletedCards] = useState<Set<number>>(() => {
-    const saved = localStorage.getItem('completedCards');
+    const saved = localStorage.getItem("completedCards");
     return saved ? new Set(JSON.parse(saved)) : new Set();
   });
 
@@ -89,7 +90,7 @@ export const MyWorkSection = () => {
   }, []);
 
   useEffect(() => {
-    localStorage.setItem('completedCards', JSON.stringify([...completedCards]));
+    localStorage.setItem("completedCards", JSON.stringify([...completedCards]));
   }, [completedCards]);
 
   useEffect(() => {
@@ -110,7 +111,7 @@ export const MyWorkSection = () => {
 
       overlayRefs.current.forEach((overlayRef) => {
         if (overlayRef) {
-          const cardElement = overlayRef.closest('.group');
+          const cardElement = overlayRef.closest(".group");
           if (cardElement) {
             const handleMouseEnter = () => {
               gsap.killTweensOf(overlayRef);
@@ -119,27 +120,27 @@ export const MyWorkSection = () => {
                 duration: 0.7,
                 ease: "power2.inOut",
                 onComplete: () => {
-                  gsap.set(overlayRef, { zIndex: -1000, display: 'none' });
-                }
+                  gsap.set(overlayRef, { zIndex: -1000, display: "none" });
+                },
               });
             };
 
             const handleMouseLeave = () => {
               gsap.killTweensOf(overlayRef);
-              gsap.set(overlayRef, { zIndex: 10, display: 'flex' });
+              gsap.set(overlayRef, { zIndex: 10, display: "flex" });
               gsap.to(overlayRef, {
                 opacity: 1,
                 duration: 0.7,
-                ease: "power2.inOut"
+                ease: "power2.inOut",
               });
             };
 
-            cardElement.addEventListener('mouseenter', handleMouseEnter);
-            cardElement.addEventListener('mouseleave', handleMouseLeave);
+            cardElement.addEventListener("mouseenter", handleMouseEnter);
+            cardElement.addEventListener("mouseleave", handleMouseLeave);
 
             cleanupFunctions.push(() => {
-              cardElement.removeEventListener('mouseenter', handleMouseEnter);
-              cardElement.removeEventListener('mouseleave', handleMouseLeave);
+              cardElement.removeEventListener("mouseenter", handleMouseEnter);
+              cardElement.removeEventListener("mouseleave", handleMouseLeave);
             });
           }
         }
@@ -147,7 +148,7 @@ export const MyWorkSection = () => {
     }
 
     return () => {
-      cleanupFunctions.forEach(cleanup => cleanup());
+      cleanupFunctions.forEach((cleanup) => cleanup());
     };
   }, []);
 
@@ -158,7 +159,25 @@ export const MyWorkSection = () => {
     finishPercent: 70,
   };
   return (
-    <section id="work" className="h-screen text-white bg-black/50">
+    <section id="work" className="h-screen text-white bg-black/50 relative">
+      <motion.div
+        className="absolute inset-0 opacity-30"
+        style={{
+          background: "linear-gradient(45deg, transparent 30%, rgba(192, 192, 192, 0.3) 50%, transparent 70%)",
+          backgroundSize: "200% 200%",
+          animation: "shimmer 20s ease-in-out infinite",
+        }}
+        initial={{ opacity: 0, scale: 1.1 }}
+        animate={true ? { opacity: 0.3, scale: 1 } : { opacity: 0, scale: 1.1 }}
+        transition={{ duration: 2, ease: "easeOut" }}
+      ></motion.div>
+      <style>{`
+        @keyframes shimmer {
+          0% { background-position: -200% 0; }
+          50% { background-position: 200% 0; }
+          100% { background-position: -200% 0; }
+        }
+      `}</style>
       <div className="max-w-[1500px] mx-auto flex h-full">
         {/* Left Section - 2/3 width */}
         <div className="w-2/3 pr-8 flex flex-col justify-between relative py-20 px-8">
@@ -167,7 +186,9 @@ export const MyWorkSection = () => {
             <h2 className="text-2xl font-light relative">
               <ShinyTextComponent text="MY" speed={4} />
               <br />
-              <span className="text-7xl absolute -bottom-20 left-0 font-semibold"><ShinyTextComponent text="WORK" speed={4} /></span>
+              <span className="text-7xl absolute -bottom-20 left-0 font-semibold">
+                <ShinyTextComponent text="WORK" speed={4} />
+              </span>
             </h2>
             <div className="space-y-2 text-white text-lg max-w-lg mt-28 flex items-center gap-4">
               <div className="h-[1px] w-32 bg-white"></div>
@@ -198,73 +219,65 @@ export const MyWorkSection = () => {
               <div key={project.id} className={`h-full w-full ${borderClasses} cursor-grab border-dotted border-gray-500 rounded-xs relative group`}>
                 <GlowingEffectComponent spread={50} glow={true} disabled={false} proximity={200} inactiveZone={0.01} borderWidth={1} />
 
-                 {!completedCards.has(project.id) && (
-                   <div 
-                     ref={(el) => {
-                       if (el) overlayRefs.current[index] = el;
-                     }}
-                     className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-black/20 backdrop-blur-sm"
-                   >
-                   <div className="flex items-center justify-center">
-                     <div 
-                       ref={(el) => {
-                         if (el) handRefs.current[index] = el;
-                       }}
-                       className="text-[#b5b5b5]"
-                     >
-                       <TbHandMove size={40} />
-                     </div>
-                   </div>
+                {!completedCards.has(project.id) && (
+                  <div
+                    ref={(el) => {
+                      if (el) overlayRefs.current[index] = el;
+                    }}
+                    className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-black/20 backdrop-blur-sm"
+                  >
+                    <div className="flex items-center justify-center">
+                      <div
+                        ref={(el) => {
+                          if (el) handRefs.current[index] = el;
+                        }}
+                        className="text-[#b5b5b5]"
+                      >
+                        <TbHandMove size={40} />
+                      </div>
+                    </div>
 
-                   <p className="text-white font-semibold tracking-wide absolute top-2/3 left-1/2 -translate-x-1/2">
-                     <ShinyTextComponent text="Scratch to reveal" speed={4} />
-                   </p>
-                   </div>
-                 )}
+                    <p className="text-white font-semibold tracking-wide absolute top-2/3 left-1/2 -translate-x-1/2">
+                      <ShinyTextComponent text="Scratch to reveal" speed={4} />
+                    </p>
+                  </div>
+                )}
 
                 {completedCards.has(project.id) ? (
                   <div className="flex w-full h-full bg-white/5 backdrop-blur-sm relative">
                     <div className="absolute top-4 left-4 p-2 rounded-full text-white border border-white/50 bg-white/30 backdrop-blur-sm">
                       <project.icon size={14} />
                     </div>
-                    <div className="absolute top-4 right-4 text-white/60 text-xs font-mono">
-                      Nov 2024
-                    </div>
+                    <div className="absolute top-4 right-4 text-white/60 text-xs font-mono">Nov 2024</div>
                     <div className="p-6 flex mt-12 flex-col justify-between w-full">
                       <div>
                         <h3 className="text-white text-lg font-bold mb-2">{project.title}</h3>
                         <p className="text-white/80 text-sm leading-relaxed">{project.description}</p>
                       </div>
                       <div className="flex justify-center mt-4">
-                        <button className="bg-white cursor-pointer text-black px-6 py-1 rounded-full font-medium hover:bg-white/90 transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:shadow-[0_15px_35px_rgba(255,255,255,0.4)]">
-                          More
-                        </button>
+                        <button className="bg-white cursor-pointer text-black px-6 py-1 rounded-full font-medium hover:bg-white/90 transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:shadow-[0_15px_35px_rgba(255,255,255,0.4)]">More</button>
                       </div>
                     </div>
                   </div>
                 ) : (
-                  <ScratchCard 
+                  <ScratchCard
                     {...scratchConfig}
                     onComplete={() => {
-                      setCompletedCards(prev => new Set([...prev, project.id]));
+                      setCompletedCards((prev) => new Set([...prev, project.id]));
                     }}
                   >
                     <div className="flex w-full h-full bg-white/5 backdrop-blur-sm relative">
                       <div className="absolute top-4 left-4 p-2 rounded-full text-white border border-white/50 bg-white/30 backdrop-blur-sm">
                         <project.icon size={14} />
                       </div>
-                      <div className="absolute top-4 right-4 text-white/60 text-xs font-mono">
-                        Nov 2024
-                      </div>
+                      <div className="absolute top-4 right-4 text-white/60 text-xs font-mono">Nov 2024</div>
                       <div className="p-6 flex mt-12 flex-col justify-between w-full">
                         <div>
                           <h3 className="text-white text-lg font-bold mb-2">{project.title}</h3>
                           <p className="text-white/80 text-sm leading-relaxed">{project.description}</p>
                         </div>
                         <div className="flex justify-center mt-4">
-                          <button className="bg-white text-black px-6 py-1 rounded-full font-medium hover:bg-white/90 transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:shadow-[0_15px_35px_rgba(255,255,255,0.4)]">
-                            More
-                          </button>
+                          <button className="bg-white text-black px-6 py-1 rounded-full font-medium hover:bg-white/90 transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:shadow-[0_15px_35px_rgba(255,255,255,0.4)]">More</button>
                         </div>
                       </div>
                     </div>

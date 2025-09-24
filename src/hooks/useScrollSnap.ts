@@ -11,6 +11,17 @@ export const useScrollSnap = ({ sections, timeout = 4000 }: UseScrollSnapOptions
   const currentSectionIndex = useRef(0);
   const scrollTimeout = useRef<number | null>(null);
 
+  // Sempre inicia na primeira seção (hero)
+  useEffect(() => {
+    const heroSection = document.getElementById(sections[0]);
+    if (heroSection) {
+      heroSection.scrollIntoView({ 
+        behavior: 'instant',
+        block: 'start'
+      });
+    }
+  }, [sections]);
+
   const scrollToSection = useCallback((index: number) => {
     if (isScrolling.current) return;
     
@@ -35,7 +46,11 @@ export const useScrollSnap = ({ sections, timeout = 4000 }: UseScrollSnapOptions
     if (direction === 'down') {
       return (currentIndex + 1) % sections.length;
     } else {
-      return currentIndex === 0 ? sections.length - 1 : currentIndex - 1;
+      // Se está na primeira seção e scrolla para cima, não faz nada
+      if (currentIndex === 0) {
+        return currentIndex;
+      }
+      return currentIndex - 1;
     }
   }, [sections]);
 
@@ -57,8 +72,11 @@ export const useScrollSnap = ({ sections, timeout = 4000 }: UseScrollSnapOptions
     // Define novo timeout
     scrollTimeout.current = setTimeout(() => {
       const nextIndex = getNextSectionIndex(direction);
-      scrollToSection(nextIndex);
-      lastScrollTime.current = Date.now();
+      // Só executa se o índice mudou
+      if (nextIndex !== currentSectionIndex.current) {
+        scrollToSection(nextIndex);
+        lastScrollTime.current = Date.now();
+      }
     }, 100); // Pequeno delay para evitar spam
   }, [getNextSectionIndex, scrollToSection, timeout]);
 

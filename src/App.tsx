@@ -1,7 +1,6 @@
 import { LightRaysComponent } from "./components/ui/light-rays.component";
 import { HamburgerMenu } from "./components/ui/hamburger-menu.component";
 import { HeroSection } from "./sections/hero.section";
-import { useEffect } from "react";
 import { AboutSection } from "./sections/about.section";
 import { FeedbacksSection } from "./sections/feedbacks.section";
 import { ServicesSection } from "./sections/services.section";
@@ -16,10 +15,6 @@ function App() {
     sections, 
     timeout: 1000 
   });
-
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  }, []);
   
   return (
     <main

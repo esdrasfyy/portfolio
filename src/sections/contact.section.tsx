@@ -45,8 +45,14 @@ export const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="min-h-screen bg-gray-100 py-20 px-8 flex justify-center items-center">
-      <motion.div ref={containerRef} className="max-w-[1500px] mx-auto flex flex-col lg:flex-row gap-44 max-lg:gap-2 justify-between items-center w-full min-h-full" initial={{ opacity: 0 }} animate={containerInView ? { opacity: 1 } : { opacity: 0 }} transition={{ duration: 0.8, ease: "easeOut" }}>
+    <section id="contact" className="min-h-screen bg-gray-100 py-20 px-8 flex justify-center items-center relative">
+        <div 
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-5 z-0"
+          style={{
+            backgroundImage: "url('/contact.jpg')",
+          }}
+        ></div>
+      <motion.div ref={containerRef} className="max-w-[1500px] z-10 mx-auto flex flex-col lg:flex-row gap-44 max-lg:gap-2 justify-between items-center w-full min-h-full relative" initial={{ opacity: 0 }} animate={containerInView ? { opacity: 1 } : { opacity: 0 }} transition={{ duration: 0.8, ease: "easeOut" }}>
         <motion.div
           ref={leftRef}
           className="space-y-12 max-lg:space-y-0 flex flex-col justify-between w-full h-[500px] max-lg:h-fit my-auto"
