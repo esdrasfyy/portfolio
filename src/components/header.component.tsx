@@ -4,7 +4,7 @@ import { usePreferences } from "../contexts/preferences.context";
 export const HeaderComponent = () => {
   const { menu, onClose, onOpen } = usePreferences();
   return (
-    <header className="flex text-text justify-between items-center h-24 px-12 top-0 left-0 z-[60] absolute">
+    <header className="flex text-text justify-between items-center h-24 px-12 top-0 left-0 z-[60] max-[1500px]:px-4 absolute">
       <button onClick={menu ? onClose : onOpen} className="flex items-center cursor-pointer pr-4">
         <span>
           <Hamburger size={16} toggled={menu} />

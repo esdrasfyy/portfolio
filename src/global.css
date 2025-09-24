@@ -27,7 +27,7 @@ html {
   -webkit-touch-callout: none;
   -webkit-tap-highlight-color: transparent;
   outline: none;
-  
+
   /* cursor: none !important; */
 }
 
@@ -154,3 +154,4 @@ html {
 .animate-float-gentle {
   animation: float-gentle 8s ease-in-out infinite;
 }
+
