@@ -21,7 +21,7 @@ function App() {
         backgroundSize: "100px 100px",
       }}
     >
-      <LightRaysComponent raysOrigin="top-center" raysColor="#ffffff" raysSpeed={1.5} lightSpread={0.8} rayLength={1.2} followMouse={true} mouseInfluence={0.1} noiseAmount={0.1} distortion={0.05} className="custom-rays" />
+      <LightRaysComponent raysOrigin="top-center" raysColor="#ffffff" raysSpeed={1.5} lightSpread={0.8} rayLength={1.2} followMouse={true} mouseInfluence={0.1} noiseAmount={0.1} distortion={0.05} className="custom-rays max-lg:!lightSpread-[3.5] max-lg:!rayLength-[4.0] max-lg:!mouseInfluence-[1.0] max-lg:!noiseAmount-[0.8] max-lg:!distortion-[0.5]" />
       <HamburgerMenu />
       <HeroSection />
       <AboutSection />
