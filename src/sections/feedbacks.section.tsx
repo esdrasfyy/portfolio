@@ -16,7 +16,7 @@ const originalFeedbacks: Testimonial[] = [
     id: 1,
     name: "Igor 'Tony'",
     role: "CEO Cidade Alta RP",
-    content: "Fernando is a qualified and committed developer, who contributed to improving Cidade Alta's technology. I recommend him to anyone looking for innovation and professionalism!",
+    content: "Fernando is a qualified and committed developer who contributed to improving our technology. I recommend him for innovation and professionalism!",
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
   },
   {
@@ -30,28 +30,28 @@ const originalFeedbacks: Testimonial[] = [
     id: 3,
     name: "Anonymous",
     role: "CEO Snapic",
-    content: "Fernando partnership was essential for Snapic. He developed scalable and high-performance systems, such as lives, OAuth authentication and integration with Facebook Meta.",
+    content: "Fernando partnership was essential for Snapic. He developed scalable systems with OAuth authentication and Facebook Meta integration.",
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
   },
   {
     id: 4,
     name: "DRA Franciele Cruz",
     role: "Advogada",
-    content: "Fernando created a page that expanded my reach and brought new clients, generating real results and strengthening my online presence. I recommend him to anyone looking for impact and quality!",
+    content: "Fernando created a page that expanded my reach and brought new clients, generating real results. I recommend him for impact and quality!",
     avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face",
   },
   {
     id: 5,
     name: "Gustavo Delmondes",
     role: "Owner Aegis Capital",
-    content: "Fe technical expertise transformed our financial platform. His solutions are robust, secure, and perfectly aligned with our business needs. Exceptional professional!",
+    content: "Fe technical expertise transformed our financial platform. His solutions are robust, secure, and perfectly aligned with our business needs.",
     avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face",
   },
   {
     id: 6,
     name: "Celso Rodrigues",
     role: "Consultor e CEO da OpcaoConvenios",
-    content: "Esdras partnership was crucial for our digital transformation. He delivered innovative solutions that optimized our processes and increased our efficiency significantly.",
+    content: "Esdras partnership was crucial for our digital transformation. He delivered innovative solutions that optimized our processes and increased efficiency.",
     avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face",
   },
 ];
@@ -78,17 +78,17 @@ const TestimonialCard = ({ testimonial, index }: { testimonial: Testimonial; ind
         ease: "easeOut",
         delay: index * 0.1,
       }}
-      className="bg-white rounded-lg shadow-md p-6 flex flex-col gap-4 h-80 w-96 flex-shrink-0 relative"
+      className="bg-white rounded-lg shadow-md p-4 md:p-6 flex flex-col gap-3 md:gap-4 w-48 md:w-80 flex-shrink-0 relative"
     >
-      <div className="text-6xl text-gray-300 font-bold  leading-none">
+      <div className="text-3xl md:text-4xl text-gray-300 font-bold leading-none">
         <VscQuote />
       </div>
-      <p className="text-gray-800 text-base leading-relaxed">"{testimonial.content}"</p>
-      <div className="flex items-center gap-3 mt-auto">
-        <img src={testimonial.avatar} alt={testimonial.name} className="w-12 h-12 rounded-full object-cover" />
+      <p className="text-gray-800 text-xs md:text-sm leading-relaxed max-h-32 overflow-hidden">"{testimonial.content}"</p>
+      <div className="flex items-center gap-2 md:gap-3 mt-auto">
+        <img src={testimonial.avatar} alt={testimonial.name} className="hidden md:block w-10 h-10 rounded-full object-cover" />
         <div>
-          <p className="font-bold text-gray-900 text-base">{testimonial.name}</p>
-          <p className="text-gray-500 text-sm">{testimonial.role}</p>
+          <p className="font-bold text-gray-900 text-xs md:text-sm">{testimonial.name}</p>
+          <p className="text-gray-500 text-xs">{testimonial.role}</p>
         </div>
       </div>
     </motion.div>
@@ -98,7 +98,7 @@ const TestimonialCard = ({ testimonial, index }: { testimonial: Testimonial; ind
 const AnimatedTestimonials = () => {
   return (
     <div className="relative overflow-hidden py-5">
-      <div className="flex gap-6 animate-scroll">
+      <div className="flex gap-4 md:gap-6 animate-scroll">
         {feedbacksData.map((testimonial, index) => (
           <TestimonialCard key={testimonial.id} testimonial={testimonial} index={index} />
         ))}
@@ -122,7 +122,7 @@ export const FeedbacksSection = () => {
       ></div>
       <TextTube text="Endorsements" color="black" fontSize="14vw" className="flex items-center justify-center" finalPosition="0" />
 
-      <div className="w-full py-10 bg-white pb-24">
+      <div className="w-full py-10 pb-24 absolute bottom-[5vh] left-0">
         <AnimatedTestimonials />
       </div>
     </section>

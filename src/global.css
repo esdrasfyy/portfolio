@@ -43,6 +43,16 @@ html {
   animation: scroll-slow 40s linear infinite;
 }
 
+@media (max-width: 768px) {
+  .animate-scroll {
+    animation: scroll 20s linear infinite;
+  }
+  
+  .animate-scroll-slow {
+    animation: scroll-slow 25s linear infinite;
+  }
+}
+
 @keyframes scroll {
   0% {
     transform: translateX(0);

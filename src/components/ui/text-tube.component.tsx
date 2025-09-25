@@ -158,7 +158,7 @@ export const TextTube = ({ text, color = "white", fontSize = "18vw", className =
 
   return (
     <div className={`container ${className}`} ref={containerRef}>
-      <div className="tube" ref={tubeRef}>
+      <div className="tube h-[12vw] md:h-[16vw] lg:h-[20vw] xl:h-[24vw]" ref={tubeRef}>
         <h1
           className="clone"
           ref={cloneRef}
