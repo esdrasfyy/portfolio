@@ -70,6 +70,7 @@ const projects = [
 export const MyWorkSection = () => {
   const parentRef = useRef<HTMLDivElement>(null);
   const [parentWidth, setParentWidth] = useState(0);
+  const [screenWidth, setScreenWidth] = useState(0);
   const handRefs = useRef<(HTMLDivElement | null)[]>([]);
   const overlayRefs = useRef<(HTMLDivElement | null)[]>([]);
   const [completedCards, setCompletedCards] = useState<Set<number>>(() => {
@@ -84,9 +85,18 @@ export const MyWorkSection = () => {
       }
     };
 
+    const updateScreenWidth = () => {
+      setScreenWidth(window.innerWidth);
+    };
+
     updateWidth();
+    updateScreenWidth();
     window.addEventListener("resize", updateWidth);
-    return () => window.removeEventListener("resize", updateWidth);
+    window.addEventListener("resize", updateScreenWidth);
+    return () => {
+      window.removeEventListener("resize", updateWidth);
+      window.removeEventListener("resize", updateScreenWidth);
+    };
   }, []);
 
   useEffect(() => {
@@ -178,9 +188,9 @@ export const MyWorkSection = () => {
           100% { background-position: -200% 0; }
         }
       `}</style>
-      <div className="max-w-[1500px] mx-auto flex flex-col md:flex-row h-full">
+      <div className="max-w-[1500px] mx-auto flex h-full max-[1250px]:flex-col">
         {/* Left Section - 2/3 width */}
-        <div className="w-full md:w-2/3 md:pr-8 flex flex-col justify-between relative py-8 md:py-20 px-4 md:px-8">
+        <div className="w-full md:w-2/3 md:pr-8 flex flex-col justify-between relative py-8 md:py-20 px-4 md:px-8 max-[1250px]:w-full max-[1250px]:pr-0">
           {/* Top Left - Title */}
           <div>
             <h2 className="text-xl md:text-2xl font-light relative">
@@ -205,8 +215,8 @@ export const MyWorkSection = () => {
           ></div>
         </div>
 
-        <div ref={parentRef} className="grid grid-cols-1 md:grid-cols-2 mx-2 md:mx-4 gap-1 w-full md:w-2/3">
-          {projects.map((project, index) => {
+        <div ref={parentRef} className="grid grid-cols-2 mx-2 md:mx-4 gap-1 w-2/3 max-[1250px]:w-full max-[1250px]:mx-0">
+          {(screenWidth < 1250 ? projects.slice(0, 6) : projects).map((project, index) => {
             let borderClasses = "border border-white/10";
             if (index === 0 || index === 1) {
               borderClasses = "border-l border-r border-b border-white/10";
@@ -216,10 +226,10 @@ export const MyWorkSection = () => {
             }
 
             return (
-              <div key={project.id} className={`h-full w-full ${borderClasses} cursor-grab border-dotted border-gray-500 rounded-xs relative group`}>
+              <div key={project.id} className={`h-full w-full ${borderClasses} cursor-grab border-dotted border-gray-500 rounded-xs relative group ${screenWidth < 768 ? 'min-h-[200px]' : ''}`}>
                 <GlowingEffectComponent spread={50} glow={true} disabled={false} proximity={200} inactiveZone={0.01} borderWidth={1} />
 
-                {!completedCards.has(project.id) && (
+                {!completedCards.has(project.id) && screenWidth >= 768 && (
                   <div
                     ref={(el) => {
                       if (el) overlayRefs.current[index] = el;
@@ -243,7 +253,7 @@ export const MyWorkSection = () => {
                   </div>
                 )}
 
-                {completedCards.has(project.id) ? (
+                {completedCards.has(project.id) || screenWidth < 768 ? (
                   <div className="flex w-full h-full bg-white/5 backdrop-blur-sm relative">
                     <div className="absolute top-4 left-4 p-2 rounded-full text-white border border-white/50 bg-white/30 backdrop-blur-sm">
                       <project.icon size={14} />
