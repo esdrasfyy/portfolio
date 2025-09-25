@@ -5,8 +5,11 @@ import { useRef, useEffect, useState } from "react";
 import { ShinyTextComponent } from "../components/ui/shiny-text.component";
 import gsap from "gsap";
 import { TbHandMove } from "react-icons/tb";
-import { FaShoppingCart, FaMobileAlt, FaChartLine, FaLaptopCode, FaCogs, FaCloud } from "react-icons/fa";
+import { FaShoppingCart, FaMobileAlt, FaChartLine, FaLaptopCode, FaCogs, FaCloud, FaInfo } from "react-icons/fa";
 import { motion } from "motion/react";
+import { Modal } from "../components/ui/modal.component";
+import { useModal } from "../hooks/useModal";
+import { Cube3D, CubeControls } from "../components/ui/3d-cube.component";
 
 const projects = [
   {
@@ -67,12 +70,30 @@ const projects = [
   },
 ];
 
+const getProjectImages = (projectId: number) => {
+  const projectImages = {
+    1: ["/791.jpg", "/about.jpg", "/contact.jpg", "/feedback.jpg", "/hm.jpg", "/services.jpg"],
+    2: ["/about.jpg", "/contact.jpg", "/feedback.jpg", "/hm.jpg", "/services.jpg", "/791.jpg"],
+    3: ["/contact.jpg", "/feedback.jpg", "/hm.jpg", "/services.jpg", "/791.jpg", "/about.jpg"],
+    4: ["/feedback.jpg", "/hm.jpg", "/services.jpg", "/791.jpg", "/about.jpg", "/contact.jpg"],
+    5: ["/hm.jpg", "/services.jpg", "/791.jpg", "/about.jpg", "/contact.jpg", "/feedback.jpg"],
+    6: ["/services.jpg", "/791.jpg", "/about.jpg", "/contact.jpg", "/feedback.jpg", "/hm.jpg"],
+    7: ["/791.jpg", "/about.jpg", "/contact.jpg", "/feedback.jpg", "/hm.jpg", "/services.jpg"],
+    8: ["/about.jpg", "/contact.jpg", "/feedback.jpg", "/hm.jpg", "/services.jpg", "/791.jpg"],
+  };
+  return projectImages[projectId as keyof typeof projectImages] || projectImages[1];
+};
+
 export const MyWorkSection = () => {
   const parentRef = useRef<HTMLDivElement>(null);
   const [parentWidth, setParentWidth] = useState(0);
   const [screenWidth, setScreenWidth] = useState(0);
   const handRefs = useRef<(HTMLDivElement | null)[]>([]);
   const overlayRefs = useRef<(HTMLDivElement | null)[]>([]);
+  const { isOpen, openModal, closeModal } = useModal();
+  const [selectedProject, setSelectedProject] = useState<number | null>(null);
+  const [cubeRotation, setCubeRotation] = useState({ x: 0, y: 0, z: 0 });
+  const [activeTab, setActiveTab] = useState<'3d' | 'description'>('3d');
   const [completedCards, setCompletedCards] = useState<Set<number>>(() => {
     const saved = localStorage.getItem("completedCards");
     return saved ? new Set(JSON.parse(saved)) : new Set();
@@ -168,6 +189,243 @@ export const MyWorkSection = () => {
     image: bgCover,
     finishPercent: 70,
   };
+
+  const handleProjectClick = (projectId: number) => {
+    setSelectedProject(projectId);
+    openModal();
+  };
+
+  const getModalContent = () => {
+    if (selectedProject === null) return null;
+    const project = projects.find((p) => p.id === selectedProject);
+    if (!project) return null;
+
+    return (
+      <div className="h-full">
+        {/* Mobile Tabs */}
+        <div className="lg:hidden mb-6">
+          <div className="flex bg-gray-800/50 rounded-lg p-1">
+            <button
+              onClick={() => setActiveTab('3d')}
+              className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${
+                activeTab === '3d'
+                  ? 'bg-white text-black'
+                  : 'text-gray-300 hover:text-white'
+              }`}
+            >
+              3D Preview
+            </button>
+            <button
+              onClick={() => setActiveTab('description')}
+              className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${
+                activeTab === 'description'
+                  ? 'bg-white text-black'
+                  : 'text-gray-300 hover:text-white'
+              }`}
+            >
+              Description
+            </button>
+          </div>
+        </div>
+
+        {/* Desktop Layout */}
+        <div className="hidden lg:grid grid-cols-2 gap-12 h-full">
+          {/* Left side - 3D Cube and Controls */}
+          <div className="space-y-6">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-sm">
+                <project.icon className="text-black text-3xl" />
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold text-white">{project.title}</h3>
+                <p className="text-gray-400 text-sm">Interactive 3D Preview</p>
+              </div>
+            </div>
+
+            {/* 3D Cube */}
+            <Cube3D rotation={cubeRotation} projectImages={getProjectImages(project.id)} />
+
+            {/* Controls */}
+            <div className="flex justify-center">
+              <CubeControls
+                onRotate={(direction) => {
+                  if (direction === "up") {
+                    setCubeRotation((prev) => ({ ...prev, x: prev.x + Math.PI / 2 }));
+                  } else if (direction === "down") {
+                    setCubeRotation((prev) => ({ ...prev, x: prev.x - Math.PI / 2 }));
+                  } else if (direction === "left") {
+                    setCubeRotation((prev) => ({ ...prev, y: prev.y + Math.PI / 2 }));
+                  } else if (direction === "right") {
+                    setCubeRotation((prev) => ({ ...prev, y: prev.y - Math.PI / 2 }));
+                  }
+                }}
+                onReset={() => {
+                  setCubeRotation({ x: 0, y: 0, z: 0 });
+                }}
+              />
+            </div>
+          </div>
+
+          {/* Right side - Project Description */}
+          <div className="space-y-8">
+            <div className="flex items-center gap-4 mb-6">
+              <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-sm">
+                <FaInfo className="text-black text-3xl" />
+              </div>
+              <div>
+                <h3 className="text-2xl font-bold text-white">Overview</h3>
+                <p className="text-gray-400 text-sm">{project.description}</p>
+              </div>
+            </div>
+
+            <div className="space-y-4">
+              <div className="flex flex-wrap gap-3">
+                {["React", "TypeScript", "Node.js", "MongoDB", "Tailwind CSS", "Three.js"].map((tech) => (
+                  <span key={tech} className="w-20 py-1 text-center bg-white/10 backdrop-blur-sm border border-gray-500 border-dotted text-gray-300 rounded-md text-xs font-medium shadow-sm">
+                    {tech}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            <div className="space-y-6">
+              <div>
+                <h4 className="font-semibold text-white mb-4 text-lg">Project Description</h4>
+                <p className="text-gray-300 leading-relaxed text-base">
+                  This innovative project showcases cutting-edge web development techniques, combining modern design principles with advanced 3D visualization capabilities. Built with React and Three.js, it delivers an immersive user experience that pushes the boundaries of interactive web applications.
+                </p>
+              </div>
+              
+              <div className="space-y-3">
+                <h4 className="font-semibold text-lg text-white">Key Features:</h4>
+                <ul className="space-y-2 text-sm text-gray-300">
+                <li className="flex items-center gap-4">
+                  <span className="w-1 h-1 bg-white rounded-full flex-shrink-0"></span>
+                  <span className="">Interactive 3D visualization with Three.js</span>
+                </li>
+                <li className="flex items-center gap-4">
+                  <span className="w-1 h-1 bg-white rounded-full flex-shrink-0"></span>
+                  <span className="">Responsive design with modern UI/UX</span>
+                </li>
+                <li className="flex items-center gap-4">
+                  <span className="w-1 h-1 bg-white rounded-full flex-shrink-0"></span>
+                  <span className="">Scalable architecture and performance optimization</span>
+                </li>
+                <li className="flex items-center gap-4">
+                  <span className="w-1 h-1 bg-white rounded-full flex-shrink-0"></span>
+                  <span className="">Real-time 3D controls and interactions</span>
+                </li>
+              </ul>
+              </div>
+            </div>
+
+            <div className="flex justify-center items-center gap-4 pt-6">
+              <button className="px-8 py-3 bg-white/90 text-black rounded-xl cursor-pointer hover:bg-white transition-colors font-medium shadow-sm hover:shadow-md">View Live Demo</button>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile Layout */}
+        <div className="lg:hidden">
+          {activeTab === '3d' && (
+            <div className="space-y-6">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-sm">
+                  <project.icon className="text-black text-3xl" />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold text-white">{project.title}</h3>
+                  <p className="text-gray-400 text-sm">Interactive 3D Preview</p>
+                </div>
+              </div>
+
+              {/* 3D Cube */}
+              <Cube3D rotation={cubeRotation} projectImages={getProjectImages(project.id)} />
+
+              {/* Controls */}
+              <div className="flex justify-center">
+                <CubeControls
+                  onRotate={(direction) => {
+                    if (direction === "up") {
+                      setCubeRotation((prev) => ({ ...prev, x: prev.x + Math.PI / 2 }));
+                    } else if (direction === "down") {
+                      setCubeRotation((prev) => ({ ...prev, x: prev.x - Math.PI / 2 }));
+                    } else if (direction === "left") {
+                      setCubeRotation((prev) => ({ ...prev, y: prev.y + Math.PI / 2 }));
+                    } else if (direction === "right") {
+                      setCubeRotation((prev) => ({ ...prev, y: prev.y - Math.PI / 2 }));
+                    }
+                  }}
+                  onReset={() => {
+                    setCubeRotation({ x: 0, y: 0, z: 0 });
+                  }}
+                />
+              </div>
+            </div>
+          )}
+
+          {activeTab === 'description' && (
+            <div className="space-y-8">
+              <div className="flex items-center gap-4 mb-6">
+                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-sm">
+                  <FaInfo className="text-black text-3xl" />
+                </div>
+                <div>
+                  <h3 className="text-2xl font-bold text-white">Overview</h3>
+                  <p className="text-gray-400 text-sm">{project.description}</p>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                <div className="flex flex-wrap gap-3">
+                  {["React", "TypeScript", "Node.js", "MongoDB", "Tailwind CSS", "Three.js"].map((tech) => (
+                    <span key={tech} className="w-20 py-1 text-center bg-white/10 backdrop-blur-sm border border-gray-500 border-dotted text-gray-300 rounded-md text-xs font-medium shadow-sm">
+                      {tech}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="space-y-6">
+                <div>
+                  <h4 className="font-semibold text-white mb-4 text-lg">Project Description</h4>
+                  <p className="text-gray-300 leading-relaxed text-base">
+                    This innovative project showcases cutting-edge web development techniques, combining modern design principles with advanced 3D visualization capabilities. Built with React and Three.js, it delivers an immersive user experience that pushes the boundaries of interactive web applications.
+                  </p>
+                </div>
+                
+                <div className="space-y-3">
+                  <h4 className="font-semibold text-lg text-white">Key Features:</h4>
+                  <ul className="space-y-2 text-sm text-gray-300">
+                  <li className="flex items-center gap-4">
+                    <span className="w-1 h-1 bg-white rounded-full flex-shrink-0"></span>
+                    <span className="">Interactive 3D visualization with Three.js</span>
+                  </li>
+                  <li className="flex items-center gap-4">
+                    <span className="w-1 h-1 bg-white rounded-full flex-shrink-0"></span>
+                    <span className="">Responsive design with modern UI/UX</span>
+                  </li>
+                  <li className="flex items-center gap-4">
+                    <span className="w-1 h-1 bg-white rounded-full flex-shrink-0"></span>
+                    <span className="">Scalable architecture and performance optimization</span>
+                  </li>
+                  <li className="flex items-center gap-4">
+                    <span className="w-1 h-1 bg-white rounded-full flex-shrink-0"></span>
+                    <span className="">Real-time 3D controls and interactions</span>
+                  </li>
+                </ul>
+                </div>
+              </div>
+
+              <div className="flex justify-center items-center gap-4 pt-6">
+                <button className="px-8 py-3 bg-white/90 text-black rounded-xl cursor-pointer hover:bg-white transition-colors font-medium shadow-sm hover:shadow-md">View Live Demo</button>
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    );
+  };
   return (
     <section id="work" className="min-h-screen md:h-screen text-white bg-black/50 relative">
       <motion.div
@@ -226,7 +484,7 @@ export const MyWorkSection = () => {
             }
 
             return (
-              <div key={project.id} className={`h-full w-full ${borderClasses} cursor-grab border-dotted border-gray-500 rounded-xs relative group ${screenWidth < 768 ? 'min-h-[200px]' : ''}`}>
+              <div key={project.id} className={`h-full w-full ${borderClasses} cursor-grab border-dotted border-gray-500 rounded-xs relative group ${screenWidth < 768 ? "min-h-[200px]" : ""}`}>
                 <GlowingEffectComponent spread={50} glow={true} disabled={false} proximity={200} inactiveZone={0.01} borderWidth={1} />
 
                 {!completedCards.has(project.id) && screenWidth >= 768 && (
@@ -265,7 +523,12 @@ export const MyWorkSection = () => {
                         <p className="text-white/80 text-xs md:text-sm leading-relaxed">{project.description}</p>
                       </div>
                       <div className="flex justify-center mt-4">
-                        <button className="bg-white cursor-pointer text-black px-4 md:px-6 py-1 rounded-full font-medium text-sm md:text-base hover:bg-white/90 transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:shadow-[0_15px_35px_rgba(255,255,255,0.4)]">More</button>
+                        <button
+                          onClick={() => handleProjectClick(project.id)}
+                          className="bg-white cursor-pointer text-black px-4 md:px-6 py-1 rounded-full font-medium text-sm md:text-base hover:bg-white/90 transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:shadow-[0_15px_35px_rgba(255,255,255,0.4)]"
+                        >
+                          More
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -287,7 +550,12 @@ export const MyWorkSection = () => {
                           <p className="text-white/80 text-xs md:text-sm leading-relaxed">{project.description}</p>
                         </div>
                         <div className="flex justify-center mt-4">
-                          <button className="bg-white text-black px-4 md:px-6 py-1 rounded-full font-medium text-sm md:text-base hover:bg-white/90 transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:shadow-[0_15px_35px_rgba(255,255,255,0.4)]">More</button>
+                          <button
+                            onClick={() => handleProjectClick(project.id)}
+                            className="bg-white text-black px-4 md:px-6 py-1 rounded-full font-medium text-sm md:text-base hover:bg-white/90 transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:shadow-[0_15px_35px_rgba(255,255,255,0.4)]"
+                          >
+                            More
+                          </button>
                         </div>
                       </div>
                     </div>
@@ -298,6 +566,11 @@ export const MyWorkSection = () => {
           })}
         </div>
       </div>
+
+      {/* Modal with dark theme */}
+      <Modal isOpen={isOpen} onClose={closeModal} title={selectedProject !== null ? projects.find((p) => p.id === selectedProject)?.title || "Project" : "Project Details"} icon={selectedProject !== null ? projects.find((p) => p.id === selectedProject)?.icon : FaLaptopCode} theme="dark">
+        {getModalContent()}
+      </Modal>
     </section>
   );
 };

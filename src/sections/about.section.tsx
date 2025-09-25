@@ -1,9 +1,12 @@
 import { IoAddOutline } from "react-icons/io5";
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import ScrollVelocity from "../components/ui/scroll-velocity.component";
 import VariableProximity from "../components/ui/variable-proximity.component";
 import { Card3D } from "../components/ui/3d-card.component";
+import { Modal } from "../components/ui/modal.component";
+import { useModal } from "../hooks/useModal";
+import { FaBuilding, FaBriefcase, FaCode, FaRocket } from "react-icons/fa";
 
 const technologies = ["React", "TypeScript", "Next.js", "Node.js", "Express", "MongoDB", "PostgreSQL", "Tailwind CSS", "Framer Motion", "Swiper.js", "Vite", "Git", "Docker", "AWS", "Vercel", "Figma", "Adobe XD", "JavaScript", "HTML5", "CSS3", "SASS", "Webpack", "Jest", "Cypress"];
 
@@ -44,6 +47,8 @@ const experienceCards = [
 
 export const AboutSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const { isOpen, openModal, closeModal } = useModal();
+  const [selectedCard, setSelectedCard] = useState<number | null>(null);
 
   const aboutRef = useRef<HTMLDivElement>(null);
   const meRef = useRef<HTMLDivElement>(null);
@@ -55,6 +60,62 @@ export const AboutSection = () => {
   const journeyInView = useInView(journeyRef, { once: false });
   const skillsInView = useInView(skillsRef, { once: false });
   const techInView = useInView(containerRef, { once: false });
+
+  const handleCardClick = (index: number) => {
+    setSelectedCard(index);
+    openModal();
+  };
+
+  const getModalContent = () => {
+    if (selectedCard === null) return null;
+    const card = experienceCards[selectedCard];
+    
+    return (
+      <div className="space-y-6">
+        <div className="flex items-center gap-4">
+          <div className="w-16 h-16 bg-blue-100 rounded-full flex items-center justify-center">
+            <FaBuilding className="text-blue-600 text-2xl" />
+          </div>
+          <div>
+            <h3 className="text-2xl font-bold text-gray-900">{card.company}</h3>
+            <p className="text-gray-600">{card.position}</p>
+          </div>
+        </div>
+        
+        <div className="bg-gray-50 p-4 rounded-lg">
+          <h4 className="font-semibold text-gray-900 mb-2">Duration</h4>
+          <p className="text-gray-700">{card.startDate} - {card.endDate}</p>
+        </div>
+        
+        <div className="space-y-4">
+          <h4 className="font-semibold text-gray-900">Key Responsibilities:</h4>
+          <ul className="space-y-2 text-gray-700">
+            <li className="flex items-start gap-2">
+              <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></span>
+              <span>Led development of scalable applications using modern technologies</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></span>
+              <span>Collaborated with cross-functional teams to deliver high-quality solutions</span>
+            </li>
+            <li className="flex items-start gap-2">
+              <span className="w-2 h-2 bg-blue-500 rounded-full mt-2 flex-shrink-0"></span>
+              <span>Implemented best practices for code quality and performance optimization</span>
+            </li>
+          </ul>
+        </div>
+        
+        <div className="flex gap-3">
+          <button className="px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition-colors">
+            View Details
+          </button>
+          <button className="px-6 py-2 bg-gray-200 text-gray-800 rounded-lg hover:bg-gray-300 transition-colors">
+            Download CV
+          </button>
+        </div>
+      </div>
+    );
+  };
 
   return (
     <section id="about" className="h-screen bg-secondary text-text-reverse py-16 relative max-[420px]:py-12">
@@ -123,7 +184,10 @@ export const AboutSection = () => {
                       <p className="text-xs text-gray-500 transition-colors duration-700 absolute bottom-4 left-4 max-[720px]:bottom-2 max-[720px]:left-2 max-[420px]:text-[10px]">
                         {card.startDate} - {card.endDate}
                       </p>
-                      <button className="w-8 h-8 max-[420px]:w-6 max-[420px]:h-6 flex items-center justify-center bg-secondary rounded-full cursor-pointer hover:-rotate-45 hover:text-2xl text-text-reverse ml-auto transition-all duration-700 absolute top-1/2 -translate-y-1/2 right-4">
+                      <button 
+                        onClick={() => handleCardClick(index)}
+                        className="w-8 h-8 max-[420px]:w-6 max-[420px]:h-6 flex items-center justify-center bg-secondary rounded-full cursor-pointer hover:-rotate-45 hover:text-2xl text-text-reverse ml-auto transition-all duration-700 absolute top-1/2 -translate-y-1/2 right-4"
+                      >
                         <IoAddOutline />
                       </button>
                     </div>
@@ -163,6 +227,17 @@ export const AboutSection = () => {
         <ScrollVelocity texts={[generateTechString(technologies), generateTechString(technologies)]} velocity={50} className="text-2xl font-semibold tracking-wider max-[1250px]:text-xl max-[870px]:text-lg max-[420px]:text-sm" parallaxClassName="text-semibold" scrollerClassName="text-semibold" />
         </motion.div>
       </div>
+
+      {/* Modal with white theme */}
+      <Modal
+        isOpen={isOpen}
+        onClose={closeModal}
+        title={selectedCard !== null ? experienceCards[selectedCard].company : "Experience"}
+        icon={FaBuilding}
+        theme="light"
+      >
+        {getModalContent()}
+      </Modal>
     </section>
   );
 };
