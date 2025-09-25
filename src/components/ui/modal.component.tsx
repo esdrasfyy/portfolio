@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { RiCloseLine } from "react-icons/ri";
 import { GlowingEffectComponent } from "./glowing-effect.component";
@@ -12,9 +12,8 @@ interface ModalProps {
   theme?: "dark" | "light";
 }
 
-export const Modal = ({ isOpen, onClose, title, children, icon: Icon, theme = "dark" }: ModalProps) => {
+export const Modal = ({ isOpen, onClose, title, children, theme = "dark" }: ModalProps) => {
   const modalRef = useRef<HTMLDivElement>(null);
-  const [isAnimating, setIsAnimating] = useState(false);
 
   useEffect(() => {
     if (isOpen) {
@@ -24,7 +23,6 @@ export const Modal = ({ isOpen, onClose, title, children, icon: Icon, theme = "d
       document.body.style.top = `-${scrollY}px`;
       document.body.style.width = "100%";
       document.body.style.overflow = "hidden";
-      setIsAnimating(true);
     } else {
       // Restaura o scroll
       const scrollY = document.body.style.top;
@@ -33,9 +31,6 @@ export const Modal = ({ isOpen, onClose, title, children, icon: Icon, theme = "d
       document.body.style.width = "";
       document.body.style.overflow = "unset";
       window.scrollTo(0, parseInt(scrollY || "0") * -1);
-
-      const timer = setTimeout(() => setIsAnimating(false), 300);
-      return () => clearTimeout(timer);
     }
 
     return () => {

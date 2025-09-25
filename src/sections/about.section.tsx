@@ -6,7 +6,7 @@ import VariableProximity from "../components/ui/variable-proximity.component";
 import { Card3D } from "../components/ui/3d-card.component";
 import { Modal } from "../components/ui/modal.component";
 import { useModal } from "../hooks/useModal";
-import { FaBuilding, FaBriefcase, FaCode, FaRocket } from "react-icons/fa";
+import { FaBuilding } from "react-icons/fa";
 
 const technologies = ["React", "TypeScript", "Next.js", "Node.js", "Express", "MongoDB", "PostgreSQL", "Tailwind CSS", "Framer Motion", "Swiper.js", "Vite", "Git", "Docker", "AWS", "Vercel", "Figma", "Adobe XD", "JavaScript", "HTML5", "CSS3", "SASS", "Webpack", "Jest", "Cypress"];
 
