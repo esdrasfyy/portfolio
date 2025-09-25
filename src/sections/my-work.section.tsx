@@ -6,7 +6,7 @@ import { ShinyTextComponent } from "../components/ui/shiny-text.component";
 import gsap from "gsap";
 import { TbHandMove } from "react-icons/tb";
 import { FaShoppingCart, FaMobileAlt, FaChartLine, FaLaptopCode, FaCogs, FaCloud, FaInfo } from "react-icons/fa";
-import { AnimatePresence, motion } from "motion/react";
+import { AnimatePresence, motion } from "framer-motion";
 import { Modal } from "../components/ui/modal.component";
 import { useModal } from "../hooks/useModal";
 import { Cube3D, CubeControls } from "../components/ui/3d-cube.component";
@@ -210,16 +210,16 @@ export const MyWorkSection = () => {
         </div>
 
         {/* Desktop Layout */}
-        <div className="hidden lg:grid grid-cols-2 gap-12 h-full">
+        <div className="hidden lg:grid grid-cols-2 gap-8 xl:gap-12 h-full">
           {/* Left side - 3D Cube and Controls */}
-          <div className="space-y-6">
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-12 h-12 bg-white/20 backdrop-blur-md border-white/40 border rounded-lg flex items-center justify-center shadow-sm">
-                <project.icon className="text-2xl" />
+          <div className="space-y-4 xl:space-y-6">
+            <div className="flex items-center gap-3 xl:gap-4 mb-4 xl:mb-6">
+              <div className="w-10 h-10 xl:w-12 xl:h-12 bg-white/20 backdrop-blur-md border-white/40 border rounded-lg flex items-center justify-center shadow-sm">
+                <project.icon className="text-lg xl:text-2xl" />
               </div>
               <div>
-                <h3 className="text-2xl font-bold text-white">{project.title}</h3>
-                <p className="text-gray-400 text-sm">Interactive 3D Preview</p>
+                <h3 className="text-lg xl:text-2xl font-bold text-white">{project.title}</h3>
+                <p className="text-gray-400 text-xs xl:text-sm">Interactive 3D Preview</p>
               </div>
             </div>
 
@@ -248,51 +248,51 @@ export const MyWorkSection = () => {
           </div>
 
           {/* Right side - Project Description */}
-          <div className="space-y-8">
-            <div className="flex items-center gap-4 mb-6">
-              <div className="w-12 h-12 bg-white/20 backdrop-blur-md border-white/40 border rounded-lg flex items-center justify-center shadow-sm">
-                <FaInfo className="text-2xl" />
+          <div className="space-y-6 xl:space-y-8">
+            <div className="flex items-center gap-3 xl:gap-4 mb-4 xl:mb-6">
+              <div className="w-10 h-10 xl:w-12 xl:h-12 bg-white/20 backdrop-blur-md border-white/40 border rounded-lg flex items-center justify-center shadow-sm">
+                <FaInfo className="text-lg xl:text-2xl" />
               </div>
               <div>
-                <h3 className="text-2xl font-bold text-white">Overview</h3>
-                <p className="text-gray-400 text-sm">{project.description}</p>
+                <h3 className="text-lg xl:text-2xl font-bold text-white">Overview</h3>
+                <p className="text-gray-400 text-xs xl:text-sm">{project.description}</p>
               </div>
             </div>
 
-            <div className="space-y-4">
-              <div className="flex flex-wrap gap-3">
+            <div className="space-y-3 xl:space-y-4">
+              <div className="flex flex-wrap gap-2 xl:gap-3">
                 {["React", "TypeScript", "Node.js", "MongoDB", "Tailwind CSS", "Three.js"].map((tech) => (
-                  <span key={tech} className="w-20 py-1 text-center bg-white/10 backdrop-blur-sm border border-gray-500 border-dotted text-gray-300 rounded-md text-xs font-medium shadow-sm">
+                  <span key={tech} className="w-16 xl:w-20 py-1 text-center bg-white/10 backdrop-blur-sm border border-gray-500 border-dotted text-gray-300 rounded-md text-xs font-medium shadow-sm">
                     {tech}
                   </span>
                 ))}
               </div>
             </div>
 
-            <div className="space-y-6">
+            <div className="space-y-4 xl:space-y-6">
               <div>
-                <h4 className="font-semibold text-white mb-4 text-lg">Project Description</h4>
-                <p className="text-gray-300 leading-relaxed text-base">
+                <h4 className="font-semibold text-white mb-3 xl:mb-4 text-sm xl:text-lg">Project Description</h4>
+                <p className="text-gray-300 leading-relaxed text-sm xl:text-base">
                   This innovative project showcases cutting-edge web development techniques, combining modern design principles with advanced 3D visualization capabilities. Built with React and Three.js, it delivers an immersive user experience that pushes the boundaries of interactive web applications.
                 </p>
               </div>
               
-              <div className="space-y-3">
-                <h4 className="font-semibold text-lg text-white">Key Features:</h4>
-                <ul className="space-y-2 text-sm text-gray-300">
-                  <li className="flex items-center gap-4">
+              <div className="space-y-2 xl:space-y-3">
+                <h4 className="font-semibold text-sm xl:text-lg text-white">Key Features:</h4>
+                <ul className="space-y-2 text-xs xl:text-sm text-gray-300">
+                  <li className="flex items-center gap-3 xl:gap-4">
                     <span className="w-1 h-1 bg-white rounded-full flex-shrink-0"></span>
                     <span className="">Interactive 3D visualization with Three.js</span>
                   </li>
-                  <li className="flex items-center gap-4">
+                  <li className="flex items-center gap-3 xl:gap-4">
                     <span className="w-1 h-1 bg-white rounded-full flex-shrink-0"></span>
                     <span className="">Responsive design with modern UI/UX</span>
                   </li>
-                  <li className="flex items-center gap-4">
+                  <li className="flex items-center gap-3 xl:gap-4">
                     <span className="w-1 h-1 bg-white rounded-full flex-shrink-0"></span>
                     <span className="">Scalable architecture and performance optimization</span>
                   </li>
-                  <li className="flex items-center gap-4">
+                  <li className="flex items-center gap-3 xl:gap-4">
                     <span className="w-1 h-1 bg-white rounded-full flex-shrink-0"></span>
                     <span className="">Real-time 3D controls and interactions</span>
                   </li>
@@ -300,30 +300,30 @@ export const MyWorkSection = () => {
               </div>
             </div>
 
-            <div className="flex justify-center items-center gap-4 pt-6">
-              <button className="px-8 py-3 bg-white/90 text-black rounded-xl cursor-pointer hover:bg-white transition-colors font-medium shadow-sm hover:shadow-md">View Live Demo</button>
+            <div className="flex justify-center items-center gap-4 pt-4 xl:pt-6">
+              <button className="px-6 xl:px-8 py-2 xl:py-3 bg-white/90 text-black rounded-xl cursor-pointer hover:bg-white transition-colors font-medium text-sm xl:text-base shadow-sm hover:shadow-md">View Live Demo</button>
             </div>
           </div>
         </div>
 
         {/* Mobile Layout */}
-        <div className="lg:hidden mt-4 py-4">
+        <div className="lg:hidden mt-2 py-2">
           <AnimatePresence mode="wait">
             {activeTab === "3d" && (
               <motion.div 
                 key="3d-tab"
-                className="space-y-6"
+                className="space-y-4"
                 initial={{ opacity: 0, x: -20 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: 20 }}
                 transition={{ duration: 0.3 }}
               >
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 bg-white/20 backdrop-blur-md border-white/40 border rounded-lg flex items-center justify-center shadow-sm">
-                  <project.icon className="text-2xl" />
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 bg-white/20 backdrop-blur-md border-white/40 border rounded-lg flex items-center justify-center shadow-sm">
+                  <project.icon className="text-lg" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-white">{project.title}</h3>
+                  <h3 className="text-base font-bold text-white">{project.title}</h3>
                   <p className="text-gray-400 text-xs">Interactive 3D Preview</p>
                 </div>
               </div>
@@ -357,56 +357,56 @@ export const MyWorkSection = () => {
             {activeTab === "description" && (
               <motion.div 
                 key="description-tab"
-                className="space-y-8"
+                className="space-y-4"
                 initial={{ opacity: 0, x: 20 }}
                 animate={{ opacity: 1, x: 0 }}
                 exit={{ opacity: 0, x: -20 }}
                 transition={{ duration: 0.3 }}
               >
-              <div className="flex items-center gap-4 mb-6">
-                <div className="w-12 h-12 bg-white/20 backdrop-blur-md border-white/40 border rounded-lg flex items-center justify-center shadow-sm">
-                  <FaInfo className="text-2xl" />
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 bg-white/20 backdrop-blur-md border-white/40 border rounded-lg flex items-center justify-center shadow-sm">
+                  <FaInfo className="text-lg" />
                 </div>
                 <div>
-                  <h3 className="text-lg font-bold text-white">Overview</h3>
+                  <h3 className="text-base font-bold text-white">Overview</h3>
                   <p className="text-gray-400 text-xs">{project.description}</p>
                 </div>
               </div>
 
-              <div className="space-y-4">
-                <div className="flex flex-wrap gap-3">
+              <div className="space-y-3">
+                <div className="flex flex-wrap gap-2">
                   {["React", "TypeScript", "Node.js", "MongoDB", "Tailwind CSS", "Three.js"].map((tech) => (
-                    <span key={tech} className="w-20 py-1 text-center bg-white/10 backdrop-blur-sm border border-gray-500 border-dotted text-gray-300 rounded-md text-xs font-medium shadow-sm">
+                    <span key={tech} className="w-16 py-1 text-center bg-white/10 backdrop-blur-sm border border-gray-500 border-dotted text-gray-300 rounded-md text-xs font-medium shadow-sm">
                       {tech}
                     </span>
                   ))}
                 </div>
               </div>
 
-              <div className="space-y-6">
+              <div className="space-y-4">
                 <div>
-                  <h4 className="font-semibold text-white mb-4 text-lg">Project Description</h4>
-                  <p className="text-gray-300 leading-relaxed text-base">
+                  <h4 className="font-semibold text-white mb-3 text-sm">Project Description</h4>
+                  <p className="text-gray-300 leading-relaxed text-sm">
                     This innovative project showcases cutting-edge web development techniques, combining modern design principles with advanced 3D visualization capabilities. Built with React and Three.js, it delivers an immersive user experience that pushes the boundaries of interactive web applications.
                   </p>
                 </div>
                 
-                <div className="space-y-3">
-                  <h4 className="font-semibold text-lg text-white">Key Features:</h4>
-                  <ul className="space-y-2 text-sm text-gray-300">
-                    <li className="flex items-center gap-4">
+                <div className="space-y-2">
+                  <h4 className="font-semibold text-sm text-white">Key Features:</h4>
+                  <ul className="space-y-2 text-xs text-gray-300">
+                    <li className="flex items-center gap-3">
                       <span className="w-1 h-1 bg-white rounded-full flex-shrink-0"></span>
                       <span className="">Interactive 3D visualization with Three.js</span>
                     </li>
-                    <li className="flex items-center gap-4">
+                    <li className="flex items-center gap-3">
                       <span className="w-1 h-1 bg-white rounded-full flex-shrink-0"></span>
                       <span className="">Responsive design with modern UI/UX</span>
                     </li>
-                    <li className="flex items-center gap-4">
+                    <li className="flex items-center gap-3">
                       <span className="w-1 h-1 bg-white rounded-full flex-shrink-0"></span>
                       <span className="">Scalable architecture and performance optimization</span>
                     </li>
-                    <li className="flex items-center gap-4">
+                    <li className="flex items-center gap-3">
                       <span className="w-1 h-1 bg-white rounded-full flex-shrink-0"></span>
                       <span className="">Real-time 3D controls and interactions</span>
                     </li>
@@ -414,8 +414,8 @@ export const MyWorkSection = () => {
                 </div>
               </div>
 
-              <div className="flex justify-center items-center gap-4 pt-6">
-                <button className="px-8 py-3 bg-white/90 text-black rounded-xl cursor-pointer hover:bg-white transition-colors font-medium shadow-sm hover:shadow-md">View Live Demo</button>
+              <div className="flex justify-center items-center gap-4 pt-4">
+                <button className="px-6 py-2 bg-white/90 text-black rounded-xl cursor-pointer hover:bg-white transition-colors font-medium text-sm shadow-sm hover:shadow-md">View Live Demo</button>
               </div>
             </motion.div>
           )}

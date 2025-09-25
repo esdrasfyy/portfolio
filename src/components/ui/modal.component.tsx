@@ -16,40 +16,6 @@ export const Modal = ({ isOpen, onClose, title, children, theme = "dark" }: Moda
   const modalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    if (isOpen) {
-      // Salva o scroll atual
-      const scrollY = window.scrollY;
-      document.body.style.position = "fixed";
-      document.body.style.top = `-${scrollY}px`;
-      document.body.style.width = "100%";
-      document.body.style.overflow = "hidden";
-    } else {
-      // Restaura o scroll suavemente
-      const scrollY = document.body.style.top;
-      document.body.style.position = "";
-      document.body.style.top = "";
-      document.body.style.width = "";
-      document.body.style.overflow = "unset";
-      
-      // Restaura a posição do scroll sem animação
-      if (scrollY) {
-        const savedScrollY = parseInt(scrollY.replace('px', ''), 10);
-        requestAnimationFrame(() => {
-          window.scrollTo(0, savedScrollY);
-        });
-      }
-    }
-
-    return () => {
-      document.body.style.position = "";
-      document.body.style.top = "";
-      document.body.style.width = "";
-      document.body.style.overflow = "unset";
-    };
-  }, [isOpen]);
-
-  // Adiciona listener para tecla ESC
-  useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === "Escape" && isOpen) {
         onClose();
@@ -101,7 +67,7 @@ export const Modal = ({ isOpen, onClose, title, children, theme = "dark" }: Moda
           {/* Modal Content */}
           <motion.div
             ref={modalRef}
-            className={`relative w-full max-w-6xl max-h-fit backdrop-blur-sm border rounded-lg shadow-2xl overflow-hidden ${theme === "light" ? "bg-white/98 border-gray-200/50" : "border-gray-600/50 bg-[#0f0f0f]"}`}
+            className={`relative w-full max-w-6xl max-h-[98vh] backdrop-blur-sm border rounded-lg shadow-2xl overflow-hidden flex flex-col ${theme === "light" ? "bg-white/98 border-gray-200/50" : "border-gray-600/50 bg-[#0f0f0f]"}`}
             initial={{
               opacity: 0,
               scale: 0.3,
@@ -188,7 +154,7 @@ export const Modal = ({ isOpen, onClose, title, children, theme = "dark" }: Moda
 
             {/* Content */}
             <motion.div 
-              className="p-8 max-md:p-4 max-h-fit overflow-hidden"
+              className="p-8 max-md:p-4 flex-1 overflow-y-auto modal-scroll"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4, duration: 0.4 }}
