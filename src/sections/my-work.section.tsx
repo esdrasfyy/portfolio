@@ -6,7 +6,7 @@ import { ShinyTextComponent } from "../components/ui/shiny-text.component";
 import gsap from "gsap";
 import { TbHandMove } from "react-icons/tb";
 import { FaShoppingCart, FaMobileAlt, FaChartLine, FaLaptopCode, FaCogs, FaCloud, FaInfo } from "react-icons/fa";
-import { motion } from "motion/react";
+import { AnimatePresence, motion } from "motion/react";
 import { Modal } from "../components/ui/modal.component";
 import { useModal } from "../hooks/useModal";
 import { Cube3D, CubeControls } from "../components/ui/3d-cube.component";
@@ -14,7 +14,7 @@ import { Cube3D, CubeControls } from "../components/ui/3d-cube.component";
 const projects = [
   {
     id: 1,
-    title: "E-commerce Platform",
+    title: "E-commerce",
     description: "Full-stack e-commerce solution with React, Node.js, and MongoDB",
     image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=300&fit=crop",
     icon: FaShoppingCart,
@@ -93,7 +93,7 @@ export const MyWorkSection = () => {
   const { isOpen, openModal, closeModal } = useModal();
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
   const [cubeRotation, setCubeRotation] = useState({ x: 0, y: 0, z: 0 });
-  const [activeTab, setActiveTab] = useState<'3d' | 'description'>('3d');
+  const [activeTab, setActiveTab] = useState<"3d" | "description">("3d");
   const [completedCards, setCompletedCards] = useState<Set<number>>(() => {
     const saved = localStorage.getItem("completedCards");
     return saved ? new Set(JSON.parse(saved)) : new Set();
@@ -110,7 +110,6 @@ export const MyWorkSection = () => {
       setScreenWidth(window.innerWidth);
     };
 
-    updateWidth();
     updateScreenWidth();
     window.addEventListener("resize", updateWidth);
     window.addEventListener("resize", updateScreenWidth);
@@ -203,29 +202,11 @@ export const MyWorkSection = () => {
     return (
       <div className="h-full">
         {/* Mobile Tabs */}
-        <div className="lg:hidden mb-6">
-          <div className="flex bg-gray-800/50 rounded-lg p-1">
-            <button
-              onClick={() => setActiveTab('3d')}
-              className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${
-                activeTab === '3d'
-                  ? 'bg-white text-black'
-                  : 'text-gray-300 hover:text-white'
-              }`}
-            >
-              3D Preview
-            </button>
-            <button
-              onClick={() => setActiveTab('description')}
-              className={`flex-1 py-2 px-4 rounded-md text-sm font-medium transition-colors ${
-                activeTab === 'description'
-                  ? 'bg-white text-black'
-                  : 'text-gray-300 hover:text-white'
-              }`}
-            >
-              Description
-            </button>
-          </div>
+        <div className="lg:hidden mb-6 flex w-full justify-between relative gap-">
+          <button onClick={() => setActiveTab("3d")} className="w-1/2 py-1 rounded-t-lg cursor-pointer hover:bg-white/10 transition-colors duration-300 ease-in-out">3D Preview</button>
+          <button onClick={() => setActiveTab("description")} className="w-1/2 py-1 rounded-t-lg cursor-pointer hover:bg-white/10 transition-colors duration-300 ease-in-out">Description</button>
+          <span className={`w-1/2 h-[1px] bg-white rounded-full absolute -bottom-1 duration-300 ease-in-out ${activeTab === "3d" ? "left-0" : "right-0"}`}></span>
+          <span className={`w-full h-[1px] bg-white/30 rounded-full absolute -bottom-1 duration-300 ease-in-out left-0`}></span>
         </div>
 
         {/* Desktop Layout */}
@@ -233,8 +214,8 @@ export const MyWorkSection = () => {
           {/* Left side - 3D Cube and Controls */}
           <div className="space-y-6">
             <div className="flex items-center gap-4 mb-6">
-              <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-sm">
-                <project.icon className="text-black text-3xl" />
+              <div className="w-12 h-12 bg-white/20 backdrop-blur-md border-white/40 border rounded-lg flex items-center justify-center shadow-sm">
+                <project.icon className="text-2xl" />
               </div>
               <div>
                 <h3 className="text-2xl font-bold text-white">{project.title}</h3>
@@ -269,8 +250,8 @@ export const MyWorkSection = () => {
           {/* Right side - Project Description */}
           <div className="space-y-8">
             <div className="flex items-center gap-4 mb-6">
-              <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-sm">
-                <FaInfo className="text-black text-3xl" />
+              <div className="w-12 h-12 bg-white/20 backdrop-blur-md border-white/40 border rounded-lg flex items-center justify-center shadow-sm">
+                <FaInfo className="text-2xl" />
               </div>
               <div>
                 <h3 className="text-2xl font-bold text-white">Overview</h3>
@@ -299,23 +280,23 @@ export const MyWorkSection = () => {
               <div className="space-y-3">
                 <h4 className="font-semibold text-lg text-white">Key Features:</h4>
                 <ul className="space-y-2 text-sm text-gray-300">
-                <li className="flex items-center gap-4">
-                  <span className="w-1 h-1 bg-white rounded-full flex-shrink-0"></span>
-                  <span className="">Interactive 3D visualization with Three.js</span>
-                </li>
-                <li className="flex items-center gap-4">
-                  <span className="w-1 h-1 bg-white rounded-full flex-shrink-0"></span>
-                  <span className="">Responsive design with modern UI/UX</span>
-                </li>
-                <li className="flex items-center gap-4">
-                  <span className="w-1 h-1 bg-white rounded-full flex-shrink-0"></span>
-                  <span className="">Scalable architecture and performance optimization</span>
-                </li>
-                <li className="flex items-center gap-4">
-                  <span className="w-1 h-1 bg-white rounded-full flex-shrink-0"></span>
-                  <span className="">Real-time 3D controls and interactions</span>
-                </li>
-              </ul>
+                  <li className="flex items-center gap-4">
+                    <span className="w-1 h-1 bg-white rounded-full flex-shrink-0"></span>
+                    <span className="">Interactive 3D visualization with Three.js</span>
+                  </li>
+                  <li className="flex items-center gap-4">
+                    <span className="w-1 h-1 bg-white rounded-full flex-shrink-0"></span>
+                    <span className="">Responsive design with modern UI/UX</span>
+                  </li>
+                  <li className="flex items-center gap-4">
+                    <span className="w-1 h-1 bg-white rounded-full flex-shrink-0"></span>
+                    <span className="">Scalable architecture and performance optimization</span>
+                  </li>
+                  <li className="flex items-center gap-4">
+                    <span className="w-1 h-1 bg-white rounded-full flex-shrink-0"></span>
+                    <span className="">Real-time 3D controls and interactions</span>
+                  </li>
+                </ul>
               </div>
             </div>
 
@@ -326,16 +307,24 @@ export const MyWorkSection = () => {
         </div>
 
         {/* Mobile Layout */}
-        <div className="lg:hidden">
-          {activeTab === '3d' && (
-            <div className="space-y-6">
+        <div className="lg:hidden mt-4 py-4">
+          <AnimatePresence mode="wait">
+            {activeTab === "3d" && (
+              <motion.div 
+                key="3d-tab"
+                className="space-y-6"
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 20 }}
+                transition={{ duration: 0.3 }}
+              >
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-sm">
-                  <project.icon className="text-black text-3xl" />
+                <div className="w-12 h-12 bg-white/20 backdrop-blur-md border-white/40 border rounded-lg flex items-center justify-center shadow-sm">
+                  <project.icon className="text-2xl" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-white">{project.title}</h3>
-                  <p className="text-gray-400 text-sm">Interactive 3D Preview</p>
+                  <h3 className="text-lg font-bold text-white">{project.title}</h3>
+                  <p className="text-gray-400 text-xs">Interactive 3D Preview</p>
                 </div>
               </div>
 
@@ -361,18 +350,26 @@ export const MyWorkSection = () => {
                   }}
                 />
               </div>
-            </div>
-          )}
+            </motion.div>
+            )}
+            
 
-          {activeTab === 'description' && (
-            <div className="space-y-8">
+            {activeTab === "description" && (
+              <motion.div 
+                key="description-tab"
+                className="space-y-8"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.3 }}
+              >
               <div className="flex items-center gap-4 mb-6">
-                <div className="w-16 h-16 bg-white rounded-2xl flex items-center justify-center shadow-sm">
-                  <FaInfo className="text-black text-3xl" />
+                <div className="w-12 h-12 bg-white/20 backdrop-blur-md border-white/40 border rounded-lg flex items-center justify-center shadow-sm">
+                  <FaInfo className="text-2xl" />
                 </div>
                 <div>
-                  <h3 className="text-2xl font-bold text-white">Overview</h3>
-                  <p className="text-gray-400 text-sm">{project.description}</p>
+                  <h3 className="text-lg font-bold text-white">Overview</h3>
+                  <p className="text-gray-400 text-xs">{project.description}</p>
                 </div>
               </div>
 
@@ -397,37 +394,39 @@ export const MyWorkSection = () => {
                 <div className="space-y-3">
                   <h4 className="font-semibold text-lg text-white">Key Features:</h4>
                   <ul className="space-y-2 text-sm text-gray-300">
-                  <li className="flex items-center gap-4">
-                    <span className="w-1 h-1 bg-white rounded-full flex-shrink-0"></span>
-                    <span className="">Interactive 3D visualization with Three.js</span>
-                  </li>
-                  <li className="flex items-center gap-4">
-                    <span className="w-1 h-1 bg-white rounded-full flex-shrink-0"></span>
-                    <span className="">Responsive design with modern UI/UX</span>
-                  </li>
-                  <li className="flex items-center gap-4">
-                    <span className="w-1 h-1 bg-white rounded-full flex-shrink-0"></span>
-                    <span className="">Scalable architecture and performance optimization</span>
-                  </li>
-                  <li className="flex items-center gap-4">
-                    <span className="w-1 h-1 bg-white rounded-full flex-shrink-0"></span>
-                    <span className="">Real-time 3D controls and interactions</span>
-                  </li>
-                </ul>
+                    <li className="flex items-center gap-4">
+                      <span className="w-1 h-1 bg-white rounded-full flex-shrink-0"></span>
+                      <span className="">Interactive 3D visualization with Three.js</span>
+                    </li>
+                    <li className="flex items-center gap-4">
+                      <span className="w-1 h-1 bg-white rounded-full flex-shrink-0"></span>
+                      <span className="">Responsive design with modern UI/UX</span>
+                    </li>
+                    <li className="flex items-center gap-4">
+                      <span className="w-1 h-1 bg-white rounded-full flex-shrink-0"></span>
+                      <span className="">Scalable architecture and performance optimization</span>
+                    </li>
+                    <li className="flex items-center gap-4">
+                      <span className="w-1 h-1 bg-white rounded-full flex-shrink-0"></span>
+                      <span className="">Real-time 3D controls and interactions</span>
+                    </li>
+                  </ul>
                 </div>
               </div>
 
               <div className="flex justify-center items-center gap-4 pt-6">
                 <button className="px-8 py-3 bg-white/90 text-black rounded-xl cursor-pointer hover:bg-white transition-colors font-medium shadow-sm hover:shadow-md">View Live Demo</button>
               </div>
-            </div>
+            </motion.div>
           )}
+          </AnimatePresence>
         </div>
       </div>
     );
   };
+
   return (
-    <section id="work" className="min-h-screen md:h-screen text-white bg-black/50 relative">
+    <section id="work" className="min-h-screen md:h-screen text-white bg-black/50 relative max-md:pt-12">
       <motion.div
         className="absolute inset-0 opacity-30 left-[-200vw]"
         style={{
@@ -446,20 +445,20 @@ export const MyWorkSection = () => {
           100% { background-position: -200% 0; }
         }
       `}</style>
-      <div className="max-w-[1500px] mx-auto flex h-full max-[1250px]:flex-col">
+      <div className="max-w-[1500px] mx-auto flex h-full max-[1250px]:flex-col max-md:min-h-screen justify-between">
         {/* Left Section - 2/3 width */}
-        <div className="w-full md:w-2/3 md:pr-8 flex flex-col justify-between relative py-8 md:py-20 px-4 md:px-8 max-[1250px]:w-full max-[1250px]:pr-0">
+        <div className="w-full md:w-2/3 md:pr-8 flex flex-col justify-between relative py-8 max-md:py-2">
           {/* Top Left - Title */}
           <div>
-            <h2 className="text-xl md:text-2xl font-light relative">
+            <h2 className="text-xl md:text-2xl font-light relative mx-4">
               <ShinyTextComponent text="MY" speed={4} />
               <br />
               <span className="text-4xl md:text-7xl absolute -bottom-10 md:-bottom-20 left-0 font-semibold">
                 <ShinyTextComponent text="WORK" speed={4} />
               </span>
             </h2>
-            <div className="space-y-2 text-white text-base md:text-lg max-w-lg mt-16 md:mt-28 flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-4">
-              <div className="h-[1px] w-16 md:w-32 bg-white"></div>
+            <div className="space-y-2 text-white text-base ml-4 md:text-lg max-w-lg mt-16 md:mt-28 flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-4">
+              <div className="h-[1px] w-16 md:w-32 bg-white max-md:hidden"></div>
               <p className="font-light tracking-wider text-gray-400 text-xs md:text-sm">A collection of projects that showcase my skills, creativity, and dedication to delivering quality results.</p>
             </div>
           </div>
@@ -473,7 +472,7 @@ export const MyWorkSection = () => {
           ></div>
         </div>
 
-        <div ref={parentRef} className="grid grid-cols-2 mx-2 md:mx-4 gap-1 w-2/3 max-[1250px]:w-full max-[1250px]:mx-0">
+        <div ref={parentRef} className="grid grid-cols-2 mx-2 md:mx-4 gap-1 w-2/3 max-[1250px]:w-full max-[1250px]:ml-0! max-md:my-auto">
           {(screenWidth < 1250 ? projects.slice(0, 6) : projects).map((project, index) => {
             let borderClasses = "border border-white/10";
             if (index === 0 || index === 1) {
@@ -492,7 +491,7 @@ export const MyWorkSection = () => {
                     ref={(el) => {
                       if (el) overlayRefs.current[index] = el;
                     }}
-                    className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-black/20 backdrop-blur-sm"
+                    className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-black/20 backdrop-blur-sm group-hover:opacity-0 group-hover:pointer-events-none transition-opacity duration-300"
                   >
                     <div className="flex items-center justify-center">
                       <div
@@ -517,7 +516,7 @@ export const MyWorkSection = () => {
                       <project.icon size={14} />
                     </div>
                     <div className="absolute top-4 right-4 text-white/60 text-xs font-mono">Nov 2024</div>
-                    <div className="p-4 md:p-6 flex mt-8 md:mt-12 flex-col justify-between w-full">
+                    <div className="p-4 md:p-6 flex mt-8 md:mt-12 flex-col justify-between w-full max-md:mt-12">
                       <div>
                         <h3 className="text-white text-base md:text-lg font-bold mb-2">{project.title}</h3>
                         <p className="text-white/80 text-xs md:text-sm leading-relaxed">{project.description}</p>
@@ -544,7 +543,7 @@ export const MyWorkSection = () => {
                         <project.icon size={14} />
                       </div>
                       <div className="absolute top-4 right-4 text-white/60 text-xs font-mono">Nov 2024</div>
-                      <div className="p-4 md:p-6 flex mt-8 md:mt-12 flex-col justify-between w-full">
+                      <div className="p-4 md:p-6 flex mt-8 md:mt-12 flex-col justify-between w-full max-md:mt-12">
                         <div>
                           <h3 className="text-white text-base md:text-lg font-bold mb-2">{project.title}</h3>
                           <p className="text-white/80 text-xs md:text-sm leading-relaxed">{project.description}</p>
@@ -568,7 +567,7 @@ export const MyWorkSection = () => {
       </div>
 
       {/* Modal with dark theme */}
-      <Modal isOpen={isOpen} onClose={closeModal} title={selectedProject !== null ? projects.find((p) => p.id === selectedProject)?.title || "Project" : "Project Details"} icon={selectedProject !== null ? projects.find((p) => p.id === selectedProject)?.icon : FaLaptopCode} theme="dark">
+      <Modal isOpen={isOpen} onClose={closeModal} title={selectedProject !== null ? projects.find((p) => p.id === selectedProject)?.title || "Project" : "Project Details"} theme="dark">
         {getModalContent()}
       </Modal>
     </section>

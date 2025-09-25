@@ -14,6 +14,7 @@ function Cube({ onRotationChange, rotation = { x: 0, y: 0, z: 0 }, projectImages
   const meshRef = useRef<THREE.Mesh>(null);
   const [targetRotation, setTargetRotation] = useState(rotation);
   const [currentRotation, setCurrentRotation] = useState(rotation);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Carrega as texturas das imagens
   const textures = useTexture(projectImages.length > 0 ? projectImages : ["/791.jpg", "/about.jpg", "/contact.jpg", "/feedback.jpg", "/hm.jpg", "/services.jpg"]);
@@ -21,6 +22,15 @@ function Cube({ onRotationChange, rotation = { x: 0, y: 0, z: 0 }, projectImages
   useEffect(() => {
     setTargetRotation(rotation);
   }, [rotation]);
+
+  useEffect(() => {
+    // Simula o carregamento das texturas
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1000);
+
+    return () => clearTimeout(timer);
+  }, [textures]);
 
   useFrame(() => {
     if (meshRef.current) {
@@ -44,6 +54,17 @@ function Cube({ onRotationChange, rotation = { x: 0, y: 0, z: 0 }, projectImages
     }
   });
 
+  if (isLoading) {
+    return (
+      <group>
+        <mesh>
+          <boxGeometry args={[4, 4, 4]} />
+          <meshBasicMaterial color="#333333" wireframe />
+        </mesh>
+      </group>
+    );
+  }
+
   return (
     <group>
       <mesh ref={meshRef}>
@@ -61,8 +82,26 @@ function Cube({ onRotationChange, rotation = { x: 0, y: 0, z: 0 }, projectImages
 }
 
 export const Cube3D = ({ onRotationChange, rotation, projectImages }: Cube3DProps) => {
+  const [isLoading, setIsLoading] = useState(true);
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setIsLoading(false);
+    }, 1500);
+
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <div className="w-full h-[450px] overflow-visible flex items-center justify-center">
+    <div className="w-full h-[450px] overflow-visible flex items-center justify-center relative">
+      {isLoading && (
+        <div className="absolute inset-0 flex items-center justify-center z-10">
+          <div className="flex flex-col items-center gap-4">
+            <div className="w-12 h-12 border-4 border-gray-300 border-t-white rounded-full animate-spin"></div>
+            <p className="text-white text-sm font-medium">Loading 3D Model...</p>
+          </div>
+        </div>
+      )}
       <div className="w-[450px] h-[450px]">
         <Canvas camera={{ position: [0, 0, 7], fov: 45 }} style={{ background: "transparent", width: "100%", height: "100%" }}>
           <ambientLight intensity={0.8} />
