@@ -18,7 +18,7 @@ function App() {
   
   return (
     <main
-      className="text-text"
+      className="text-text overflow-x-hidden"
       role="main"
       style={{
         backgroundColor: "#0e0e0e",
