@@ -18,7 +18,7 @@ const socialLinks = [
 ];
 
 export const HamburgerMenu = () => {
-  const { menu } = usePreferences();
+  const { menu, onClose } = usePreferences();
   const containerRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -133,22 +133,23 @@ export const HamburgerMenu = () => {
 
   return (
     <div className={`fixed inset-0 z-50 w-screen h-screen flex transition-all duration-1000 ease-in-out ${menu ? "bg-black/80 backdrop-blur-md" : "bg-transparent"}`} ref={containerRef}>
-      <div className="bg-white absolute left-[2vw] -top-[23vh] w-[200px] h-[50vw] rotate-45"></div>
-      <div className="bg-white absolute left-[5vw] -top-[55vh] w-[400px] h-[100vw] rotate-45"></div>
-      <div className="bg-white absolute right-[2vw] -bottom-[23vh] w-[200px] h-[50vw] rotate-45"></div>
-      <div className="bg-white absolute right-[15vw] -bottom-[48vh] w-[400px] h-[100vw] rotate-45"></div>
+      <div className="bg-white max-[900px]:left-[0vh] max-[900px]:top-[-8vh] absolute left-[2vw] max-[1050px]:left-[30vw] max-[1050px]:top-[30vw] -top-[23vh] w-[200px] h-[50vw] rotate-45"></div>
+      <div className="bg-white absolute left-[5vw] max-[720px]:left-[8vh] max-[720px]:top-[-12vh] max-[900px]:left-[15vw] max-[900px]:-top-[25vh] -top-[55vh] w-[400px] h-[100vw] rotate-45"></div>
+      <div className="bg-white absolute right-[2vw] max-[720px]:right-[0vh] max-[720px]:bottom-[-20vh] max-[900px]:right-[8vw] max-[900px]:-bottom-[10vh] -bottom-[23vh] w-[200px] h-[50vw] rotate-45"></div>
+      <div className="bg-white max-[720px]:right-[0vh] max-[720px]:bottom-[-20vh] absolute right-[15vw] max-[1050px]:right-[0vw] max-[1050px]:-bottom-[25vh] -bottom-[48vh] w-[400px] h-[100vw] max-[1050px]:w-[400vh] rotate-45"></div>
 
-        <div className="menu-content relative z-10 max-w-[1500px] w-full h-full flex mx-auto justify-between">
-          <div className="flex flex-col justify-center pl-20">
+        <div className="menu-content relative z-10 max-w-[1500px] w-full h-full flex mx-auto justify-between max-[1050px]:flex-col max-[1050px]:justify-center max-[1050px]:items-center max-[1050px]:text-center">
+          <div className="flex flex-col justify-center pl-20 max-[1050px]:pl-0 max-[1050px]:mb-12">
             <div className="space-y-8">
               {navigationItems.map((item) => (
-                <div key={item.id} className="nav-item flex items-center gap-4">
+                <div key={item.id} className="nav-item flex items-center gap-4 max-[1050px]:justify-center">
                   <div className={`w-3 h-3 border-2 rounded-full ${
                     item.isActive ? 'border-gray-300' : 'border-transparent'
                   }`}></div>
                   <a 
                     href={item.href} 
-                    className={`text-6xl font-bold transition-colors duration-300 ${
+                    onClick={onClose}
+                    className={`text-6xl font-bold transition-colors duration-300 max-[1050px]:text-4xl ${
                       item.isActive 
                         ? 'text-white' 
                         : 'text-gray-400 hover:text-white'
@@ -162,15 +163,15 @@ export const HamburgerMenu = () => {
           </div>
 
           {/* Right Side - Social Links */}
-          <div className="flex flex-col justify-center items-end pr-20">
+          <div className="flex flex-col justify-center items-end pr-20 max-[1050px]:pr-0 max-[1050px]:items-center">
             <div className="space-y-6">
-              <h3 className="text-2xl font-semibold mb-8">My Socials Links</h3>
+              <h3 className="text-2xl font-semibold mb-8 max-[1050px]:text-xl">My Socials Links</h3>
               <div className="space-y-4">
                 {socialLinks.map((link) => (
                   <a 
                     key={link.id}
                     href={link.href} 
-                    className="social-item block text-end text-xl text-gray-400 hover:text-white font-semibold tracking-wide transition-colors duration-300"
+                    className="social-item block text-end text-xl text-gray-400 hover:text-white font-semibold tracking-wide transition-colors duration-300 max-[1050px]:text-center max-[1050px]:text-lg"
                   >
                     {link.name}
                   </a>
@@ -181,7 +182,7 @@ export const HamburgerMenu = () => {
         </div>
 
         {/* Background Text */}
-        <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex flex-nowrap text-center mx-auto text-[26vw] w-fit font-bold text-white/20 select-none pointer-events-none leading-none">
+        <div className="absolute bottom-5 left-1/2 -translate-x-1/2 flex flex-nowrap text-center mx-auto text-[26vw] w-fit font-bold text-white/20 select-none pointer-events-none leading-none max-[1050px]:text-[20vw] max-[1050px]:bottom-10">
           {"Explore".split("").map((char, index) => (
             <span key={index} className="explore-char inline-block">
               {char}
