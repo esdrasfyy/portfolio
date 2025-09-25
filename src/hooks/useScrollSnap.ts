@@ -10,6 +10,20 @@ export const useScrollSnap = ({ sections, timeout = 4000 }: UseScrollSnapOptions
   const lastScrollTime = useRef(0);
   const currentSectionIndex = useRef(0);
   const scrollTimeout = useRef<number | null>(null);
+  
+  // Verifica se é mobile
+  const isMobile = useRef(false);
+  
+  useEffect(() => {
+    const checkMobile = () => {
+      isMobile.current = window.innerWidth < 768; // md breakpoint
+    };
+    
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   // Sempre inicia na primeira seção (hero)
   useEffect(() => {
@@ -55,6 +69,9 @@ export const useScrollSnap = ({ sections, timeout = 4000 }: UseScrollSnapOptions
   }, [sections]);
 
   const handleScroll = useCallback((direction: 'up' | 'down') => {
+    // Se é mobile, não executa scroll snap
+    if (isMobile.current) return;
+    
     // Se já está processando, ignora completamente
     if (isScrolling.current) return;
     
@@ -82,18 +99,27 @@ export const useScrollSnap = ({ sections, timeout = 4000 }: UseScrollSnapOptions
 
   useEffect(() => {
     const handleWheel = (e: WheelEvent) => {
+      // Se é mobile, permite scroll normal
+      if (isMobile.current) return;
+      
       e.preventDefault();
       const direction = e.deltaY > 0 ? 'down' : 'up';
       handleScroll(direction);
     };
 
     const handleTouchMove = (e: TouchEvent) => {
+      // Se é mobile, permite scroll normal
+      if (isMobile.current) return;
+      
       e.preventDefault();
       // Para touch, assumimos direção para baixo por padrão
       handleScroll('down');
     };
 
     const handleKeyDown = (e: KeyboardEvent) => {
+      // Se é mobile, permite navegação normal
+      if (isMobile.current) return;
+      
       if (e.key === 'ArrowDown' || e.key === ' ') {
         e.preventDefault();
         handleScroll('down');

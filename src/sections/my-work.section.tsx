@@ -159,7 +159,7 @@ export const MyWorkSection = () => {
     finishPercent: 70,
   };
   return (
-    <section id="work" className="h-screen text-white bg-black/50 relative">
+    <section id="work" className="min-h-screen md:h-screen text-white bg-black/50 relative">
       <motion.div
         className="absolute inset-0 opacity-30 left-[-200vw]"
         style={{
@@ -178,34 +178,34 @@ export const MyWorkSection = () => {
           100% { background-position: -200% 0; }
         }
       `}</style>
-      <div className="max-w-[1500px] mx-auto flex h-full">
+      <div className="max-w-[1500px] mx-auto flex flex-col md:flex-row h-full">
         {/* Left Section - 2/3 width */}
-        <div className="w-2/3 pr-8 flex flex-col justify-between relative py-20 px-8">
+        <div className="w-full md:w-2/3 md:pr-8 flex flex-col justify-between relative py-8 md:py-20 px-4 md:px-8">
           {/* Top Left - Title */}
           <div>
-            <h2 className="text-2xl font-light relative">
+            <h2 className="text-xl md:text-2xl font-light relative">
               <ShinyTextComponent text="MY" speed={4} />
               <br />
-              <span className="text-7xl absolute -bottom-20 left-0 font-semibold">
+              <span className="text-4xl md:text-7xl absolute -bottom-10 md:-bottom-20 left-0 font-semibold">
                 <ShinyTextComponent text="WORK" speed={4} />
               </span>
             </h2>
-            <div className="space-y-2 text-white text-lg max-w-lg mt-28 flex items-center gap-4">
-              <div className="h-[1px] w-32 bg-white"></div>
-              <p className="font-light tracking-wider text-gray-400 text-sm">A collection of projects that showcase my skills, creativity, and dedication to delivering quality results.</p>
+            <div className="space-y-2 text-white text-base md:text-lg max-w-lg mt-16 md:mt-28 flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-4">
+              <div className="h-[1px] w-16 md:w-32 bg-white"></div>
+              <p className="font-light tracking-wider text-gray-400 text-xs md:text-sm">A collection of projects that showcase my skills, creativity, and dedication to delivering quality results.</p>
             </div>
           </div>
 
           {/* Bottom Left - Circle */}
           <div
-            className="absolute bottom-1 left-1 w-[28rem] h-[28rem] rounded-full blur-3xl opacity-60 animate-float-gentle"
+            className="absolute bottom-1 left-1 w-[14rem] h-[14rem] md:w-[28rem] md:h-[28rem] rounded-full blur-3xl opacity-60 animate-float-gentle"
             style={{
               background: "radial-gradient(circle, rgba(156, 163, 175, 0.3) 0%, rgba(209, 213, 219, 0.2) 50%, transparent 100%)",
             }}
           ></div>
         </div>
 
-        <div ref={parentRef} className="grid grid-cols-2 mx-4 gap-1 w-2/3">
+        <div ref={parentRef} className="grid grid-cols-1 md:grid-cols-2 mx-2 md:mx-4 gap-1 w-full md:w-2/3">
           {projects.map((project, index) => {
             let borderClasses = "border border-white/10";
             if (index === 0 || index === 1) {
@@ -233,11 +233,11 @@ export const MyWorkSection = () => {
                         }}
                         className="text-[#b5b5b5]"
                       >
-                        <TbHandMove size={40} />
+                        <TbHandMove size={32} className="md:size-10" />
                       </div>
                     </div>
 
-                    <p className="text-white font-semibold tracking-wide absolute top-2/3 left-1/2 -translate-x-1/2">
+                    <p className="text-white font-semibold tracking-wide absolute top-2/3 left-1/2 -translate-x-1/2 text-sm md:text-base">
                       <ShinyTextComponent text="Scratch to reveal" speed={4} />
                     </p>
                   </div>
@@ -249,13 +249,13 @@ export const MyWorkSection = () => {
                       <project.icon size={14} />
                     </div>
                     <div className="absolute top-4 right-4 text-white/60 text-xs font-mono">Nov 2024</div>
-                    <div className="p-6 flex mt-12 flex-col justify-between w-full">
+                    <div className="p-4 md:p-6 flex mt-8 md:mt-12 flex-col justify-between w-full">
                       <div>
-                        <h3 className="text-white text-lg font-bold mb-2">{project.title}</h3>
-                        <p className="text-white/80 text-sm leading-relaxed">{project.description}</p>
+                        <h3 className="text-white text-base md:text-lg font-bold mb-2">{project.title}</h3>
+                        <p className="text-white/80 text-xs md:text-sm leading-relaxed">{project.description}</p>
                       </div>
                       <div className="flex justify-center mt-4">
-                        <button className="bg-white cursor-pointer text-black px-6 py-1 rounded-full font-medium hover:bg-white/90 transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:shadow-[0_15px_35px_rgba(255,255,255,0.4)]">More</button>
+                        <button className="bg-white cursor-pointer text-black px-4 md:px-6 py-1 rounded-full font-medium text-sm md:text-base hover:bg-white/90 transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:shadow-[0_15px_35px_rgba(255,255,255,0.4)]">More</button>
                       </div>
                     </div>
                   </div>
@@ -271,13 +271,13 @@ export const MyWorkSection = () => {
                         <project.icon size={14} />
                       </div>
                       <div className="absolute top-4 right-4 text-white/60 text-xs font-mono">Nov 2024</div>
-                      <div className="p-6 flex mt-12 flex-col justify-between w-full">
+                      <div className="p-4 md:p-6 flex mt-8 md:mt-12 flex-col justify-between w-full">
                         <div>
-                          <h3 className="text-white text-lg font-bold mb-2">{project.title}</h3>
-                          <p className="text-white/80 text-sm leading-relaxed">{project.description}</p>
+                          <h3 className="text-white text-base md:text-lg font-bold mb-2">{project.title}</h3>
+                          <p className="text-white/80 text-xs md:text-sm leading-relaxed">{project.description}</p>
                         </div>
                         <div className="flex justify-center mt-4">
-                          <button className="bg-white text-black px-6 py-1 rounded-full font-medium hover:bg-white/90 transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:shadow-[0_15px_35px_rgba(255,255,255,0.4)]">More</button>
+                          <button className="bg-white text-black px-4 md:px-6 py-1 rounded-full font-medium text-sm md:text-base hover:bg-white/90 transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:shadow-[0_15px_35px_rgba(255,255,255,0.4)]">More</button>
                         </div>
                       </div>
                     </div>
