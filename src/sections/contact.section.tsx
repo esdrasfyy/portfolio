@@ -45,7 +45,7 @@ export const ContactSection = () => {
   };
 
   return (
-    <section id="contact" className="min-h-screen bg-gray-100 py-20 px-8 flex justify-center items-center relative">
+    <section id="contact" className="min-h-screen bg-gray-100 py-20 px-8 md:px-4 flex justify-center items-center relative">
         <div 
           className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-5 z-0"
           style={{

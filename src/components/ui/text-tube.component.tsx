@@ -25,6 +25,19 @@ export const TextTube = ({ text, color = "white", fontSize = "18vw", className =
     const handleMouseMove = (e: MouseEvent) => {
       if (!finalWrapRef.current) return;
       
+      // Verifica se o mouse está sobre a seção de endorsements
+      const endorsementsSection = document.getElementById('feedbacks');
+      if (!endorsementsSection) return;
+      
+      const sectionRect = endorsementsSection.getBoundingClientRect();
+      const isMouseOverSection = 
+        e.clientX >= sectionRect.left && 
+        e.clientX <= sectionRect.right && 
+        e.clientY >= sectionRect.top && 
+        e.clientY <= sectionRect.bottom;
+      
+      if (!isMouseOverSection) return;
+      
       const rect = finalWrapRef.current.getBoundingClientRect();
       const centerX = rect.left + rect.width / 2;
       const centerY = rect.top + rect.height / 2;

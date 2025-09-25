@@ -243,7 +243,7 @@ export const ServicesSection = () => {
       </div>
       <motion.div
         ref={sideTextRef}
-        className="text-xl text-center absolute left-1/2 -translate-x-1/2 bottom-16 hidden text-nowrap max-[920px]:block"
+        className="text-xl text-center absolute left-1/2 -translate-x-1/2 bottom-6 hidden text-nowrap max-[920px]:block"
         initial={{ opacity: 0, x: -150, y: 20, filter: "blur(15px)", scale: 0.8 }}
         animate={sideTextInView ? { opacity: 1, x: 0, y: 0, filter: "blur(0px)", scale: 1 } : { opacity: 0, x: -150, y: 20, filter: "blur(15px)", scale: 0.8 }}
         transition={{ duration: 1.2, ease: "easeOut", delay: 0.8, type: "spring", stiffness: 60 }}
