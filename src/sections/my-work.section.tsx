@@ -161,7 +161,7 @@ export const MyWorkSection = () => {
   return (
     <section id="work" className="h-screen text-white bg-black/50 relative">
       <motion.div
-        className="absolute inset-0 opacity-30"
+        className="absolute inset-0 opacity-30 left-[-200vw]"
         style={{
           background: "linear-gradient(45deg, transparent 30%, rgba(192, 192, 192, 0.3) 50%, transparent 70%)",
           backgroundSize: "200% 200%",
