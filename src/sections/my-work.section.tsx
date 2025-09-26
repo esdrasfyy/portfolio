@@ -156,7 +156,7 @@ export const MyWorkSection = () => {
           {/* Left side - 3D Cube and Controls */}
           <div className="space-y-4 xl:space-y-6">
             <div className="flex items-center gap-3 xl:gap-4 mb-4 xl:mb-6">
-              <div className="w-10 h-10 xl:w-12 xl:h-12 bg-white/20 backdrop-blur-md border-white/40 border rounded-lg flex items-center justify-center shadow-sm">
+              <div className="min-w-10 h-10 xl:w-12 xl:h-12 bg-white/20 backdrop-blur-md border-white/40 border rounded-lg flex items-center justify-center shadow-sm">
                 <project.icon className="text-lg xl:text-2xl" />
               </div>
               <div>
@@ -192,7 +192,7 @@ export const MyWorkSection = () => {
           {/* Right side - Project Description */}
           <div className="space-y-6 xl:space-y-8">
             <div className="flex items-center gap-3 xl:gap-4 mb-4 xl:mb-6">
-              <div className="w-10 h-10 xl:w-12 xl:h-12 bg-white/20 backdrop-blur-md border-white/40 border rounded-lg flex items-center justify-center shadow-sm">
+              <div className="min-w-10 h-10 xl:w-12 xl:h-12 bg-white/20 backdrop-blur-md border-white/40 border rounded-lg flex items-center justify-center shadow-sm">
                 <FaInfo className="text-lg xl:text-2xl" />
               </div>
               <div>
