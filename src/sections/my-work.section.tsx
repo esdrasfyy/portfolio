@@ -43,7 +43,7 @@ export const MyWorkSection = () => {
   const { isOpen, openModal, closeModal } = useModal();
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
   const [cubeRotation, setCubeRotation] = useState({ x: 0, y: 0, z: 0 });
-  const [activeTab, setActiveTab] = useState<"3d" | "description">("description");
+  const [activeTab, setActiveTab] = useState<"3d" | "description">("3d");
   const [completedCards, setCompletedCards] = useState<Set<number>>(() => {
     const saved = localStorage.getItem("completedCards");
     return saved ? new Set(JSON.parse(saved)) : new Set();
