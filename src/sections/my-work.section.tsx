@@ -405,7 +405,7 @@ export const MyWorkSection = () => {
           ></div>
         </div>
 
-        <div ref={parentRef} className="grid grid-cols-2 mx-2 md:mx-4 gap-1 w-2/3 max-[1250px]:w-full max-[1250px]:ml-0! max-md:my-auto">
+        <div ref={parentRef} className="grid grid-cols-2 mx-2 md:mx-4 gap-1 w-2/3 max-[1250px]:w-full max-[1250px]:ml-0! max-md:my-auto max-[1250px]:mb-2">
           {(screenWidth < 1250 ? getProjects(t).slice(0, 6) : getProjects(t)).map((project, index) => {
             let borderClasses = "border border-white/10";
             if (index === 0 || index === 1) {
