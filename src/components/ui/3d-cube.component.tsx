@@ -16,8 +16,13 @@ function Cube({ onRotationChange, rotation = { x: 0, y: 0, z: 0 }, projectImages
   const [currentRotation, setCurrentRotation] = useState(rotation);
   const [isLoading, setIsLoading] = useState(true);
 
-  // Carrega as texturas das imagens
-  const textures = useTexture(projectImages.length > 0 ? projectImages : ["/791.jpg", "/about.jpg", "/contact.jpg", "/feedback.jpg", "/hm.jpg", "/services.jpg"]);
+  // Garante 6 imagens (uma por face)
+  const imageArray =
+    projectImages.length >= 6
+      ? projectImages
+      : ["/791.jpg", "/about.jpg", "/contact.jpg", "/feedback.jpg", "/hm.jpg", "/services.jpg"];
+
+  const textures = useTexture(imageArray);
 
   useEffect(() => {
     setTargetRotation(rotation);
@@ -34,7 +39,6 @@ function Cube({ onRotationChange, rotation = { x: 0, y: 0, z: 0 }, projectImages
 
   useFrame(() => {
     if (meshRef.current) {
-      // Interpolação suave entre rotação atual e alvo
       const lerpFactor = 0.1;
       const newRotation = {
         x: currentRotation.x + (targetRotation.x - currentRotation.x) * lerpFactor,
@@ -68,18 +72,23 @@ function Cube({ onRotationChange, rotation = { x: 0, y: 0, z: 0 }, projectImages
   return (
     <group>
       <mesh ref={meshRef}>
-        <boxGeometry args={[4, 4, 4]} />
-        <meshStandardMaterial 
-          map={textures[0]} 
-          metalness={0.1} 
-          roughness={0.1} 
-          emissive="#000000"
-          emissiveIntensity={0.1}
-        />
+        <boxGeometry args={[3.5, 3.5, 3.5]} />
+        {textures.map((texture, i) => (
+          <meshStandardMaterial
+            key={i}
+            attach={`material-${i}`} // aplica textura na face i
+            map={texture}
+            metalness={0.1}
+            roughness={0.1}
+            emissive="#000000"
+            emissiveIntensity={0.1}
+          />
+        ))}
       </mesh>
     </group>
   );
 }
+
 
 export const Cube3D = ({ onRotationChange, rotation, projectImages }: Cube3DProps) => {
   const [isLoading, setIsLoading] = useState(true);
@@ -93,7 +102,7 @@ export const Cube3D = ({ onRotationChange, rotation, projectImages }: Cube3DProp
   }, []);
 
   return (
-    <div className="w-full h-fit flex items-center justify-center relative">
+    <div className="w-full h-fit flex items-center justify-center relative min-h-[300px]">
       {isLoading && (
         <div className="absolute inset-0 flex items-center justify-center z-10">
           <div className="flex flex-col items-center gap-4">
@@ -102,7 +111,7 @@ export const Cube3D = ({ onRotationChange, rotation, projectImages }: Cube3DProp
           </div>
         </div>
       )}
-      <div className="w-[450px] h-[450px] max-w-full max-h-full">
+      <div className="w-full h-full max-w-[450px] max-h-[450px] mx-auto aspect-square">
         <Canvas camera={{ position: [0, 0, 7], fov: 45 }} style={{ background: "transparent", width: "100%", height: "100%" }}>
           <ambientLight intensity={0.8} />
           <directionalLight position={[0, 0, 5]} intensity={2.0} />

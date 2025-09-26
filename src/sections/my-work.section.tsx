@@ -38,13 +38,12 @@ export const MyWorkSection = () => {
   const { t } = useTranslation();
   const parentRef = useRef<HTMLDivElement>(null);
   const [parentWidth, setParentWidth] = useState(0);
-  const [screenWidth, setScreenWidth] = useState(0);
   const handRefs = useRef<(HTMLDivElement | null)[]>([]);
   const overlayRefs = useRef<(HTMLDivElement | null)[]>([]);
   const { isOpen, openModal, closeModal } = useModal();
   const [selectedProject, setSelectedProject] = useState<number | null>(null);
   const [cubeRotation, setCubeRotation] = useState({ x: 0, y: 0, z: 0 });
-  const [activeTab, setActiveTab] = useState<"3d" | "description">("3d");
+  const [activeTab, setActiveTab] = useState<"3d" | "description">("description");
   const [completedCards, setCompletedCards] = useState<Set<number>>(() => {
     const saved = localStorage.getItem("completedCards");
     return saved ? new Set(JSON.parse(saved)) : new Set();
@@ -57,17 +56,9 @@ export const MyWorkSection = () => {
       }
     };
 
-    const updateScreenWidth = () => {
-      setScreenWidth(window.innerWidth);
-    };
-
-    updateScreenWidth();
+    updateWidth();
     window.addEventListener("resize", updateWidth);
-    window.addEventListener("resize", updateScreenWidth);
-    return () => {
-      window.removeEventListener("resize", updateWidth);
-      window.removeEventListener("resize", updateScreenWidth);
-    };
+    return () => window.removeEventListener("resize", updateWidth);
   }, []);
 
   useEffect(() => {
@@ -153,7 +144,7 @@ export const MyWorkSection = () => {
     return (
       <div className="h-full">
         {/* Mobile Tabs */}
-        <div className="lg:hidden mb-6 flex w-full justify-between relative gap-">
+        <div className="lg:hidden mb-6 flex w-full justify-between relative max-md:text-sm">
           <button onClick={() => setActiveTab("3d")} className="w-1/2 py-1 rounded-t-lg cursor-pointer hover:bg-white/10 transition-colors duration-300 ease-in-out">3D Preview</button>
           <button onClick={() => setActiveTab("description")} className="w-1/2 py-1 rounded-t-lg cursor-pointer hover:bg-white/10 transition-colors duration-300 ease-in-out">Description</button>
           <span className={`w-1/2 h-[1px] bg-white rounded-full absolute -bottom-1 duration-300 ease-in-out ${activeTab === "3d" ? "left-0" : "right-0"}`}></span>
@@ -232,7 +223,7 @@ export const MyWorkSection = () => {
                 <h4 className="font-semibold text-sm xl:text-lg text-white">{t('modal.keyFeatures')}</h4>
                 <ul className="space-y-2 text-xs xl:text-sm text-gray-300">
                   {project.keyFeatures.map((feature: string, index: number) => (
-                    <li key={index} className="flex items-center gap-3 xl:gap-4">
+                    <li key={`feature-${index}-${feature.slice(0, 10)}`} className="flex items-center gap-3 xl:gap-4">
                       <span className="w-1 h-1 bg-white rounded-full flex-shrink-0"></span>
                       <span className="">{feature}</span>
                     </li>
@@ -266,7 +257,6 @@ export const MyWorkSection = () => {
                 <div>
                   <h3 className="text-base font-bold text-white">{project.title}</h3>
                   <p className="text-gray-400 text-xs">{t('modal.interactive3DPreview')}</p>
-                  <p className="text-gray-500 text-xs mt-1">{t('modal.date')}: {project.date}</p>
                 </div>
               </div>
 
@@ -306,20 +296,19 @@ export const MyWorkSection = () => {
                 transition={{ duration: 0.3 }}
               >
               <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 bg-white/20 backdrop-blur-md border-white/40 border rounded-lg flex items-center justify-center shadow-sm">
+                <div className="min-w-10 h-10 bg-white/20 backdrop-blur-md border-white/40 border rounded-lg flex items-center justify-center shadow-sm">
                   <FaInfo className="text-lg" />
                 </div>
                 <div>
                   <h3 className="text-base font-bold text-white">{t('modal.overview')}</h3>
                   <p className="text-gray-400 text-xs">{project.description}</p>
-                  <p className="text-gray-500 text-xs mt-1">{t('modal.date')}: {project.date}</p>
                 </div>
               </div>
 
               <div className="space-y-3">
                 <div className="flex flex-wrap gap-2">
                   {project.technologies.map((tech: string) => (
-                    <span key={tech} className="w-16 py-1 text-center bg-white/10 backdrop-blur-sm border border-gray-500 border-dotted text-gray-300 rounded-md text-xs font-medium shadow-sm">
+                    <span key={tech} className="w-16 max-md:w-24   py-1 text-nowrap text-center bg-white/10 backdrop-blur-sm border border-gray-500 border-dotted text-gray-300 rounded-md text-xs font-medium shadow-sm">
                       {tech}
                     </span>
                   ))}
@@ -338,7 +327,7 @@ export const MyWorkSection = () => {
                   <h4 className="font-semibold text-sm text-white">{t('modal.keyFeatures')}</h4>
                   <ul className="space-y-2 text-xs text-gray-300">
                     {project.keyFeatures.map((feature: string, index: number) => (
-                      <li key={index} className="flex items-center gap-3">
+                      <li key={`feature-mobile-${index}-${feature.slice(0, 10)}`} className="flex items-center gap-3">
                         <span className="w-1 h-1 bg-white rounded-full flex-shrink-0"></span>
                         <span className="">{feature}</span>
                       </li>
@@ -380,19 +369,20 @@ export const MyWorkSection = () => {
       `}</style>
       <div className="max-w-[1500px] mx-auto flex h-full max-[1250px]:flex-col max-md:min-h-screen justify-between">
         {/* Left Section - 2/3 width */}
-        <div className="w-full md:w-2/3 md:pr-8 flex flex-col justify-between relative py-8 max-md:py-2">
+        <div className="w-2/3 md:pr-8 flex flex-col justify-between relative py-8 max-md:py-2 max-[1250px]:w-full">
           {/* Top Left - Title */}
-          <div>
-            <h2 className="text-xl uppercase md:text-2xl font-light relative mx-4">
-              <ShinyTextComponent text={t('work.subtitle')} speed={4} />
-              <br />
-              <span className="text-4xl md:text-7xl absolute -bottom-10 md:-bottom-20 left-0 font-semibold">
+          <div className="max-[1250px]:flex w-full justify-between items-center">
+            <h2 className="text-xl uppercase md:text-2xl font-light relative mx-4 w-fit h-fit flex flex-col">
+              <span>
+                <ShinyTextComponent text={t('work.subtitle')} speed={4} />
+                </span>
+              <span className="text-4xl md:text-7xl font-semibold">
                 <ShinyTextComponent text={t('work.title').toUpperCase()} speed={4} />
               </span>
             </h2>
-            <div className="space-y-2 text-white text-base ml-4 md:text-lg max-w-lg mt-16 md:mt-28 flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-4">
-              <div className="h-[1px] w-16 md:w-32 bg-white max-md:hidden"></div>
-              <p className="font-light tracking-wider text-gray-400 text-xs md:text-sm">{t('work.description')}</p>
+            <div className="space-y-2 text-white text-base ml-4 md:text-lg max-w-lg mt-12 max-[1250px]:mt-0 flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-4">
+              <div className="h-[1px] w-16 md:w-32 bg-white max-[1250px]:hidden"></div>
+              <p className="font-light tracking-wider text-gray-400 text-xs md:text-sm max-[1250px]:text-end">{t('work.description')}</p>
             </div>
           </div>
 
@@ -405,8 +395,8 @@ export const MyWorkSection = () => {
           ></div>
         </div>
 
-        <div ref={parentRef} className="grid grid-cols-2 mx-2 md:mx-4 gap-1 w-2/3 max-[1250px]:w-full max-[1250px]:ml-0! max-md:my-auto max-[1250px]:mb-2">
-          {(screenWidth < 1250 ? getProjects(t).slice(0, 6) : getProjects(t)).map((project, index) => {
+        <div ref={parentRef} className="grid grid-cols-2 mx-2 md:mx-4 gap-1 w-2/3 max-[1250px]:w-full max-[1250px]:px-1 max-md:gap-0.5 max-[1250px]:ml-0! max-md:my-auto max-[1250px]:mb-2 ">
+          {getProjects(t).map((project, index) => {
             let borderClasses = "border border-white/10";
             if (index === 0 || index === 1) {
               borderClasses = "border-l border-r border-b border-white/10";
@@ -414,17 +404,17 @@ export const MyWorkSection = () => {
             if (index === 6 || index === 7) {
               borderClasses = "border-l border-r border-t border-white/10";
             }
-
+            const isLastOrAntLast = index === 6 || index === 7;
             return (
-              <div key={project.id} className={`h-full w-full ${borderClasses} cursor-grab border-dotted border-gray-500 rounded-xs relative group ${screenWidth < 768 ? "min-h-[200px]" : ""}`}>
+              <div key={project.id} className={`h-full w-full ${borderClasses}  ${isLastOrAntLast ? "max-[1250px]:hidden" : ""} cursor-grab border-dotted border-gray-500 rounded-xs relative group ${isLastOrAntLast ? "max-[1250px]:hidden" : ""}`}>
                 <GlowingEffectComponent spread={50} glow={true} disabled={false} proximity={200} inactiveZone={0.01} borderWidth={1} />
 
-                {!completedCards.has(project.id) && screenWidth >= 768 && (
+                {!completedCards.has(project.id) && (
                   <div
                     ref={(el) => {
                       if (el) overlayRefs.current[index] = el;
                     }}
-                    className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-black/20 backdrop-blur-sm group-hover:opacity-0 group-hover:pointer-events-none transition-opacity duration-300"
+                    className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-black/20 backdrop-blur-sm max-md:hidden"
                   >
                     <div className="flex items-center justify-center">
                       <div
@@ -443,24 +433,19 @@ export const MyWorkSection = () => {
                   </div>
                 )}
 
-                {completedCards.has(project.id) || screenWidth < 768 ? (
+                {completedCards.has(project.id) ? (
                   <div className="flex w-full h-full bg-white/5 backdrop-blur-sm relative">
-                    <div className="absolute top-4 left-4 p-2 rounded-full text-white border border-white/50 bg-white/30 backdrop-blur-sm">
-                      <project.icon size={14} />
+                    <div className="absolute top-4 left-4 p-2 max-md:p-1 rounded-full text-white border border-white/50 bg-white/30 backdrop-blur-sm">
+                      <project.icon className="text-lg max-md:text-xs" />
                     </div>
-                    <div className="absolute top-4 right-4 text-white/60 text-xs font-mono">{project.date}</div>
+                    <div className="absolute top-4 right-4 text-white/60 text-xs font-mono">Nov 2024</div>
                     <div className="p-4 md:p-6 flex mt-8 md:mt-12 flex-col justify-between w-full max-md:mt-12">
                       <div>
-                        <h3 className="text-white text-base md:text-lg font-bold mb-2">{project.title}</h3>
-                        <p className="text-white/80 text-xs md:text-sm leading-relaxed">{project.description}</p>
+                        <h3 className="text-white text-lg max-md:text-sm font-bold mb-2">{project.title}</h3>
+                        <p className="text-white/80 text-xs leading-relaxed">{project.description}</p>
                       </div>
                       <div className="flex justify-center mt-4">
-                        <button
-                          onClick={() => handleProjectClick(project.id)}
-                          className="bg-white cursor-pointer text-black px-4 md:px-6 py-1 rounded-full font-medium text-sm md:text-base hover:bg-white/90 transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:shadow-[0_15px_35px_rgba(255,255,255,0.4)]"
-                        >
-                          {t('modal.more')}
-                        </button>
+                        <button onClick={() => handleProjectClick(project.id)} className="bg-white cursor-pointer text-black px-4 md:px-6 py-1 rounded-full font-medium text-sm md:text-base hover:bg-white/90 transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:shadow-[0_15px_35px_rgba(255,255,255,0.4)]">{t('modal.more')}</button>
                       </div>
                     </div>
                   </div>
@@ -472,19 +457,19 @@ export const MyWorkSection = () => {
                     }}
                   >
                     <div className="flex w-full h-full bg-white/5 backdrop-blur-sm relative">
-                      <div className="absolute top-4 left-4 p-2 rounded-full text-white border border-white/50 bg-white/30 backdrop-blur-sm">
-                        <project.icon size={14} />
+                      <div className="absolute top-4 left-4 p-2 max-md:p-1 rounded-full text-white border border-white/50 bg-white/30 backdrop-blur-sm">
+                        <project.icon className="text-lg max-md:text-xs" />
                       </div>
                       <div className="absolute top-4 right-4 text-white/60 text-xs font-mono">{project.date}</div>
                       <div className="p-4 md:p-6 flex mt-8 md:mt-12 flex-col justify-between w-full max-md:mt-12">
                         <div>
-                          <h3 className="text-white text-base md:text-lg font-bold mb-2">{project.title}</h3>
-                          <p className="text-white/80 text-xs md:text-sm leading-relaxed">{project.description}</p>
+                          <h3 className="text-white text-lg max-md:text-sm font-bold mb-2">{project.title}</h3>
+                          <p className="text-white/80 text-xs leading-relaxed">{project.description}</p>
                         </div>
                         <div className="flex justify-center mt-4">
                           <button
                             onClick={() => handleProjectClick(project.id)}
-                            className="bg-white text-black px-4 md:px-6 py-1 rounded-full font-medium text-sm md:text-base hover:bg-white/90 transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:shadow-[0_15px_35px_rgba(255,255,255,0.4)]"
+                            className="bg-white cursor-pointer text-black px-4 md:px-6 py-1 rounded-full font-medium text-sm md:text-base hover:bg-white/90 transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:shadow-[0_15px_35px_rgba(255,255,255,0.4)]"
                           >
                             {t('modal.more')}
                           </button>
