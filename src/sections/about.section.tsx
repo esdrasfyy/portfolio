@@ -46,17 +46,12 @@ export const AboutSection = () => {
         <div className="space-y-6 max-md:space-y-4">
           <motion.div className="flex items-center justify-between gap-4" initial={{ opacity: 0, x: -30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.1 }}>
             <div className="flex items-center gap-4">
-              <motion.div className="w-14 h-14 max-w-12 max-h-12 bg-gray-800 rounded-lg flex items-center justify-center shadow-lg" initial={{ scale: 0, rotate: -180 }} animate={{ scale: 1, rotate: 0 }} transition={{ duration: 0.6, delay: 0.2, type: "spring", stiffness: 200 }}>
+              <motion.div className="rounded-lg" initial={{ scale: 0, rotate: -180 }} animate={{ scale: 1, rotate: 0 }} transition={{ duration: 0.6, delay: 0.2, type: "spring", stiffness: 200 }}>
                 <img
                   src={card.logo}
-                  alt={`${card.name} logo`}
-                  className="w-12 h-12 object-contain"
-                  onError={(e) => {
-                    e.currentTarget.style.display = "none";
-                    e.currentTarget.nextElementSibling?.classList.remove("hidden");
-                  }}
+                  className="w-20 h-20 object-contain"
+                  fetchPriority="high"
                 />
-                <FaBuilding className="text-white text-2xl max-md:text-xl" />
               </motion.div>
               <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.3 }}>
                 <h3 className="text-2xl font-bold text-gray-900 max-md:text-xl">{card.name}</h3>

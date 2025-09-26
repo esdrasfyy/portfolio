@@ -19,7 +19,7 @@ const getTestimonials = (t: any) => {
     name: testimonial.name,
     role: testimonial.role,
     content: testimonial.content,
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
+    avatar: testimonial.image || "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
   }));
 };
 
@@ -55,7 +55,13 @@ const TestimonialCard = ({ testimonial, index }: { testimonial: Testimonial; ind
       </div>
       <p className="text-gray-800 text-xs md:text-sm leading-relaxed max-h-32 overflow-hidden">"{testimonial.content}"</p>
       <div className="flex items-center gap-2 md:gap-3 mt-auto">
-        <img src={testimonial.avatar} alt={testimonial.name} className="hidden md:block w-10 h-10 rounded-full object-cover" />
+        <img 
+          src={testimonial.avatar} 
+          alt={testimonial.name} 
+          className="hidden md:block w-10 h-10 rounded-full object-cover" 
+          loading="lazy"
+          decoding="async"
+        />
         <div>
           <p className="font-bold text-gray-900 text-xs md:text-sm">{testimonial.name}</p>
           <p className="text-gray-500 text-xs">{testimonial.role}</p>

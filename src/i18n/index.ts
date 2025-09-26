@@ -35,7 +35,7 @@ const en = {
             companies: [
                 {
                     name: "Aégis Capital",
-                    logo: "/aegis-logo.png",
+                    logo: "/aegis.png",
                     position: "Tech Lead SR",
                     startDate: "Feb 2025",
                     endDate: "Present",
@@ -53,7 +53,7 @@ const en = {
                 },
                 {
                     name: "GroupLink One",
-                    logo: "/grouplink-logo.png",
+                    logo: "/grouplinkone.svg",
                     position: "Frontend SR",
                     startDate: "2025",
                     endDate: "Aug 2025",
@@ -70,7 +70,7 @@ const en = {
                 },
                 {
                     name: "Snapic Tecnologia",
-                    logo: "/snapic-logo.png",
+                    logo: "/snapic.png",
                     position: "FullStack PL",
                     startDate: "Dec 2024",
                     endDate: "Feb 2025",
@@ -87,7 +87,7 @@ const en = {
                 },
                 {
                     name: "Cidade Alta RP",
-                    logo: "/cidadealta-logo.png",
+                    logo: "/cidadealta.png",
                     position: "FullStack JR",
                     startDate: "Nov 2023",
                     endDate: "Oct 2024",
@@ -288,47 +288,53 @@ const en = {
                     name: "Igor 'Tony'",
                     role: "CEO Cidade Alta RP",
                     content: "Fernando is a qualified and committed developer who contributed to improving our technology. I recommend him for innovation and professionalism!",
+                    image: "/cidadealta.png"
                 },
                 {
                     name: "Gerson Aguiar",
                     role: "Senior Developer at @loggi",
                     content: "Esdras delivered secure and scalable solutions with clean code. I recommend him to anyone looking for quality and efficiency.",
+                    image: "/gerson.jpg"
                 },
                 {
                     name: "Anonymous",
                     role: "CEO Snapic",
                     content: "Fernando partnership was essential for Snapic. He developed scalable systems with OAuth authentication and Facebook Meta integration.",
+                    image: "/snapic.png"
                 },
                 {
                     name: "DRA Franciele Cruz",
                     role: "Advogada",
                     content: "Fernando created a page that expanded my reach and brought new clients, generating real results. I recommend him for impact and quality!",
+                    image: "/franciele.jpg"
                 },
                 {
                     name: "Gustavo Delmondes",
                     role: "Owner Aegis Capital",
                     content: "Fe technical expertise transformed our financial platform. His solutions are robust, secure, and perfectly aligned with our business needs.",
+                    image: "/delmondes.jpg"
                 },
                 {
                     name: "Celso Rodrigues",
                     role: "Consultor e CEO da OpcaoConvenios",
                     content: "Esdras partnership was crucial for our digital transformation. He delivered innovative solutions that optimized our processes and increased efficiency.",
+                    image: "/celso.jpg"
                 },
             ]
         },
 
-                modal: {
-                    close: "Close",
-                    experience: "Experience",
-                    project: "Project",
-                    overview: "Overview",
-                    projectDescription: "Project Description",
-                    keyFeatures: "Key Features:",
-                    interactive3DPreview: "Interactive 3D Preview",
-                    date: "Date",
-                    more: "More",
-                    viewMore: "View More"
-                }
+        modal: {
+            close: "Close",
+            experience: "Experience",
+            project: "Project",
+            overview: "Overview",
+            projectDescription: "Project Description",
+            keyFeatures: "Key Features:",
+            interactive3DPreview: "Interactive 3D Preview",
+            date: "Date",
+            more: "More",
+            viewMore: "View More"
+        }
     }
 };
 
@@ -365,7 +371,7 @@ const pt = {
             companies: [
                 {
                     name: "Aégis Capital",
-                    logo: "/aegis-logo.png",
+                    logo: "/aegis.png",
                     position: "Tech Lead SR",
                     startDate: "Fev 2025",
                     endDate: "Presente",
@@ -383,7 +389,7 @@ const pt = {
                 },
                 {
                     name: "GroupLink One",
-                    logo: "/grouplink-logo.png",
+                    logo: "/grouplinkone.svg",
                     position: "Frontend SR",
                     startDate: "2025",
                     endDate: "Ago 2025",
@@ -401,7 +407,7 @@ const pt = {
                 },
                 {
                     name: "Snapic Tecnologia",
-                    logo: "/snapic-logo.png",
+                    logo: "/snapic.png",
                     position: "FullStack PL",
                     startDate: "Dez 2024",
                     endDate: "Fev 2025",
@@ -418,7 +424,7 @@ const pt = {
                 },
                 {
                     name: "Cidade Alta RP",
-                    logo: "/cidadealta-logo.png",
+                    logo: "/cidadealta.png",
                     position: "FullStack JR",
                     startDate: "Nov 2023",
                     endDate: "Out 2024",
@@ -620,47 +626,53 @@ const pt = {
                     name: "Igor 'Tony'",
                     role: "CEO Cidade Alta RP",
                     content: "Fernando é um desenvolvedor qualificado e comprometido que contribuiu para melhorar nossa tecnologia. Recomendo ele pela inovação e profissionalismo!",
+                    image: "/cidadealta.png"
                 },
                 {
                     name: "Gerson Aguiar",
                     role: "Senior Developer at @loggi",
                     content: "Esdras entregou soluções seguras e escaláveis com código limpo. Recomendo ele para quem busca qualidade e eficiência.",
+                    image: "/gerson.jpg"
                 },
                 {
                     name: "Anonymous",
                     role: "CEO Snapic",
                     content: "A parceria com Fernando foi essencial para a Snapic. Ele desenvolveu sistemas escaláveis com autenticação OAuth e integração Facebook Meta.",
+                    image: "/snapic.png"
                 },
                 {
                     name: "DRA Franciele Cruz",
                     role: "Advogada",
                     content: "Fernando criou uma página que expandiu meu alcance e trouxe novos clientes, gerando resultados reais. Recomendo ele pelo impacto e qualidade!",
+                    image: "/franciele.jpg"
                 },
                 {
                     name: "Gustavo Delmondes",
                     role: "Owner Aegis Capital",
                     content: "A expertise técnica do Fernando transformou nossa plataforma financeira. Suas soluções são robustas, seguras e perfeitamente alinhadas com nossas necessidades de negócio.",
+                    image: "/delmondes.jpg"
                 },
                 {
                     name: "Celso Rodrigues",
                     role: "Consultor e CEO da OpcaoConvenios",
                     content: "A parceria com Esdras foi crucial para nossa transformação digital. Ele entregou soluções inovadoras que otimizaram nossos processos e aumentaram a eficiência.",
+                    image: "/celso.jpg"
                 },
             ]
         },
 
-                modal: {
-                    close: "Fechar",
-                    experience: "Experiência",
-                    project: "Projeto",
-                    overview: "Visão Geral",
-                    projectDescription: "Descrição do Projeto",
-                    keyFeatures: "Principais Características:",
-                    interactive3DPreview: "Preview 3D Interativo",
-                    date: "Data",
-                    more: "Mais",
-                    viewMore: "Ver Mais"
-                }
+        modal: {
+            close: "Fechar",
+            experience: "Experiência",
+            project: "Projeto",
+            overview: "Visão Geral",
+            projectDescription: "Descrição do Projeto",
+            keyFeatures: "Principais Características:",
+            interactive3DPreview: "Preview 3D Interativo",
+            date: "Data",
+            more: "Mais",
+            viewMore: "Ver Mais"
+        }
     }
 };
 
