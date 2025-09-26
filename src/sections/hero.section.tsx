@@ -8,8 +8,10 @@ import { Autoplay } from "swiper/modules";
 import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { RiArrowRightSLine } from "react-icons/ri";
+import { useTranslation } from "react-i18next";
 
 export const HeroSection = () => {
+  const { t } = useTranslation();
   const [activeSlide, setActiveSlide] = useState(0);
   const swiperRef = useRef<any>(null);
 
@@ -75,26 +77,26 @@ export const HeroSection = () => {
   return (
     <section id="hero" className="flex justify-center max-lg:flex-col items-center w-full h-screen px-8 max-w-[1500px] mx-auto overflow-hidden">
       <div className="flex flex-col w-2/3 max-lg:w-full h-full max-lg:h-fit justify-center relative">
-      <motion.div ref={scrollRef} className="absolute bottom-8 left-0 flex flex-col items-center group w-5 h-32 cursor-pointer max-lg:hidden" variants={scrollVariants} initial="hidden" animate={scrollInView ? "visible" : "exit"} transition={{ duration: 0.8, ease: "easeOut", delay: 0.9 }}>
-        <div className="writing-mode-vertical text-sm tracking-wider mb-4">Demos</div>
-        <span className="h-16 w-[2px] bg-white"></span>
-        <MdKeyboardArrowDown className="-mt-3 group-hover:translate-y-2 text-2xl group-hover:text-5xl transition-all duration-300" />
-      </motion.div>
+        <motion.div ref={scrollRef} className="absolute bottom-8 left-0 flex flex-col items-center group w-5 h-32 cursor-pointer max-lg:hidden" variants={scrollVariants} initial="hidden" animate={scrollInView ? "visible" : "exit"} transition={{ duration: 0.8, ease: "easeOut", delay: 0.9 }}>
+          <div className="writing-mode-vertical text-sm tracking-wider mb-4">Demos</div>
+          <span className="h-16 w-[2px] bg-white"></span>
+          <MdKeyboardArrowDown className="-mt-3 group-hover:translate-y-2 text-2xl group-hover:text-5xl transition-all duration-300" />
+        </motion.div>
         <div className="text-white text-7xl max-[1690px]:text-6xl max-[710px]:text-[8vw] font-light relative mb-8 z-10">
           <motion.h1 ref={h1Ref} className="relative w-fit" variants={h1Variants} initial="hidden" animate={h1InView ? "visible" : "exit"} transition={{ duration: 0.8, ease: "easeOut" }}>
             <div className="absolute top-10 -left-20 w-16 h-px max-[710px]:w-[5vw] border-b border-dotted border-gray-500"></div>
-            <ShinyTextComponent text="Hi" speed={4} />, I'm <ShinyTextComponent text="Fernando Esdras" speed={4} />,
+            <ShinyTextComponent text={t("hero.saudacap")} speed={4} />, {t("hero.saudacap2")} <ShinyTextComponent text="Fernando Esdras" speed={4} />.
           </motion.h1>
           <motion.h2 ref={h2Ref} variants={h2Variants} initial="hidden" animate={h2InView ? "visible" : "exit"} transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}>
-            turning <ShinyTextComponent text="ideas" speed={4} /> into <ShinyTextComponent text="code" speed={4} />.
+            {t("hero.subtitle")}
           </motion.h2>
           <motion.p ref={pRef} className="text-gray-200 mt-10 max-[710px]:mt-5 text-2xl leading-relaxed max-w-xl max-[1690px]:text-xl max-[710px]:text-[3.5vw]" variants={pVariants} initial="hidden" animate={pInView ? "visible" : "exit"} transition={{ duration: 0.8, ease: "easeOut", delay: 0.4 }}>
-            I build scalable <ShinyTextComponent text="web applications" speed={4} /> and <ShinyTextComponent text="digital products" speed={4} /> with clean code, performance, and modern design.
+            {t("hero.description")}
           </motion.p>
         </div>
         <motion.div ref={buttonRef} className="flex items-center gap-4 mt-2" variants={buttonVariants} initial="hidden" animate={buttonInView ? "visible" : "exit"} transition={{ duration: 0.6, ease: "easeOut", delay: 0.6 }}>
           <button className="pl-16 pr-24  py-3 max-[710px]:py-2 max-[710px]:text-sm max-[710px]:w-[60vw] group hover:text-white duration-500 bg-white cursor-pointer rounded-full text-black font-semibold text-xl relative border border-white/50 hover:bg-white/30 hover:backdrop-blur-sm">
-            <span className="text-nowrap">Contact Me</span>
+            <span className="text-nowrap">{t("contact.title")}</span>
             <span className="bg-black max-[710px]:w-8 max-[710px]:h-8 group-hover:-rotate-45 text-white group-hover:text-black group-hover:bg-white duration-500 rounded-full w-11 h-11 flex justify-center items-center absolute right-1 top-1/2 -translate-y-1/2">
               <RiArrowRightSLine size={28} />
             </span>
@@ -532,7 +534,6 @@ export const HeroSection = () => {
               </>
             ))}
           </Swiper>
-          
         </div>
       </motion.div>
       <motion.div ref={indicatorsRef} className="gap-10 max-[1690px]:hidden absolute right-16 top-1/2 -translate-y-1/2 flex flex-col w-20" variants={indicatorsVariants} initial="hidden" animate={indicatorsInView ? "visible" : "exit"} transition={{ duration: 0.6, ease: "easeOut", delay: 0.7 }}>
@@ -541,7 +542,6 @@ export const HeroSection = () => {
         ))}
       </motion.div>
 
-     
       <motion.div className="absolute bottom-8 animate-bounce left-1/2 -translate-x-1/2" variants={scrollVariants} initial="hidden" animate={scrollInView ? "visible" : "exit"} transition={{ duration: 0.8, ease: "easeOut", delay: 1.1 }}>
         <CgScrollV size={20} />
       </motion.div>

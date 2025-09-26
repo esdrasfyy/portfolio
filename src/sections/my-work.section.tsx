@@ -10,81 +10,32 @@ import { AnimatePresence, motion } from "framer-motion";
 import { Modal } from "../components/ui/modal.component";
 import { useModal } from "../hooks/useModal";
 import { Cube3D, CubeControls } from "../components/ui/3d-cube.component";
+import { useTranslation } from "react-i18next";
 
-const projects = [
-  {
-    id: 1,
-    title: "E-commerce",
-    description: "Full-stack e-commerce solution with React, Node.js, and MongoDB",
-    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=300&fit=crop",
-    icon: FaShoppingCart,
-  },
-  {
-    id: 2,
-    title: "Mobile Banking App",
-    description: "Secure banking application with React Native and biometric authentication",
-    image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400&h=300&fit=crop",
-    icon: FaMobileAlt,
-  },
-  {
-    id: 3,
-    title: "AI Dashboard",
-    description: "Real-time analytics dashboard with machine learning insights",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop",
-    icon: FaChartLine,
-  },
-  {
-    id: 4,
-    title: "Portfolio Website",
-    description: "Modern portfolio with interactive animations and responsive design",
-    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop",
-    icon: FaLaptopCode,
-  },
-  {
-    id: 5,
-    title: "SaaS Platform",
-    description: "Scalable software-as-a-service platform with microservices architecture",
-    image: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=400&h=300&fit=crop",
-    icon: FaCloud,
-  },
-  {
-    id: 6,
-    title: "IoT Monitoring",
-    description: "Internet of Things monitoring system with real-time data processing",
-    image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=300&fit=crop",
-    icon: FaCogs,
-  },
-  {
-    id: 7,
-    title: "CRM System",
-    description: "Customer relationship management system with real-time data processing",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop",
-    icon: FaChartLine,
-  },
-  {
-    id: 8,
-    title: "ERP System",
-    description: "Enterprise resource planning system with real-time data processing",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop",
-    icon: FaCogs,
-  },
-];
+const getProjects = (t: any) => {
+  const projects = t("work.projects", { returnObjects: true }) as any[];
+  const icons = [FaShoppingCart, FaMobileAlt, FaChartLine, FaLaptopCode, FaCloud, FaCogs, FaChartLine, FaCogs];
+  
+  return projects.map((project: any, index: number) => ({
+    id: index + 1,
+    title: project.title,
+    description: project.description,
+    image: project.image,
+    images: project.images,
+    technologies: project.technologies,
+    projectDescription: project.projectDescription,
+    keyFeatures: project.keyFeatures,
+    date: project.date,
+    icon: icons[index],
+  }));
+};
 
-const getProjectImages = (projectId: number) => {
-  const projectImages = {
-    1: ["/791.jpg", "/about.jpg", "/contact.jpg", "/feedback.jpg", "/hm.jpg", "/services.jpg"],
-    2: ["/about.jpg", "/contact.jpg", "/feedback.jpg", "/hm.jpg", "/services.jpg", "/791.jpg"],
-    3: ["/contact.jpg", "/feedback.jpg", "/hm.jpg", "/services.jpg", "/791.jpg", "/about.jpg"],
-    4: ["/feedback.jpg", "/hm.jpg", "/services.jpg", "/791.jpg", "/about.jpg", "/contact.jpg"],
-    5: ["/hm.jpg", "/services.jpg", "/791.jpg", "/about.jpg", "/contact.jpg", "/feedback.jpg"],
-    6: ["/services.jpg", "/791.jpg", "/about.jpg", "/contact.jpg", "/feedback.jpg", "/hm.jpg"],
-    7: ["/791.jpg", "/about.jpg", "/contact.jpg", "/feedback.jpg", "/hm.jpg", "/services.jpg"],
-    8: ["/about.jpg", "/contact.jpg", "/feedback.jpg", "/hm.jpg", "/services.jpg", "/791.jpg"],
-  };
-  return projectImages[projectId as keyof typeof projectImages] || projectImages[1];
+const getProjectImages = (project: any) => {
+  return project.images || ["/791.jpg", "/about.jpg", "/contact.jpg", "/feedback.jpg", "/hm.jpg", "/services.jpg"];
 };
 
 export const MyWorkSection = () => {
+  const { t } = useTranslation();
   const parentRef = useRef<HTMLDivElement>(null);
   const [parentWidth, setParentWidth] = useState(0);
   const [screenWidth, setScreenWidth] = useState(0);
@@ -196,7 +147,7 @@ export const MyWorkSection = () => {
 
   const getModalContent = () => {
     if (selectedProject === null) return null;
-    const project = projects.find((p) => p.id === selectedProject);
+    const project = getProjects(t).find((p) => p.id === selectedProject);
     if (!project) return null;
 
     return (
@@ -219,12 +170,12 @@ export const MyWorkSection = () => {
               </div>
               <div>
                 <h3 className="text-lg xl:text-2xl font-bold text-white">{project.title}</h3>
-                <p className="text-gray-400 text-xs xl:text-sm">Interactive 3D Preview</p>
+                <p className="text-gray-400 text-xs xl:text-sm">{t('modal.interactive3DPreview')}</p>
               </div>
             </div>
 
             {/* 3D Cube */}
-            <Cube3D rotation={cubeRotation} projectImages={getProjectImages(project.id)} />
+            <Cube3D rotation={cubeRotation} projectImages={getProjectImages(project)} />
 
             {/* Controls */}
             <div className="flex justify-center">
@@ -254,14 +205,14 @@ export const MyWorkSection = () => {
                 <FaInfo className="text-lg xl:text-2xl" />
               </div>
               <div>
-                <h3 className="text-lg xl:text-2xl font-bold text-white">Overview</h3>
+                <h3 className="text-lg xl:text-2xl font-bold text-white">{t('modal.overview')}</h3>
                 <p className="text-gray-400 text-xs xl:text-sm">{project.description}</p>
               </div>
             </div>
 
             <div className="space-y-3 xl:space-y-4">
               <div className="flex flex-wrap gap-2 xl:gap-3">
-                {["React", "TypeScript", "Node.js", "MongoDB", "Tailwind CSS", "Three.js"].map((tech) => (
+                {project.technologies.map((tech: string) => (
                   <span key={tech} className="w-16 xl:w-20 py-1 text-center bg-white/10 backdrop-blur-sm border border-gray-500 border-dotted text-gray-300 rounded-md text-xs font-medium shadow-sm">
                     {tech}
                   </span>
@@ -271,31 +222,21 @@ export const MyWorkSection = () => {
 
             <div className="space-y-4 xl:space-y-6">
               <div>
-                <h4 className="font-semibold text-white mb-3 xl:mb-4 text-sm xl:text-lg">Project Description</h4>
+                <h4 className="font-semibold text-white mb-3 xl:mb-4 text-sm xl:text-lg">{t('modal.projectDescription')}</h4>
                 <p className="text-gray-300 leading-relaxed text-sm xl:text-base">
-                  This innovative project showcases cutting-edge web development techniques, combining modern design principles with advanced 3D visualization capabilities. Built with React and Three.js, it delivers an immersive user experience that pushes the boundaries of interactive web applications.
+                  {project.projectDescription}
                 </p>
               </div>
               
               <div className="space-y-2 xl:space-y-3">
-                <h4 className="font-semibold text-sm xl:text-lg text-white">Key Features:</h4>
+                <h4 className="font-semibold text-sm xl:text-lg text-white">{t('modal.keyFeatures')}</h4>
                 <ul className="space-y-2 text-xs xl:text-sm text-gray-300">
-                  <li className="flex items-center gap-3 xl:gap-4">
-                    <span className="w-1 h-1 bg-white rounded-full flex-shrink-0"></span>
-                    <span className="">Interactive 3D visualization with Three.js</span>
-                  </li>
-                  <li className="flex items-center gap-3 xl:gap-4">
-                    <span className="w-1 h-1 bg-white rounded-full flex-shrink-0"></span>
-                    <span className="">Responsive design with modern UI/UX</span>
-                  </li>
-                  <li className="flex items-center gap-3 xl:gap-4">
-                    <span className="w-1 h-1 bg-white rounded-full flex-shrink-0"></span>
-                    <span className="">Scalable architecture and performance optimization</span>
-                  </li>
-                  <li className="flex items-center gap-3 xl:gap-4">
-                    <span className="w-1 h-1 bg-white rounded-full flex-shrink-0"></span>
-                    <span className="">Real-time 3D controls and interactions</span>
-                  </li>
+                  {project.keyFeatures.map((feature: string, index: number) => (
+                    <li key={index} className="flex items-center gap-3 xl:gap-4">
+                      <span className="w-1 h-1 bg-white rounded-full flex-shrink-0"></span>
+                      <span className="">{feature}</span>
+                    </li>
+                  ))}
                 </ul>
               </div>
             </div>
@@ -324,12 +265,13 @@ export const MyWorkSection = () => {
                 </div>
                 <div>
                   <h3 className="text-base font-bold text-white">{project.title}</h3>
-                  <p className="text-gray-400 text-xs">Interactive 3D Preview</p>
+                  <p className="text-gray-400 text-xs">{t('modal.interactive3DPreview')}</p>
+                  <p className="text-gray-500 text-xs mt-1">{t('modal.date')}: {project.date}</p>
                 </div>
               </div>
 
               {/* 3D Cube */}
-              <Cube3D rotation={cubeRotation} projectImages={getProjectImages(project.id)} />
+              <Cube3D rotation={cubeRotation} projectImages={getProjectImages(project)} />
 
               {/* Controls */}
               <div className="flex justify-center">
@@ -368,14 +310,15 @@ export const MyWorkSection = () => {
                   <FaInfo className="text-lg" />
                 </div>
                 <div>
-                  <h3 className="text-base font-bold text-white">Overview</h3>
+                  <h3 className="text-base font-bold text-white">{t('modal.overview')}</h3>
                   <p className="text-gray-400 text-xs">{project.description}</p>
+                  <p className="text-gray-500 text-xs mt-1">{t('modal.date')}: {project.date}</p>
                 </div>
               </div>
 
               <div className="space-y-3">
                 <div className="flex flex-wrap gap-2">
-                  {["React", "TypeScript", "Node.js", "MongoDB", "Tailwind CSS", "Three.js"].map((tech) => (
+                  {project.technologies.map((tech: string) => (
                     <span key={tech} className="w-16 py-1 text-center bg-white/10 backdrop-blur-sm border border-gray-500 border-dotted text-gray-300 rounded-md text-xs font-medium shadow-sm">
                       {tech}
                     </span>
@@ -385,31 +328,21 @@ export const MyWorkSection = () => {
 
               <div className="space-y-4">
                 <div>
-                  <h4 className="font-semibold text-white mb-3 text-sm">Project Description</h4>
+                  <h4 className="font-semibold text-white mb-3 text-sm">{t('modal.projectDescription')}</h4>
                   <p className="text-gray-300 leading-relaxed text-sm">
-                    This innovative project showcases cutting-edge web development techniques, combining modern design principles with advanced 3D visualization capabilities. Built with React and Three.js, it delivers an immersive user experience that pushes the boundaries of interactive web applications.
+                    {project.projectDescription}
                   </p>
                 </div>
                 
                 <div className="space-y-2">
-                  <h4 className="font-semibold text-sm text-white">Key Features:</h4>
+                  <h4 className="font-semibold text-sm text-white">{t('modal.keyFeatures')}</h4>
                   <ul className="space-y-2 text-xs text-gray-300">
-                    <li className="flex items-center gap-3">
-                      <span className="w-1 h-1 bg-white rounded-full flex-shrink-0"></span>
-                      <span className="">Interactive 3D visualization with Three.js</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <span className="w-1 h-1 bg-white rounded-full flex-shrink-0"></span>
-                      <span className="">Responsive design with modern UI/UX</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <span className="w-1 h-1 bg-white rounded-full flex-shrink-0"></span>
-                      <span className="">Scalable architecture and performance optimization</span>
-                    </li>
-                    <li className="flex items-center gap-3">
-                      <span className="w-1 h-1 bg-white rounded-full flex-shrink-0"></span>
-                      <span className="">Real-time 3D controls and interactions</span>
-                    </li>
+                    {project.keyFeatures.map((feature: string, index: number) => (
+                      <li key={index} className="flex items-center gap-3">
+                        <span className="w-1 h-1 bg-white rounded-full flex-shrink-0"></span>
+                        <span className="">{feature}</span>
+                      </li>
+                    ))}
                   </ul>
                 </div>
               </div>
@@ -450,16 +383,16 @@ export const MyWorkSection = () => {
         <div className="w-full md:w-2/3 md:pr-8 flex flex-col justify-between relative py-8 max-md:py-2">
           {/* Top Left - Title */}
           <div>
-            <h2 className="text-xl md:text-2xl font-light relative mx-4">
-              <ShinyTextComponent text="MY" speed={4} />
+            <h2 className="text-xl uppercase md:text-2xl font-light relative mx-4">
+              <ShinyTextComponent text={t('work.subtitle')} speed={4} />
               <br />
               <span className="text-4xl md:text-7xl absolute -bottom-10 md:-bottom-20 left-0 font-semibold">
-                <ShinyTextComponent text="WORK" speed={4} />
+                <ShinyTextComponent text={t('work.title').toUpperCase()} speed={4} />
               </span>
             </h2>
             <div className="space-y-2 text-white text-base ml-4 md:text-lg max-w-lg mt-16 md:mt-28 flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-4">
               <div className="h-[1px] w-16 md:w-32 bg-white max-md:hidden"></div>
-              <p className="font-light tracking-wider text-gray-400 text-xs md:text-sm">A collection of projects that showcase my skills, creativity, and dedication to delivering quality results.</p>
+              <p className="font-light tracking-wider text-gray-400 text-xs md:text-sm">{t('work.description')}</p>
             </div>
           </div>
 
@@ -473,7 +406,7 @@ export const MyWorkSection = () => {
         </div>
 
         <div ref={parentRef} className="grid grid-cols-2 mx-2 md:mx-4 gap-1 w-2/3 max-[1250px]:w-full max-[1250px]:ml-0! max-md:my-auto">
-          {(screenWidth < 1250 ? projects.slice(0, 6) : projects).map((project, index) => {
+          {(screenWidth < 1250 ? getProjects(t).slice(0, 6) : getProjects(t)).map((project, index) => {
             let borderClasses = "border border-white/10";
             if (index === 0 || index === 1) {
               borderClasses = "border-l border-r border-b border-white/10";
@@ -515,7 +448,7 @@ export const MyWorkSection = () => {
                     <div className="absolute top-4 left-4 p-2 rounded-full text-white border border-white/50 bg-white/30 backdrop-blur-sm">
                       <project.icon size={14} />
                     </div>
-                    <div className="absolute top-4 right-4 text-white/60 text-xs font-mono">Nov 2024</div>
+                    <div className="absolute top-4 right-4 text-white/60 text-xs font-mono">{project.date}</div>
                     <div className="p-4 md:p-6 flex mt-8 md:mt-12 flex-col justify-between w-full max-md:mt-12">
                       <div>
                         <h3 className="text-white text-base md:text-lg font-bold mb-2">{project.title}</h3>
@@ -526,7 +459,7 @@ export const MyWorkSection = () => {
                           onClick={() => handleProjectClick(project.id)}
                           className="bg-white cursor-pointer text-black px-4 md:px-6 py-1 rounded-full font-medium text-sm md:text-base hover:bg-white/90 transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:shadow-[0_15px_35px_rgba(255,255,255,0.4)]"
                         >
-                          More
+                          {t('modal.more')}
                         </button>
                       </div>
                     </div>
@@ -542,7 +475,7 @@ export const MyWorkSection = () => {
                       <div className="absolute top-4 left-4 p-2 rounded-full text-white border border-white/50 bg-white/30 backdrop-blur-sm">
                         <project.icon size={14} />
                       </div>
-                      <div className="absolute top-4 right-4 text-white/60 text-xs font-mono">Nov 2024</div>
+                      <div className="absolute top-4 right-4 text-white/60 text-xs font-mono">{project.date}</div>
                       <div className="p-4 md:p-6 flex mt-8 md:mt-12 flex-col justify-between w-full max-md:mt-12">
                         <div>
                           <h3 className="text-white text-base md:text-lg font-bold mb-2">{project.title}</h3>
@@ -553,7 +486,7 @@ export const MyWorkSection = () => {
                             onClick={() => handleProjectClick(project.id)}
                             className="bg-white text-black px-4 md:px-6 py-1 rounded-full font-medium text-sm md:text-base hover:bg-white/90 transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:shadow-[0_15px_35px_rgba(255,255,255,0.4)]"
                           >
-                            More
+                            {t('modal.more')}
                           </button>
                         </div>
                       </div>
@@ -567,7 +500,7 @@ export const MyWorkSection = () => {
       </div>
 
       {/* Modal with dark theme */}
-      <Modal isOpen={isOpen} onClose={closeModal} title={selectedProject !== null ? projects.find((p) => p.id === selectedProject)?.title || "Project" : "Project Details"} theme="dark">
+      <Modal isOpen={isOpen} onClose={closeModal} title={selectedProject !== null ? getProjects(t).find((p) => p.id === selectedProject)?.title + " - " + getProjects(t).find((p) => p.id === selectedProject)?.date || "Project" : "Project Details"} theme="dark">
         {getModalContent()}
       </Modal>
     </section>

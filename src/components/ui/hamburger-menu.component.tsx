@@ -1,13 +1,14 @@
 import { useEffect, useRef, useState } from "react";
 import { usePreferences } from "../../contexts/preferences.context";
+import { useTranslation } from "react-i18next";
 import gsap from "gsap";
 
-const navigationItems = [
-  { id: 1, name: "Home", href: "#home", isActive: true },
-  { id: 2, name: "About", href: "#about", isActive: false },
-  { id: 3, name: "Services", href: "#services", isActive: false },
-  { id: 4, name: "Projects", href: "#projects", isActive: false },
-  { id: 5, name: "Contact Me", href: "#contact", isActive: false },
+const getNavigationItems = (t: any) => [
+  { id: 1, name: t('home'), href: "#home", isActive: true },
+  { id: 2, name: t('aboutNav'), href: "#about", isActive: false },
+  { id: 3, name: t('servicesNav'), href: "#services", isActive: false },
+  { id: 4, name: t('workNav'), href: "#projects", isActive: false },
+  { id: 5, name: t('contactNav'), href: "#contact", isActive: false },
 ];
 
 const socialLinks = [
@@ -19,6 +20,8 @@ const socialLinks = [
 
 export const HamburgerMenu = () => {
   const { menu, onClose } = usePreferences();
+  const { t } = useTranslation();
+  const navigationItems = getNavigationItems(t);
   const containerRef = useRef<HTMLDivElement>(null);
   const [isVisible, setIsVisible] = useState(false);
 

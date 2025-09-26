@@ -1,8 +1,12 @@
 import { RiArrowRightSLine } from "react-icons/ri";
 import { ShinyTextComponent } from "../ui/shiny-text.component";
 import { GlowingEffectComponent } from "../ui/glowing-effect.component";
+import { useTranslation } from "react-i18next";
 
-export const SilhouetteCardHome = ({ type, icon: Icon, children }: { type: string; icon: any; children: React.ReactNode }) => (
+export const SilhouetteCardHome = ({ type, icon: Icon, children }: { type: string; icon: any; children: React.ReactNode }) => {
+  const { t } = useTranslation();
+  
+  return (
   <div className="w-96 h-60 max-[1690px]:w-80 max-[1690px]:h-[190px] max-lg:w-52 max-lg:h-32 border border-dotted border-gray-500 rounded-xs relative">
     <GlowingEffectComponent spread={50} glow={true} disabled={false} proximity={200} inactiveZone={0.01} borderWidth={1} />
     <div className="flex flex-col items-center justify-between h-full text-white">
@@ -23,7 +27,7 @@ export const SilhouetteCardHome = ({ type, icon: Icon, children }: { type: strin
           href="#"
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-0 bg-white text-black px-4 py-2 rounded-full text-xs font-semibold opacity-0 transition-all duration-300 delay-100 z-20 border-none cursor-pointer group-hover:opacity-100 group-hover:scale-100 flex items-center gap-2"
         >
-          <span className="text-nowrap">View More</span>
+          <span className="text-nowrap">{t('modal.viewMore')}</span>
           <span className="hover:rotate-45 duration-300">
             <RiArrowRightSLine size={16} />
           </span>
@@ -32,4 +36,5 @@ export const SilhouetteCardHome = ({ type, icon: Icon, children }: { type: strin
       </div>
     </div>
   </div>
-);
+  );
+};

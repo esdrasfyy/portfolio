@@ -5,35 +5,37 @@ import { RiPenNibFill } from "react-icons/ri";
 import { GrVirtualStorage } from "react-icons/gr";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
+import { useTranslation } from "react-i18next";
 
-const servicesData = [
+const getServicesData = (t: any) => [
   {
     number: "1",
-    title: "Web & Mobile Solutions",
-    description: "End-to-end web and mobile apps with seamless API integrations and scalable architecture.",
+    title: t("services.products.0.name"),
+    description: t("services.products.0.description"),
     icon: FaCode,
   },
   {
     number: "2",
-    title: "Workflow Automation",
-    description: "Smart automations to cut manual work, save time, and boost efficiency.",
+    title: t("services.products.1.name"),
+    description: t("services.products.1.description"),
     icon: TbAutomaticGearbox,
   },
   {
     number: "3",
-    title: "UI/UX Design",
-    description: "Intuitive, user-centered interfaces that enhance engagement and usability.",
+    title: t("services.products.2.name"),
+    description: t("services.products.2.description"),
     icon: RiPenNibFill,
   },
   {
     number: "4",
-    title: "Cloud & Scalability",
-    description: "Robust cloud setups, CI/CD pipelines, and performance optimization.",
+    title: t("services.products.3.name"),
+    description: t("services.products.3.description"),
     icon: GrVirtualStorage,
   },
 ];
 
 export const ServicesSection = () => {
+  const { t } = useTranslation();
   const containerRef = useRef<HTMLDivElement>(null);
   const titleRef = useRef<HTMLDivElement>(null);
   const descriptionRef = useRef<HTMLDivElement>(null);
@@ -129,7 +131,7 @@ export const ServicesSection = () => {
             transition={{ duration: 1.2, ease: "easeOut", type: "spring", stiffness: 100 }}
           >
             <motion.h2 className="text-4xl font-bold max-[920px]:text-3xl" initial={{ opacity: 0, x: -30 }} animate={titleInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }} transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}>
-              <ShinyTextComponent text="My Services" speed={4} />
+              <ShinyTextComponent text={t("services.title")} speed={4} />
             </motion.h2>
             <motion.div className="flex-1 h-px bg-white/20 mt-2" initial={{ width: 0, opacity: 0 }} animate={titleInView ? { width: "100%", opacity: 1 } : { width: 0, opacity: 0 }} transition={{ duration: 1.5, ease: "easeOut", delay: 0.5 }}></motion.div>
           </motion.div>
@@ -140,23 +142,18 @@ export const ServicesSection = () => {
             animate={descriptionInView ? { opacity: 1, y: 0, filter: "blur(0px)", scale: 1 } : { opacity: 0, y: 50, filter: "blur(12px)", scale: 0.95 }}
             transition={{ duration: 1, ease: "easeOut", delay: 0.4, type: "spring", stiffness: 80 }}
           >
-            <motion.h1 className="text-2xl max-[570px]:hidden font-light leading-tight max-w-4xl max-[920px]:text-base max-[570px]:text-sm" initial={{ opacity: 0, x: -20 }} animate={descriptionInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }} transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}>
-              Transform your digital presence with cutting-edge solutions that drive innovation and deliver exceptional user experiences.
+            <motion.h1
+              className="text-2xl max-[570px]:hidden font-light leading-tight max-w-4xl max-[920px]:text-base max-[570px]:text-sm"
+              initial={{ opacity: 0, x: -20 }}
+              animate={descriptionInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
+              transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
+            >
+              {t("services.description")}
             </motion.h1>
           </motion.div>
         </div>
         <div className="relative flex justify-end w-full max-[920px]:flex-col-reverse">
-          <motion.div
-            ref={sideTextRef}
-            className="text-xl max-w-64 -rotate-90 max-[920px]:hidden text-center tracking-wider absolute top-1/2 -translate-y-1/2 -left-28"
-            initial={{ opacity: 0, x: -150, y: 20, filter: "blur(15px)", scale: 0.8 }}
-            animate={sideTextInView ? { opacity: 1, x: 0, y: 0, filter: "blur(0px)", scale: 1 } : { opacity: 0, x: -150, y: 20, filter: "blur(15px)", scale: 0.8 }}
-            transition={{ duration: 1.2, ease: "easeOut", delay: 0.8, type: "spring", stiffness: 60 }}
-          >
-            <motion.span initial={{ opacity: 0, y: 20 }} animate={sideTextInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }} transition={{ duration: 0.8, ease: "easeOut", delay: 1.2 }}>
-              Elevate your business performance and digital capabilities
-            </motion.span>
-          </motion.div>
+          <div className="text-xl max-w-64 text-white -rotate-90 text-center tracking-wider flex z-20 top-1/2 -translate-y-1/2 -left-24 max-[920px]:hidden absolute">{t("services.sub_description")}</div>
           <motion.div
             ref={cardsRef}
             className="grid grid-cols-2 gap-8 md:gap-16 w-2/3 max-[1320px]:w-4/5 max-[920px]:w-full max-[770px]:grid-cols-2 max-[570px]:grid-cols-1"
@@ -164,7 +161,7 @@ export const ServicesSection = () => {
             animate={cardsInView ? { opacity: 1, y: 0, filter: "blur(0px)", scale: 1 } : { opacity: 0, y: 120, filter: "blur(15px)", scale: 0.9 }}
             transition={{ duration: 1.2, ease: "easeOut", delay: 0.5, type: "spring", stiffness: 100 }}
           >
-            {servicesData.map((service, index) => (
+            {getServicesData(t).map((service, index) => (
               <div key={index} className="service-card relative py-4 px-8 group h-52 max-[1320px]:h-44 max-[770px]:h-36 max-[920px]:px-4 max-[920px]:py-2 max-[630px]:h-28">
                 <span className="service-bar-v h-full w-[1px] bg-white/20 absolute top-0 left-0 z-0"></span>
                 <span className="service-bar-h h-[1px] w-2/3 bg-white/20 absolute bottom-0 left-0 z-0"></span>
@@ -203,7 +200,7 @@ export const ServicesSection = () => {
                     stiffness: 120,
                   }}
                 >
-                  Call me
+                  {t("services.cta")}
                 </motion.button>
                 <div className="flex items-center gap-3 mb-2">
                   <service.icon className="text-9xl text-[#7272722c] absolute top-3 right-3 z-10 max-[1320px]:text-7xl max-[770px]:text-5xl max-[630px]:hidden max-[570px]:block" />
@@ -248,8 +245,8 @@ export const ServicesSection = () => {
         animate={sideTextInView ? { opacity: 1, x: 0, y: 0, filter: "blur(0px)", scale: 1 } : { opacity: 0, x: -150, y: 20, filter: "blur(15px)", scale: 0.8 }}
         transition={{ duration: 1.2, ease: "easeOut", delay: 0.8, type: "spring", stiffness: 60 }}
       >
-        <motion.span className="text-lg text-nowrap max-[570px]:text-sm" initial={{ opacity: 0, y: 20 }} animate={sideTextInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }} transition={{ duration: 0.8, ease: "easeOut", delay: 1.2 }}>
-          Elevate your business performance and digital capabilities
+        <motion.span className="text-lg text-nowrap max-[570px]:text-xs" initial={{ opacity: 0, y: 20 }} animate={sideTextInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }} transition={{ duration: 0.8, ease: "easeOut", delay: 1.2 }}>
+          {t("services.sub_description")}
         </motion.span>
       </motion.div>
     </section>

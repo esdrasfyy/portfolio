@@ -67,7 +67,7 @@ export const Modal = ({ isOpen, onClose, title, children, theme = "dark" }: Moda
           {/* Modal Content */}
           <motion.div
             ref={modalRef}
-            className={`relative w-full max-w-6xl max-h-[98vh] backdrop-blur-sm border rounded-lg shadow-2xl overflow-hidden flex flex-col ${theme === "light" ? "bg-white/98 border-gray-200/50" : "border-gray-600/50 bg-[#0f0f0f]"}`}
+            className={`relative w-full max-w-6xl max-h-[98vh] backdrop-blur-sm border rounded-lg shadow-2xl overflow-hidden flex flex-col ${theme === "light" ? "bg-white/98 border-gray-300" : "border-gray-600/50 bg-[#0f0f0f]"}`}
             initial={{
               opacity: 0,
               scale: 0.3,
@@ -99,7 +99,7 @@ export const Modal = ({ isOpen, onClose, title, children, theme = "dark" }: Moda
 
             {/* Header */}
             <motion.div 
-              className={`flex items-center justify-between px-6 py-3 border-b max-md:px-4 max-md:py-1 ${theme === "light" ? "border-gray-200/50 bg-gray-50/30" : "border-gray-600/50 bg-[#0f0f0f]"}`}
+              className={`flex items-center justify-between px-6 py-3 border-b max-md:px-4 max-md:py-1 ${theme === "light" ? "border-gray-300 bg-gray-50/30" : "border-gray-600/50 bg-[#0f0f0f]"}`}
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.1, duration: 0.3 }}
@@ -137,7 +137,7 @@ export const Modal = ({ isOpen, onClose, title, children, theme = "dark" }: Moda
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.3 }}
               >
-                <span className="font-semibold">{title}</span>
+                <span className="font-bold">{title}</span>
               </motion.div>
               <motion.button 
                 onClick={onClose} 

@@ -2,6 +2,7 @@ import { TextTube } from "../components/ui/text-tube.component";
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { VscQuote } from "react-icons/vsc";
+import { useTranslation } from "react-i18next";
 
 interface Testimonial {
   id: number;
@@ -11,58 +12,27 @@ interface Testimonial {
   avatar: string;
 }
 
-const originalFeedbacks: Testimonial[] = [
-  {
-    id: 1,
-    name: "Igor 'Tony'",
-    role: "CEO Cidade Alta RP",
-    content: "Fernando is a qualified and committed developer who contributed to improving our technology. I recommend him for innovation and professionalism!",
+const getTestimonials = (t: any) => {
+  const testimonials = t("feedbacks.testimonials", { returnObjects: true }) as any[];
+  return testimonials.map((testimonial: any, index: number) => ({
+    id: index + 1,
+    name: testimonial.name,
+    role: testimonial.role,
+    content: testimonial.content,
     avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
-  },
-  {
-    id: 2,
-    name: "Gerson Aguiar",
-    role: "Senior Developer at @loggi",
-    content: "Esdras delivered secure and scalable solutions with clean code. I recommend him to anyone looking for quality and efficiency.",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
-  },
-  {
-    id: 3,
-    name: "Anonymous",
-    role: "CEO Snapic",
-    content: "Fernando partnership was essential for Snapic. He developed scalable systems with OAuth authentication and Facebook Meta integration.",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&h=100&fit=crop&crop=face",
-  },
-  {
-    id: 4,
-    name: "DRA Franciele Cruz",
-    role: "Advogada",
-    content: "Fernando created a page that expanded my reach and brought new clients, generating real results. I recommend him for impact and quality!",
-    avatar: "https://images.unsplash.com/photo-1494790108755-2616b612b786?w=100&h=100&fit=crop&crop=face",
-  },
-  {
-    id: 5,
-    name: "Gustavo Delmondes",
-    role: "Owner Aegis Capital",
-    content: "Fe technical expertise transformed our financial platform. His solutions are robust, secure, and perfectly aligned with our business needs.",
-    avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=100&h=100&fit=crop&crop=face",
-  },
-  {
-    id: 6,
-    name: "Celso Rodrigues",
-    role: "Consultor e CEO da OpcaoConvenios",
-    content: "Esdras partnership was crucial for our digital transformation. He delivered innovative solutions that optimized our processes and increased efficiency.",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=100&h=100&fit=crop&crop=face",
-  },
-];
+  }));
+};
 
-// Duplicar os testimonials usando JavaScript
-const feedbacksData: Testimonial[] = Array.from({ length: 3 }, (_, index) =>
-  originalFeedbacks.map((testimonial, testimonialIndex) => ({
-    ...testimonial,
-    id: index * originalFeedbacks.length + testimonialIndex + 1,
-  }))
-).flat();
+// Função para duplicar os testimonials
+const getFeedbacksData = (t: any) => {
+  const originalTestimonials = getTestimonials(t);
+  return Array.from({ length: 3 }, (_, index) =>
+    originalTestimonials.map((testimonial, testimonialIndex) => ({
+      ...testimonial,
+      id: index * originalTestimonials.length + testimonialIndex + 1,
+    }))
+  ).flat();
+};
 
 const TestimonialCard = ({ testimonial, index }: { testimonial: Testimonial; index: number }) => {
   const cardRef = useRef<HTMLDivElement>(null);
@@ -95,15 +65,15 @@ const TestimonialCard = ({ testimonial, index }: { testimonial: Testimonial; ind
   );
 };
 
-const AnimatedTestimonials = () => {
+const AnimatedTestimonials = ({ t }: { t: any }) => {
   return (
     <div className="relative overflow-hidden py-5">
       <div className="flex gap-4 md:gap-6 animate-scroll">
-        {feedbacksData.map((testimonial, index) => (
+        {getFeedbacksData(t).map((testimonial, index) => (
           <TestimonialCard key={testimonial.id} testimonial={testimonial} index={index} />
         ))}
-        {feedbacksData.map((testimonial, index) => (
-          <TestimonialCard key={`copy-${testimonial.id}`} testimonial={testimonial} index={index + feedbacksData.length} />
+        {getFeedbacksData(t).map((testimonial, index) => (
+          <TestimonialCard key={`copy-${testimonial.id}`} testimonial={testimonial} index={index + getFeedbacksData(t).length} />
         ))}
       </div>
     </div>
@@ -111,6 +81,7 @@ const AnimatedTestimonials = () => {
 };
 
 export const FeedbacksSection = () => {
+  const { t, i18n } = useTranslation();
   return (
     <section id="feedbacks" className="h-screen bg-white w-full relative overflow-hidden">
       <div
@@ -120,10 +91,17 @@ export const FeedbacksSection = () => {
           filter: "invert(1)",
         }}
       ></div>
-      <TextTube text="Endorsements" color="black" fontSize="14vw" className="flex items-center justify-center" finalPosition="0" />
+      <TextTube 
+        key={`texttube-${i18n.language}`}
+        text={t('feedbacks.title')} 
+        color="black" 
+        fontSize="14vw" 
+        className="flex items-center justify-center" 
+        finalPosition="0" 
+      />
 
       <div className="w-full py-10 pb-24 absolute bottom-[5vh] left-0">
-        <AnimatedTestimonials />
+        <AnimatedTestimonials t={t} />
       </div>
     </section>
   );
