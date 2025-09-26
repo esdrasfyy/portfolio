@@ -382,7 +382,7 @@ export const MyWorkSection = () => {
             </h2>
             <div className="space-y-2 text-white text-base ml-4 md:text-lg max-w-lg mt-12 max-[1250px]:mt-0 flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-4">
               <div className="h-[1px] w-16 md:w-32 bg-white max-[1250px]:hidden"></div>
-              <p className="font-light tracking-wider text-gray-400 text-xs md:text-sm max-[1250px]:text-end">{t('work.description')}</p>
+              <p className="font-light tracking-wider text-gray-400 text-xs md:text-sm max-[1250px]:text-end max-md:hidden">{t('work.description')}</p>
             </div>
           </div>
 
@@ -395,7 +395,7 @@ export const MyWorkSection = () => {
           ></div>
         </div>
 
-        <div ref={parentRef} className="grid grid-cols-2 mx-2 md:mx-4 gap-1 w-2/3 max-[1250px]:w-full max-[1250px]:px-1 max-md:gap-0.5 max-[1250px]:ml-0! max-md:my-auto max-[1250px]:mb-2 ">
+        <div ref={parentRef} className="grid grid-cols-2 mx-2 md:mx-4 gap-1 w-2/3 max-[1250px]:w-full max-[1250px]:p-1! max-md:gap-0.5 max-[1250px]:ml-0! max-md:my-auto max-[1250px]:mb-2">
           {getProjects(t).map((project, index) => {
             let borderClasses = "border border-white/10";
             if (index === 0 || index === 1) {
@@ -406,7 +406,7 @@ export const MyWorkSection = () => {
             }
             const isLastOrAntLast = index === 6 || index === 7;
             return (
-              <div key={project.id} className={`h-full w-full ${borderClasses}  ${isLastOrAntLast ? "max-[1250px]:hidden" : ""} cursor-grab border-dotted border-gray-500 rounded-xs relative group ${isLastOrAntLast ? "max-[1250px]:hidden" : ""}`}>
+              <div key={project.id} className={`h-full w-full ${borderClasses}  ${isLastOrAntLast ? "max-[1250px]:hidden" : ""} cursor-grab m-1 border-dotted border-gray-500 rounded-xs relative group ${isLastOrAntLast ? "max-[1250px]:hidden" : ""}`}>
                 <GlowingEffectComponent spread={50} glow={true} disabled={false} proximity={200} inactiveZone={0.01} borderWidth={1} />
 
                 {!completedCards.has(project.id) && (
@@ -414,7 +414,7 @@ export const MyWorkSection = () => {
                     ref={(el) => {
                       if (el) overlayRefs.current[index] = el;
                     }}
-                    className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-black/20 backdrop-blur-sm max-md:hidden"
+                    className="absolute inset-0 z-10 flex flex-col items-center justify-center bg-black/20 backdrop-blur-sm max-md:hidden!"
                   >
                     <div className="flex items-center justify-center">
                       <div
@@ -433,51 +433,71 @@ export const MyWorkSection = () => {
                   </div>
                 )}
 
-                {completedCards.has(project.id) ? (
-                  <div className="flex w-full h-full bg-white/5 backdrop-blur-sm relative">
-                    <div className="absolute top-4 left-4 p-2 max-md:p-1 rounded-full text-white border border-white/50 bg-white/30 backdrop-blur-sm">
-                      <project.icon className="text-lg max-md:text-xs" />
+                {/* Mobile version - sem scratch */}
+                <div className="md:hidden flex w-full h-full bg-white/5 backdrop-blur-sm relative">
+                  <div className="absolute top-4 left-4 p-2 max-md:p-1 rounded-full text-white border border-white/50 bg-white/30 backdrop-blur-sm">
+                    <project.icon className="text-lg max-md:text-xs" />
+                  </div>
+                  <div className="absolute top-4 right-4 text-white/60 text-xs font-mono">{project.date}</div>
+                  <div className="p-4 md:p-6 flex mt-8 md:mt-12 flex-col justify-between w-full max-md:mt-12">
+                    <div>
+                      <h3 className="text-white text-lg max-md:text-sm font-bold mb-2">{project.title}</h3>
+                      <p className="text-white/80 text-xs leading-relaxed">{project.description}</p>
                     </div>
-                    <div className="absolute top-4 right-4 text-white/60 text-xs font-mono">Nov 2024</div>
-                    <div className="p-4 md:p-6 flex mt-8 md:mt-12 flex-col justify-between w-full max-md:mt-12">
-                      <div>
-                        <h3 className="text-white text-lg max-md:text-sm font-bold mb-2">{project.title}</h3>
-                        <p className="text-white/80 text-xs leading-relaxed">{project.description}</p>
-                      </div>
-                      <div className="flex justify-center mt-4">
-                        <button onClick={() => handleProjectClick(project.id)} className="bg-white cursor-pointer text-black px-4 md:px-6 py-1 rounded-full font-medium text-sm md:text-base hover:bg-white/90 transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:shadow-[0_15px_35px_rgba(255,255,255,0.4)]">{t('modal.more')}</button>
-                      </div>
+                    <div className="flex justify-center mt-4">
+                      <button onClick={() => handleProjectClick(project.id)} className="bg-white cursor-pointer text-black px-4 md:px-6 py-1 rounded-full font-medium text-sm md:text-base hover:bg-white/90 transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:shadow-[0_15px_35px_rgba(255,255,255,0.4)]">{t('modal.more')}</button>
                     </div>
                   </div>
-                ) : (
-                  <ScratchCard
-                    {...scratchConfig}
-                    onComplete={() => {
-                      setCompletedCards((prev) => new Set([...prev, project.id]));
-                    }}
-                  >
+                </div>
+
+                {/* Desktop version - com scratch */}
+                <div className="hidden md:block h-full">
+                  {completedCards.has(project.id) ? (
                     <div className="flex w-full h-full bg-white/5 backdrop-blur-sm relative">
                       <div className="absolute top-4 left-4 p-2 max-md:p-1 rounded-full text-white border border-white/50 bg-white/30 backdrop-blur-sm">
                         <project.icon className="text-lg max-md:text-xs" />
                       </div>
-                      <div className="absolute top-4 right-4 text-white/60 text-xs font-mono">{project.date}</div>
+                      <div className="absolute top-4 right-4 text-white/60 text-xs font-mono">Nov 2024</div>
                       <div className="p-4 md:p-6 flex mt-8 md:mt-12 flex-col justify-between w-full max-md:mt-12">
                         <div>
                           <h3 className="text-white text-lg max-md:text-sm font-bold mb-2">{project.title}</h3>
                           <p className="text-white/80 text-xs leading-relaxed">{project.description}</p>
                         </div>
                         <div className="flex justify-center mt-4">
-                          <button
-                            onClick={() => handleProjectClick(project.id)}
-                            className="bg-white cursor-pointer text-black px-4 md:px-6 py-1 rounded-full font-medium text-sm md:text-base hover:bg-white/90 transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:shadow-[0_15px_35px_rgba(255,255,255,0.4)]"
-                          >
-                            {t('modal.more')}
-                          </button>
+                          <button onClick={() => handleProjectClick(project.id)} className="bg-white cursor-pointer text-black px-4 md:px-6 py-1 rounded-full font-medium text-sm md:text-base hover:bg-white/90 transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:shadow-[0_15px_35px_rgba(255,255,255,0.4)]">{t('modal.more')}</button>
                         </div>
                       </div>
                     </div>
-                  </ScratchCard>
-                )}
+                  ) : (
+                    <ScratchCard
+                      {...scratchConfig}
+                      onComplete={() => {
+                        setCompletedCards((prev) => new Set([...prev, project.id]));
+                      }}
+                    >
+                      <div className="flex w-full h-full bg-white/5 backdrop-blur-sm relative">
+                        <div className="absolute top-4 left-4 p-2 max-md:p-1 rounded-full text-white border border-white/50 bg-white/30 backdrop-blur-sm">
+                          <project.icon className="text-lg max-md:text-xs" />
+                        </div>
+                        <div className="absolute top-4 right-4 text-white/60 text-xs font-mono">{project.date}</div>
+                        <div className="p-4 md:p-6 flex mt-8 md:mt-12 flex-col justify-between w-full max-md:mt-12">
+                          <div>
+                            <h3 className="text-white text-lg max-md:text-sm font-bold mb-2">{project.title}</h3>
+                            <p className="text-white/80 text-xs leading-relaxed">{project.description}</p>
+                          </div>
+                          <div className="flex justify-center mt-4">
+                            <button
+                              onClick={() => handleProjectClick(project.id)}
+                              className="bg-white cursor-pointer text-black px-4 md:px-6 py-1 rounded-full font-medium text-sm md:text-base hover:bg-white/90 transition-all duration-300 hover:scale-105 hover:-translate-y-1 hover:shadow-[0_15px_35px_rgba(255,255,255,0.4)]"
+                            >
+                              {t('modal.more')}
+                            </button>
+                          </div>
+                        </div>
+                      </div>
+                    </ScratchCard>
+                  )}
+                </div>
               </div>
             );
           })}
