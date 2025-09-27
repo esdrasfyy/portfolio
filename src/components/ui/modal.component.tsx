@@ -42,7 +42,7 @@ export const Modal = ({ isOpen, onClose, title, children, theme = "dark" }: Moda
     <AnimatePresence>
       {isOpen && (
         <motion.div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/50 backdrop-blur-md"
           initial={{
             opacity: 0,
             backdropFilter: "blur(0px)",
@@ -61,8 +61,6 @@ export const Modal = ({ isOpen, onClose, title, children, theme = "dark" }: Moda
           }}
           onClick={handleBackdropClick}
         >
-          {/* Backdrop with blur */}
-          <div className="absolute inset-0 bg-black/50 backdrop-blur-md" />
 
           {/* Modal Content */}
           <motion.div

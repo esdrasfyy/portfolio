@@ -14,12 +14,13 @@ const en = {
             title: "Full-Stack Developer",
             saudacap: "Hi",
             saudacap2: "I'm",
+            cta: "Download CV",
             subtitle: "Creating digital experiences that matter",
             description: "I build scalable web applications with modern technologies, focusing on performance and user experience."
         },
 
         about: {
-            title: "About Me",
+            title: "About",
             title2: "Me",
             description: "I'm a full-stack engineer with a passion for designing and delivering scalable, secure, and robust applications.",
             journey: "Journey",
@@ -31,18 +32,18 @@ const en = {
             skillsDescription: "I architect scalable applications using Next.js, TypeScript, and Nest.js with Relational Databases. I implement CI/CD pipelines, Docker containerization, virtual machines deployment, and follow SOLID principles with Scrum for robust code.",
             aboutMyExperience: "About My Experience",
             aboutCompanyTitle: "About Company",
-            experienceDescription: "During my time, I had the opportunity to work on challenging projects that allowed me to grow both technically and professionally. I focused on delivering high-quality solutions while maintaining clean, maintainable code and following industry best practices.",
             companies: [
                 {
                     name: "Aégis Capital",
                     logo: "/aegis.png",
                     position: "Tech Lead SR",
-                    startDate: "Feb 2025",
+                    startDate: "Nov 2024",
                     endDate: "Present",
                     location: "SP, Brazil",
                     about: "Aégis Capital is a leading financial technology company specializing in innovative investment solutions and digital banking platforms.",
+                    experienceDescription: "I lead the development of solutions for the financial sector, including compliance systems, operational hubs for brokers and advisors, and AI applied to credit analysis. I have been responsible for initiatives such as IVI, a predictive engine based on Markov and Monte Carlo, and a comprehensive dashboard for proposal management and intelligent cross-selling. I have also driven the creation of intuitive user experiences, with real-time dashboards, automated workflows, and integrations with WhatsApp and over 180 financial partners.",
                     myResponsibilitiesTitle: "My Responsibilities",
-                    myResponsibilities: ["Lead a team of developers", "Implement CI/CD pipelines", "Implement Docker containerization", "Implement virtual machines deployment", "Follow SOLID principles", "Follow Scrum methodology"],
+                    myResponsibilities: ["Lead development of financial sector solutions", "Implement compliance systems", "Apply AI to credit analysis", "Create predictive engines with Markov and Monte Carlo", "Build comprehensive dashboards for proposal management", "Integrate with WhatsApp and 180+ financial partners"],
                     myRole: "Tech Lead",
                     connectWithCompanyTitle: "Connect with Aégis",
                     socialMedia: {
@@ -55,12 +56,13 @@ const en = {
                     name: "GroupLink One",
                     logo: "/grouplinkone.svg",
                     position: "Frontend SR",
-                    startDate: "2025",
+                    startDate: "Apr 2025",
                     endDate: "Aug 2025",
                     location: "SP, Brazil",
                     about: "GroupLink One is a technology consulting firm focused on digital transformation and enterprise solutions.",
+                    experienceDescription: "I worked on the development of the launch landing page for Fenasan, using AstroJS and integrating it with Apostrophe CMS to give the marketing team autonomy in managing the blog and site maintenance. I also created an email signature generation system for employees and developed a digital business card model compatible with Apple Wallet and Google Pay, modernizing the corporate identity and strengthening the company's digital presence.",
                     myResponsibilitiesTitle: "My Responsibilities",
-                    myResponsibilities: ["Lead a team of developers", "Implement CI/CD pipelines", "Implement Docker containerization", "Implement virtual machines deployment", "Follow SOLID principles", "Follow Scrum methodology"],
+                    myResponsibilities: ["Develop Fenasan launch landing page with AstroJS", "Integrate with Apostrophe CMS for marketing autonomy", "Create email signature generation system", "Develop digital business card for Apple Wallet/Google Pay", "Modernize corporate identity", "Strengthen digital presence"],
                     connectWithCompanyTitle: "Connect with GroupLink",
                     socialMedia: {
                         linkedin: "https://linkedin.com/company/grouplink-one",
@@ -72,12 +74,13 @@ const en = {
                     name: "Snapic Tecnologia",
                     logo: "/snapic.png",
                     position: "FullStack PL",
-                    startDate: "Dec 2024",
+                    startDate: "Dec 2023",
                     endDate: "Feb 2025",
                     location: "SP, Brazil",
                     about: "Snapic Tecnologia is a software development company specializing in mobile applications and web solutions.",
+                    experienceDescription: "I implemented card, PIX, and boleto payments using Mercado Pago, Stripe, and Efipay. I developed real-time messaging with Pusher, live streaming with gift sending, and subscription systems with recurring billing. I integrated Google OAuth 2.0, Zendesk for support, and used AI to personalize the feed. I also worked with Digital Ocean, AWS, Firebase Storage, and Docker to optimize workflows and enhance the user experience.",
                     myResponsibilitiesTitle: "My Responsibilities",
-                    myResponsibilities: ["Lead a team of developers", "Implement CI/CD pipelines", "Implement Docker containerization", "Implement virtual machines deployment", "Follow SOLID principles", "Follow Scrum methodology"],
+                    myResponsibilities: ["Implement card, PIX and boleto payments with Mercado Pago/Stripe", "Develop real-time messaging with Pusher", "Create live streaming with gift sending", "Build subscription systems with recurring billing", "Integrate Google OAuth 2.0 and Zendesk", "Use AI to personalize feed and optimize with Docker"],
                     connectWithCompanyTitle: "Connect with Snapic",
                     socialMedia: {
                         linkedin: "https://linkedin.com/company/snapic-tecnologia",
@@ -92,9 +95,10 @@ const en = {
                     startDate: "Nov 2023",
                     endDate: "Oct 2024",
                     location: "SP, Brazil",
-                    about: "Cidade Alta RP is a digital marketing and web development agency serving local businesses.",
+                    about: "Cidade Alta RP is the largest GTA RP company in Latin America, focusing on digital marketing and web development.",
+                    experienceDescription: "I worked at the largest GTA RP company in Latin America, optimizing SEO, fixing bugs, and improving site performance. I contributed to the development of an admin panel using Next.js, Nest.js, and Figma, as well as creating custom NUIs for FiveM, enhancing gameplay.",
                     myResponsibilitiesTitle: "My Responsibilities",
-                    myResponsibilities: ["Lead a team of developers", "Implement CI/CD pipelines", "Implement Docker containerization", "Implement virtual machines deployment", "Follow SOLID principles", "Follow Scrum methodology"],
+                    myResponsibilities: ["Optimize SEO and improve site performance", "Develop admin panel with Next.js and Nest.js", "Use Figma for design collaboration", "Create custom NUIs for FiveM", "Enhance gameplay experience", "Work with GTA RP community"],
                     connectWithCompanyTitle: "Connect with Cidade Alta RP",
                     socialMedia: {
                         linkedin: "https://linkedin.com/company/cidade-alta-rp",
@@ -113,8 +117,8 @@ const en = {
                 {
                     title: "E-commerce",
                     description: "Full-stack e-commerce solution with React, Node.js, and MongoDB",
-                    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=300&fit=crop",
-                    images: ["/791.jpg", "/about.jpg", "/contact.jpg", "/feedback.jpg", "/hm.jpg", "/services.jpg"],
+                    image: "/cda-home.png",
+                    images: ["/cda-home.png", "/daeshis-home.png", "/franciele-home.png", "/institutional-home.png", "/snapic-home.png", "/hm.jpg"],
                     technologies: ["React", "TypeScript", "Node.js", "MongoDB", "Tailwind CSS", "Three.js"],
                     projectDescription: "This innovative project showcases cutting-edge web development techniques, combining modern design principles with advanced 3D visualization capabilities. Built with React and Three.js, it delivers an immersive user experience that pushes the boundaries of interactive web applications.",
                     keyFeatures: [
@@ -128,8 +132,8 @@ const en = {
                 {
                     title: "Mobile Banking App",
                     description: "Secure banking application with React Native and biometric authentication",
-                    image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400&h=300&fit=crop",
-                    images: ["/about.jpg", "/contact.jpg", "/feedback.jpg", "/hm.jpg", "/services.jpg", "/791.jpg"],
+                    image: "/daeshis-home.png",
+                    images: ["/daeshis-home.png", "/franciele-home.png", "/institutional-home.png", "/snapic-home.png", "/cda-home.png", "/about.jpg"],
                     technologies: ["React Native", "TypeScript", "Node.js", "PostgreSQL", "Tailwind CSS", "Three.js"],
                     projectDescription: "This innovative project showcases cutting-edge web development techniques, combining modern design principles with advanced 3D visualization capabilities. Built with React and Three.js, it delivers an immersive user experience that pushes the boundaries of interactive web applications.",
                     keyFeatures: [
@@ -143,8 +147,8 @@ const en = {
                 {
                     title: "AI Dashboard",
                     description: "Real-time analytics dashboard with machine learning insights",
-                    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop",
-                    images: ["/contact.jpg", "/feedback.jpg", "/hm.jpg", "/services.jpg", "/791.jpg", "/about.jpg"],
+                    image: "/franciele-home.png",
+                    images: ["/franciele-home.png", "/institutional-home.png", "/snapic-home.png", "/cda-home.png", "/daeshis-home.png", "/contact.jpg"],
                     technologies: ["React", "TypeScript", "Python", "TensorFlow", "Tailwind CSS", "Three.js"],
                     projectDescription: "This innovative project showcases cutting-edge web development techniques, combining modern design principles with advanced 3D visualization capabilities. Built with React and Three.js, it delivers an immersive user experience that pushes the boundaries of interactive web applications.",
                     keyFeatures: [
@@ -158,8 +162,8 @@ const en = {
                 {
                     title: "Portfolio Website",
                     description: "Modern portfolio with interactive animations and responsive design",
-                    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop",
-                    images: ["/feedback.jpg", "/hm.jpg", "/services.jpg", "/791.jpg", "/about.jpg", "/contact.jpg"],
+                    image: "/institutional-home.png",
+                    images: ["/institutional-home.png", "/snapic-home.png", "/cda-home.png", "/daeshis-home.png", "/franciele-home.png", "/feedback.jpg"],
                     technologies: ["React", "TypeScript", "Framer Motion", "Tailwind CSS", "Three.js", "Vite"],
                     projectDescription: "This innovative project showcases cutting-edge web development techniques, combining modern design principles with advanced 3D visualization capabilities. Built with React and Three.js, it delivers an immersive user experience that pushes the boundaries of interactive web applications.",
                     keyFeatures: [
@@ -173,8 +177,8 @@ const en = {
                 {
                     title: "SaaS Platform",
                     description: "Scalable software-as-a-service platform with microservices architecture",
-                    image: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=400&h=300&fit=crop",
-                    images: ["/hm.jpg", "/services.jpg", "/791.jpg", "/about.jpg", "/contact.jpg", "/feedback.jpg"],
+                    image: "/snapic-home.png",
+                    images: ["/snapic-home.png", "/cda-home.png", "/daeshis-home.png", "/franciele-home.png", "/institutional-home.png", "/services.jpg"],
                     technologies: ["React", "TypeScript", "Node.js", "Docker", "AWS", "Three.js"],
                     projectDescription: "This innovative project showcases cutting-edge web development techniques, combining modern design principles with advanced 3D visualization capabilities. Built with React and Three.js, it delivers an immersive user experience that pushes the boundaries of interactive web applications.",
                     keyFeatures: [
@@ -188,8 +192,8 @@ const en = {
                 {
                     title: "IoT Monitoring",
                     description: "Internet of Things monitoring system with real-time data processing",
-                    image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=300&fit=crop",
-                    images: ["/services.jpg", "/791.jpg", "/about.jpg", "/contact.jpg", "/feedback.jpg", "/hm.jpg"],
+                    image: "/cda-home.png",
+                    images: ["/cda-home.png", "/daeshis-home.png", "/franciele-home.png", "/institutional-home.png", "/snapic-home.png", "/791.jpg"],
                     technologies: ["React", "TypeScript", "Python", "MQTT", "Tailwind CSS", "Three.js"],
                     projectDescription: "This innovative project showcases cutting-edge web development techniques, combining modern design principles with advanced 3D visualization capabilities. Built with React and Three.js, it delivers an immersive user experience that pushes the boundaries of interactive web applications.",
                     keyFeatures: [
@@ -203,8 +207,8 @@ const en = {
                 {
                     title: "CRM System",
                     description: "Customer relationship management system with real-time data processing",
-                    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop",
-                    images: ["/791.jpg", "/about.jpg", "/contact.jpg", "/feedback.jpg", "/hm.jpg", "/services.jpg"],
+                    image: "/daeshis-home.png",
+                    images: ["/daeshis-home.png", "/franciele-home.png", "/institutional-home.png", "/snapic-home.png", "/cda-home.png", "/about.jpg"],
                     technologies: ["React", "TypeScript", "Node.js", "PostgreSQL", "Tailwind CSS", "Three.js"],
                     projectDescription: "This innovative project showcases cutting-edge web development techniques, combining modern design principles with advanced 3D visualization capabilities. Built with React and Three.js, it delivers an immersive user experience that pushes the boundaries of interactive web applications.",
                     keyFeatures: [
@@ -217,8 +221,8 @@ const en = {
                 {
                     title: "ERP System",
                     description: "Enterprise resource planning system with real-time data processing",
-                    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop",
-                    images: ["/about.jpg", "/contact.jpg", "/feedback.jpg", "/hm.jpg", "/services.jpg", "/791.jpg"],
+                    image: "/franciele-home.png",
+                    images: ["/franciele-home.png", "/institutional-home.png", "/snapic-home.png", "/cda-home.png", "/daeshis-home.png", "/contact.jpg"],
                     technologies: ["React", "TypeScript", "Node.js", "PostgreSQL", "Tailwind CSS", "Three.js"],
                     projectDescription: "This innovative project showcases cutting-edge web development techniques, combining modern design principles with advanced 3D visualization capabilities. Built with React and Three.js, it delivers an immersive user experience that pushes the boundaries of interactive web applications.",
                     keyFeatures: [
@@ -238,6 +242,12 @@ const en = {
             description: "Transform your digital presence with cutting-edge solutions that drive innovation and deliver exceptional user experiences.",
             sub_description: "Elevate your business performance and digital capabilities",
             cta: "Hire Me",
+            whatsappMessages: [
+                "Hi! I'm interested in your Web & Mobile Solutions service. I need help developing a scalable web/mobile application with modern technologies. Could we discuss my project requirements?",
+                "Hello! I'd like to know more about your Workflow Automation services. I need to automate some manual processes in my business to improve efficiency. Can we talk about the possibilities?",
+                "Hi! I'm looking for UI/UX Design services. I want to create intuitive and engaging user interfaces for my project. Could we discuss how you can help me achieve this?",
+                "Hello! I'm interested in your Cloud & Scalability solutions. I need help setting up robust cloud infrastructure and optimizing performance for my applications. Can we schedule a conversation?"
+            ],
             products: [
                 {
                     name: "Web & Mobile Solutions",
@@ -334,7 +344,9 @@ const en = {
             date: "Date",
             more: "More",
             viewMore: "View More"
-        }
+        },
+
+        backToTop: "Back to Top"
     }
 };
 
@@ -350,6 +362,7 @@ const pt = {
             title: "Desenvolvedor Full-Stack",
             saudacap: "Oi",
             saudacap2: "Eu sou",
+            cta: "Baixar CV",
             subtitle: "Criando experiências digitais que importam",
             description: "Desenvolvo aplicações web escaláveis com tecnologias modernas, focando em performance e experiência do usuário."
         },
@@ -366,19 +379,19 @@ const pt = {
             myStack: "Minha Stack",
             skillsDescription: "Arquiteto aplicações escaláveis usando Next.js, TypeScript e Nest.js com Bancos de Dados Relacionais. Implemento pipelines de CI/CD, containerização Docker, deploy em máquinas virtuais e sigo princípios SOLID com Scrum para código robusto.",
             aboutMyExperience: "Sobre Minha Experiência",
-            experienceDescription: "Durante meu tempo, tive a oportunidade de trabalhar em projetos desafiadores que me permitiram crescer tanto tecnicamente quanto profissionalmente. Foquei em entregar soluções de alta qualidade mantendo código limpo, sustentável e seguindo as melhores práticas da indústria.",
             aboutCompanyTitle: "Sobre a Empresa",
             companies: [
                 {
                     name: "Aégis Capital",
                     logo: "/aegis.png",
-                    position: "Tech Lead SR",
-                    startDate: "Fev 2025",
+                    position: "Tech Lead FullStack SR",
+                    startDate: "Nov 2024",
                     endDate: "Presente",
                     location: "SP, Brasil",
                     about: "Aégis Capital é uma empresa líder em tecnologia financeira especializada em soluções inovadoras de investimento e plataformas de banco digital.",
+                    experienceDescription: "Lidero o desenvolvimento de soluções para o setor financeiro, incluindo sistemas de compliance, hubs operacionais para corretores e consultores, e IA aplicada à análise de crédito. Fui responsável por iniciativas como o IVI, um motor preditivo baseado em Markov e Monte Carlo, e um dashboard abrangente para gestão de propostas e cross-selling inteligente. Também impulsiono a criação de experiências de usuário intuitivas, com dashboards em tempo real, fluxos de trabalho automatizados e integrações com WhatsApp e mais de 180 parceiros financeiros.",
                     myResponsibilitiesTitle: "Minhas Responsabilidades",
-                    myResponsibilities: ["Liderar uma equipe de desenvolvedores", "Implementar pipelines de CI/CD", "Implementar containerização Docker", "Implementar deploy em máquinas virtuais", "Seguir princípios SOLID", "Seguir metodologia Scrum"],
+                    myResponsibilities: ["Liderar desenvolvimento de soluções para o setor financeiro", "Implementar sistemas de compliance", "Aplicar IA à análise de crédito", "Criar motores preditivos com Markov e Monte Carlo", "Construir dashboards abrangentes para gestão de propostas", "Integrar com WhatsApp e 180+ parceiros financeiros"],
                     myRole: "Tech Lead",
                     connectWithCompanyTitle: "Conecte-se com a Aégis",
                     socialMedia: {
@@ -391,12 +404,13 @@ const pt = {
                     name: "GroupLink One",
                     logo: "/grouplinkone.svg",
                     position: "Frontend SR",
-                    startDate: "2025",
+                    startDate: "Abr 2025",
                     endDate: "Ago 2025",
                     location: "SP, Brasil",
                     about: "GroupLink One é uma empresa de consultoria em tecnologia focada em transformação digital e soluções empresariais.",
+                    experienceDescription: "Trabalhei no desenvolvimento da landing page de lançamento da Fenasan, usando AstroJS e integrando com Apostrophe CMS para dar autonomia à equipe de marketing na gestão do blog e manutenção do site. Também criei um sistema de geração de assinatura de email para funcionários e desenvolvi um modelo de cartão de visita digital compatível com Apple Wallet e Google Pay, modernizando a identidade corporativa e fortalecendo a presença digital da empresa.",
                     myResponsibilitiesTitle: "Minhas Responsabilidades",
-                    myResponsibilities: ["Liderar uma equipe de desenvolvedores", "Implementar pipelines de CI/CD", "Implementar containerização Docker", "Implementar deploy em máquinas virtuais", "Seguir princípios SOLID", "Seguir metodologia Scrum"],
+                    myResponsibilities: ["Desenvolver landing page da Fenasan com AstroJS", "Integrar com Apostrophe CMS para autonomia do marketing", "Criar sistema de geração de assinatura de email", "Desenvolver cartão de visita digital para Apple Wallet/Google Pay", "Modernizar identidade corporativa", "Fortalecer presença digital"],
                     aboutCompanyTitle: "Sobre a GroupLink ",
                     connectWithCompanyTitle: "Conecte-se com a GroupLink One",
                     socialMedia: {
@@ -409,12 +423,13 @@ const pt = {
                     name: "Snapic Tecnologia",
                     logo: "/snapic.png",
                     position: "FullStack PL",
-                    startDate: "Dez 2024",
+                    startDate: "Dez 2023",
                     endDate: "Fev 2025",
                     location: "SP, Brasil",
                     about: "Snapic Tecnologia é uma empresa de desenvolvimento de software especializada em aplicações móveis e soluções web.",
+                    experienceDescription: "Implementei pagamentos por cartão, PIX e boleto usando Mercado Pago, Stripe e Efipay. Desenvolvi mensagens em tempo real com Pusher, transmissão ao vivo com envio de presentes e sistemas de assinatura com cobrança recorrente. Integrei Google OAuth 2.0, Zendesk para suporte e usei IA para personalizar o feed. Também trabalhei com Digital Ocean, AWS, Firebase Storage e Docker para otimizar fluxos de trabalho e melhorar a experiência do usuário.",
                     myResponsibilitiesTitle: "Minhas Responsabilidades",
-                    myResponsibilities: ["Liderar uma equipe de desenvolvedores", "Implementar pipelines de CI/CD", "Implementar containerização Docker", "Implementar deploy em máquinas virtuais", "Seguir princípios SOLID", "Seguir metodologia Scrum"],
+                    myResponsibilities: ["Implementar pagamentos por cartão, PIX e boleto com Mercado Pago/Stripe", "Desenvolver mensagens em tempo real com Pusher", "Criar transmissão ao vivo com envio de presentes", "Construir sistemas de assinatura com cobrança recorrente", "Integrar Google OAuth 2.0 e Zendesk", "Usar IA para personalizar feed e otimizar com Docker"],
                     connectWithCompanyTitle: "Conecte-se com a Snapic",
                     socialMedia: {
                         linkedin: "https://linkedin.com/company/snapic-tecnologia",
@@ -429,9 +444,10 @@ const pt = {
                     startDate: "Nov 2023",
                     endDate: "Out 2024",
                     location: "SP, Brasil",
-                    about: "Cidade Alta RP é uma agência de marketing digital e desenvolvimento web que atende empresas locais.",
+                    about: "Cidade Alta RP é a maior empresa de GTA RP da América Latina, focada em marketing digital e desenvolvimento web.",
+                    experienceDescription: "Trabalhei na maior empresa de GTA RP da América Latina, otimizando SEO, corrigindo bugs e melhorando a performance do site. Contribuí para o desenvolvimento de um painel administrativo usando Next.js, Nest.js e Figma, além de criar NUIs personalizadas para FiveM, aprimorando a jogabilidade.",
                     myResponsibilitiesTitle: "Minhas Responsabilidades",
-                    myResponsibilities: ["Liderar uma equipe de desenvolvedores", "Implementar pipelines de CI/CD", "Implementar containerização Docker", "Implementar deploy em máquinas virtuais", "Seguir princípios SOLID", "Seguir metodologia Scrum"],
+                    myResponsibilities: ["Otimizar SEO e melhorar performance do site", "Desenvolver painel administrativo com Next.js e Nest.js", "Usar Figma para colaboração em design", "Criar NUIs personalizadas para FiveM", "Aprimorar experiência de jogo", "Trabalhar com comunidade GTA RP"],
                     connectWithCompanyTitle: "Conecte-se com a Cidade Alta RP",
                     socialMedia: {
                         linkedin: "https://linkedin.com/company/cidade-alta-rp",
@@ -450,8 +466,8 @@ const pt = {
                 {
                     title: "E-commerce",
                     description: "Solução completa de e-commerce com React, Node.js e MongoDB",
-                    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=400&h=300&fit=crop",
-                    images: ["/791.jpg", "/about.jpg", "/contact.jpg", "/feedback.jpg", "/hm.jpg", "/services.jpg"],
+                    image: "/cda-home.png",
+                    images: ["/cda-home.png", "/daeshis-home.png", "/franciele-home.png", "/institutional-home.png", "/snapic-home.png", "/hm.jpg"],
                     technologies: ["React", "TypeScript", "Node.js", "MongoDB", "Tailwind CSS", "Three.js"],
                     projectDescription: "Este projeto inovador demonstra técnicas de desenvolvimento web de ponta, combinando princípios de design moderno com capacidades avançadas de visualização 3D. Construído com React e Three.js, oferece uma experiência de usuário imersiva que ultrapassa os limites das aplicações web interativas.",
                     keyFeatures: [
@@ -465,8 +481,8 @@ const pt = {
                 {
                     title: "App Mobile Banking",
                     description: "Aplicativo bancário seguro com React Native e autenticação biométrica",
-                    image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=400&h=300&fit=crop",
-                    images: ["/about.jpg", "/contact.jpg", "/feedback.jpg", "/hm.jpg", "/services.jpg", "/791.jpg"],
+                    image: "/daeshis-home.png",
+                    images: ["/daeshis-home.png", "/franciele-home.png", "/institutional-home.png", "/snapic-home.png", "/cda-home.png", "/about.jpg"],
                     technologies: ["React Native", "TypeScript", "Node.js", "PostgreSQL", "Tailwind CSS", "Three.js"],
                     projectDescription: "Este projeto inovador demonstra técnicas de desenvolvimento web de ponta, combinando princípios de design moderno com capacidades avançadas de visualização 3D. Construído com React e Three.js, oferece uma experiência de usuário imersiva que ultrapassa os limites das aplicações web interativas.",
                     keyFeatures: [
@@ -480,8 +496,8 @@ const pt = {
                 {
                     title: "Dashboard de IA",
                     description: "Dashboard de analytics em tempo real com insights de machine learning",
-                    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop",
-                    images: ["/contact.jpg", "/feedback.jpg", "/hm.jpg", "/services.jpg", "/791.jpg", "/about.jpg"],
+                    image: "/franciele-home.png",
+                    images: ["/franciele-home.png", "/institutional-home.png", "/snapic-home.png", "/cda-home.png", "/daeshis-home.png", "/contact.jpg"],
                     technologies: ["React", "TypeScript", "Python", "TensorFlow", "Tailwind CSS", "Three.js"],
                     projectDescription: "Este projeto inovador demonstra técnicas de desenvolvimento web de ponta, combinando princípios de design moderno com capacidades avançadas de visualização 3D. Construído com React e Three.js, oferece uma experiência de usuário imersiva que ultrapassa os limites das aplicações web interativas.",
                     keyFeatures: [
@@ -495,8 +511,8 @@ const pt = {
                 {
                     title: "Site Portfolio",
                     description: "Portfolio moderno com animações interativas e design responsivo",
-                    image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=400&h=300&fit=crop",
-                    images: ["/feedback.jpg", "/hm.jpg", "/services.jpg", "/791.jpg", "/about.jpg", "/contact.jpg"],
+                    image: "/institutional-home.png",
+                    images: ["/institutional-home.png", "/snapic-home.png", "/cda-home.png", "/daeshis-home.png", "/franciele-home.png", "/feedback.jpg"],
                     technologies: ["React", "TypeScript", "Framer Motion", "Tailwind CSS", "Three.js", "Vite"],
                     projectDescription: "Este projeto inovador demonstra técnicas de desenvolvimento web de ponta, combinando princípios de design moderno com capacidades avançadas de visualização 3D. Construído com React e Three.js, oferece uma experiência de usuário imersiva que ultrapassa os limites das aplicações web interativas.",
                     keyFeatures: [
@@ -510,8 +526,8 @@ const pt = {
                 {
                     title: "Plataforma SaaS",
                     description: "Plataforma de software como serviço escalável com arquitetura de microsserviços",
-                    image: "https://images.unsplash.com/photo-1551434678-e076c223a692?w=400&h=300&fit=crop",
-                    images: ["/hm.jpg", "/services.jpg", "/791.jpg", "/about.jpg", "/contact.jpg", "/feedback.jpg"],
+                    image: "/snapic-home.png",
+                    images: ["/snapic-home.png", "/cda-home.png", "/daeshis-home.png", "/franciele-home.png", "/institutional-home.png", "/services.jpg"],
                     technologies: ["React", "TypeScript", "Node.js", "Docker", "AWS", "Three.js"],
                     projectDescription: "Este projeto inovador demonstra técnicas de desenvolvimento web de ponta, combinando princípios de design moderno com capacidades avançadas de visualização 3D. Construído com React e Three.js, oferece uma experiência de usuário imersiva que ultrapassa os limites das aplicações web interativas.",
                     keyFeatures: [
@@ -525,8 +541,8 @@ const pt = {
                 {
                     title: "Monitoramento IoT",
                     description: "Sistema de monitoramento de Internet das Coisas com processamento de dados em tempo real",
-                    image: "https://images.unsplash.com/photo-1518709268805-4e9042af2176?w=400&h=300&fit=crop",
-                    images: ["/services.jpg", "/791.jpg", "/about.jpg", "/contact.jpg", "/feedback.jpg", "/hm.jpg"],
+                    image: "/cda-home.png",
+                    images: ["/cda-home.png", "/daeshis-home.png", "/franciele-home.png", "/institutional-home.png", "/snapic-home.png", "/791.jpg"],
                     technologies: ["React", "TypeScript", "Python", "MQTT", "Tailwind CSS", "Three.js"],
                     projectDescription: "Este projeto inovador demonstra técnicas de desenvolvimento web de ponta, combinando princípios de design moderno com capacidades avançadas de visualização 3D. Construído com React e Three.js, oferece uma experiência de usuário imersiva que ultrapassa os limites das aplicações web interativas.",
                     keyFeatures: [
@@ -540,8 +556,8 @@ const pt = {
                 {
                     title: "Sistema CRM",
                     description: "Sistema de gestão de relacionamento com cliente com processamento de dados em tempo real",
-                    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop",
-                    images: ["/791.jpg", "/about.jpg", "/contact.jpg", "/feedback.jpg", "/hm.jpg", "/services.jpg"],
+                    image: "/daeshis-home.png",
+                    images: ["/daeshis-home.png", "/franciele-home.png", "/institutional-home.png", "/snapic-home.png", "/cda-home.png", "/about.jpg"],
                     technologies: ["React", "TypeScript", "Node.js", "PostgreSQL", "Tailwind CSS", "Three.js"],
                     projectDescription: "Este projeto inovador demonstra técnicas de desenvolvimento web de ponta, combinando princípios de design moderno com capacidades avançadas de visualização 3D. Construído com React e Three.js, oferece uma experiência de usuário imersiva que ultrapassa os limites das aplicações web interativas.",
                     keyFeatures: [
@@ -555,8 +571,8 @@ const pt = {
                 {
                     title: "Sistema ERP",
                     description: "Sistema de planejamento de recursos empresariais com processamento de dados em tempo real",
-                    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=400&h=300&fit=crop",
-                    images: ["/about.jpg", "/contact.jpg", "/feedback.jpg", "/hm.jpg", "/services.jpg", "/791.jpg"],
+                    image: "/franciele-home.png",
+                    images: ["/franciele-home.png", "/institutional-home.png", "/snapic-home.png", "/cda-home.png", "/daeshis-home.png", "/contact.jpg"],
                     technologies: ["React", "TypeScript", "Node.js", "PostgreSQL", "Tailwind CSS", "Three.js"],
                     projectDescription: "Este projeto inovador demonstra técnicas de desenvolvimento web de ponta, combinando princípios de design moderno com capacidades avançadas de visualização 3D. Construído com React e Three.js, oferece uma experiência de usuário imersiva que ultrapassa os limites das aplicações web interativas.",
                     keyFeatures: [
@@ -576,6 +592,12 @@ const pt = {
             description: "Transforme sua presença digital com soluções de ponta que impulsionam inovação e entregam experiências excepcionais ao usuário.",
             sub_description: "Eleve sua performance e capacidades digitais",
             cta: "Contrate",
+            whatsappMessages: [
+                "Olá! Tenho interesse no seu serviço de Soluções Web & Mobile. Preciso de ajuda para desenvolver uma aplicação web/mobile escalável com tecnologias modernas. Podemos discutir os requisitos do meu projeto?",
+                "Oi! Gostaria de saber mais sobre seus serviços de Automação de Fluxos. Preciso automatizar alguns processos manuais no meu negócio para melhorar a eficiência. Podemos conversar sobre as possibilidades?",
+                "Olá! Estou procurando serviços de Design UI/UX. Quero criar interfaces de usuário intuitivas e envolventes para meu projeto. Podemos discutir como você pode me ajudar a alcançar isso?",
+                "Oi! Tenho interesse nas suas soluções de Cloud & Escalabilidade. Preciso de ajuda para configurar uma infraestrutura de nuvem robusta e otimizar a performance das minhas aplicações. Podemos agendar uma conversa?"
+            ],
             products: [
                 {
                     name: "Soluções Web & Mobile",
@@ -672,7 +694,9 @@ const pt = {
             date: "Data",
             more: "Mais",
             viewMore: "Ver Mais"
-        }
+        },
+
+        backToTop: "Voltar ao Topo"
     }
 };
 

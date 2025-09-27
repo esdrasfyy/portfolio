@@ -79,9 +79,9 @@ function Cube({ onRotationChange, rotation = { x: 0, y: 0, z: 0 }, projectImages
             attach={`material-${i}`} // aplica textura na face i
             map={texture}
             metalness={0.1}
-            roughness={0.1}
+            roughness={0.5}
             emissive="#000000"
-            emissiveIntensity={0.1}
+            emissiveIntensity={0.0}
           />
         ))}
       </mesh>
@@ -113,11 +113,12 @@ export const Cube3D = ({ onRotationChange, rotation, projectImages }: Cube3DProp
       )}
       <div className="w-full h-full max-w-[450px] max-h-[450px] mx-auto aspect-square">
         <Canvas camera={{ position: [0, 0, 7], fov: 45 }} style={{ background: "transparent", width: "100%", height: "100%" }}>
-          <ambientLight intensity={0.8} />
-          <directionalLight position={[0, 0, 5]} intensity={2.0} />
-          <directionalLight position={[5, 5, 5]} intensity={1.5} />
-          <pointLight position={[0, 0, 3]} intensity={1.0} />
-          <pointLight position={[-3, 3, 3]} intensity={0.8} />
+          <ambientLight intensity={0.4} />
+          <directionalLight position={[5, 5, 5]} intensity={0.8} />
+          <directionalLight position={[-5, 5, 5]} intensity={0.6} />
+          <directionalLight position={[0, -5, 5]} intensity={0.5} />
+          <directionalLight position={[5, 0, 5]} intensity={0.5} />
+          <directionalLight position={[-5, 0, 5]} intensity={0.5} />
 
           <Cube onRotationChange={onRotationChange} rotation={rotation} projectImages={projectImages} />
 

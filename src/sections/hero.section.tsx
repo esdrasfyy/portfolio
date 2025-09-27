@@ -9,6 +9,7 @@ import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
 import { RiArrowRightSLine } from "react-icons/ri";
 import { useTranslation } from "react-i18next";
+import { FaDownload, FaLinkedinIn } from "react-icons/fa";
 
 export const HeroSection = () => {
   const { t } = useTranslation();
@@ -78,7 +79,7 @@ export const HeroSection = () => {
     <section id="hero" className="flex justify-center max-lg:flex-col items-center w-full h-screen px-8 max-w-[1500px] mx-auto overflow-hidden">
       <div className="flex flex-col w-2/3 max-lg:w-full h-full max-lg:h-fit justify-center relative">
         <motion.div ref={scrollRef} className="absolute bottom-8 left-0 flex flex-col items-center group w-5 h-32 cursor-pointer max-lg:hidden" variants={scrollVariants} initial="hidden" animate={scrollInView ? "visible" : "exit"} transition={{ duration: 0.8, ease: "easeOut", delay: 0.9 }}>
-          <div className="writing-mode-vertical text-sm tracking-wider mb-4">Demos</div>
+          <a href="#about" className="writing-mode-vertical text-sm tracking-wider mb-4">{t("about.title")}</a>
           <span className="h-16 w-[2px] bg-white"></span>
           <MdKeyboardArrowDown className="-mt-3 group-hover:translate-y-2 text-2xl group-hover:text-5xl transition-all duration-300" />
         </motion.div>
@@ -96,9 +97,9 @@ export const HeroSection = () => {
         </div>
         <motion.div ref={buttonRef} className="flex items-center gap-4 mt-2" variants={buttonVariants} initial="hidden" animate={buttonInView ? "visible" : "exit"} transition={{ duration: 0.6, ease: "easeOut", delay: 0.6 }}>
           <button className="pl-16 pr-24  py-3 max-[710px]:py-2 max-[710px]:text-sm max-[710px]:w-[60vw] group hover:text-white duration-500 bg-white cursor-pointer rounded-full text-black font-semibold text-xl relative border border-white/50 hover:bg-white/30 hover:backdrop-blur-sm">
-            <span className="text-nowrap">{t("contact.title")}</span>
-            <span className="bg-black max-[710px]:w-8 max-[710px]:h-8 group-hover:-rotate-45 text-white group-hover:text-black group-hover:bg-white duration-500 rounded-full w-11 h-11 flex justify-center items-center absolute right-1 top-1/2 -translate-y-1/2">
-              <RiArrowRightSLine size={28} />
+            <span className="text-nowrap">{t("hero.cta")}</span>
+            <span className="bg-black max-[710px]:w-8 max-[710px]:h-8 group-hover:scale-120 text-white group-hover:text-black group-hover:bg-white duration-500 rounded-full w-11 h-11 flex justify-center items-center absolute right-1 top-1/2 -translate-y-1/2">
+              <FaDownload size={18} />
             </span>
           </button>
         </motion.div>
@@ -106,21 +107,21 @@ export const HeroSection = () => {
         <motion.div className="flex items-center gap-4 mt-8" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: "easeOut", delay: 0.8 }}>
           <motion.div className="h-px bg-gray-500/30 max-[710px]:w-[80vw]!" initial={{ width: 0 }} animate={{ width: "141px" }} transition={{ duration: 1.2, ease: "easeOut", delay: 1.0 }}></motion.div>
           <motion.div className="flex items-center gap-3" initial={{ opacity: 0, scale: 0.8, filter: "blur(10px)" }} animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }} transition={{ duration: 0.6, ease: "easeOut", delay: 1.2 }}>
-            <motion.button
+            <motion.a
+              href="https://wa.me/5511997140122"
               className="duration-300 max-[710px]:w-8 max-[710px]:h-8 w-12 h-12 bg-white hover:text-white border border-white/50 hover:bg-white/30 hover:backdrop-blur-sm cursor-pointer rounded-full text-black font-semibold text-xl relative flex items-center justify-center"
               transition={{ duration: 0.2 }}
             >
               <MdOutlineWhatsapp size={20} />
-            </motion.button>
+            </motion.a>
 
-            <motion.button
+            <motion.a
+              href="https://www.linkedin.com/in/fernando-esdras/"
               className="duration-300 max-[710px]:w-8 max-[710px]:h-8 w-12 h-12 bg-white hover:text-white border border-white/50 hover:bg-white/30 hover:backdrop-blur-sm cursor-pointer rounded-full text-black font-semibold text-xl relative flex items-center justify-center"
               transition={{ duration: 0.2 }}
             >
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z" />
-              </svg>
-            </motion.button>
+              <FaLinkedinIn size={20} />
+            </motion.a>
           </motion.div>
         </motion.div>
       </div>

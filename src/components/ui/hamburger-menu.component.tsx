@@ -7,15 +7,15 @@ const getNavigationItems = (t: any) => [
   { id: 1, name: t('home'), href: "#home", isActive: true },
   { id: 2, name: t('aboutNav'), href: "#about", isActive: false },
   { id: 3, name: t('servicesNav'), href: "#services", isActive: false },
-  { id: 4, name: t('workNav'), href: "#projects", isActive: false },
+  { id: 4, name: t('workNav'), href: "#work", isActive: false },
   { id: 5, name: t('contactNav'), href: "#contact", isActive: false },
 ];
 
 const socialLinks = [
-  { id: 3, name: "Instagram", href: "#" },
-  { id: 4, name: "Whatsapp", href: "#" },
-  { id: 1, name: "Linkedin", href: "#" },
-  { id: 2, name: "Github", href: "#" },
+  { id: 3, name: "Instagram", href: "https://www.instagram.com/esdrasfyy/" },
+  { id: 4, name: "Whatsapp", href: "https://wa.me/5511997140122" },
+  { id: 1, name: "Linkedin", href: "https://www.linkedin.com/in/fernando-esdras/" },
+  { id: 2, name: "Github", href: "https://github.com/esdrasfyy" },
 ];
 
 export const HamburgerMenu = () => {

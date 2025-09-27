@@ -13,24 +13,28 @@ const getServicesData = (t: any) => [
     title: t("services.products.0.name"),
     description: t("services.products.0.description"),
     icon: FaCode,
+    whatsappMessage: t("services.whatsappMessages.0"),
   },
   {
     number: "2",
     title: t("services.products.1.name"),
     description: t("services.products.1.description"),
     icon: TbAutomaticGearbox,
+    whatsappMessage: t("services.whatsappMessages.1"),
   },
   {
     number: "3",
     title: t("services.products.2.name"),
     description: t("services.products.2.description"),
     icon: RiPenNibFill,
+    whatsappMessage: t("services.whatsappMessages.2"),
   },
   {
     number: "4",
     title: t("services.products.3.name"),
     description: t("services.products.3.description"),
     icon: GrVirtualStorage,
+    whatsappMessage: t("services.whatsappMessages.3"),
   },
 ];
 
@@ -99,6 +103,13 @@ export const ServicesSection = () => {
     });
 
     cardElement.style.backgroundColor = "";
+  };
+
+  const handleWhatsAppRedirect = (message: string) => {
+    const phoneNumber = "5511997140122"; // Seu número do WhatsApp
+    const encodedMessage = encodeURIComponent(message);
+    const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodedMessage}`;
+    window.open(whatsappUrl, '_blank');
   };
 
   return (
@@ -183,6 +194,7 @@ export const ServicesSection = () => {
                   className="absolute -bottom-4 px-8 py-2 max-[1320px]:px-6 max-[1320px]:py-1 max-[1320px]:text-sm max-[1320px]:right-2 text-black cursor-pointer bg-white rounded-lg font-semibold right-4"
                   onMouseEnter={handleMouseEnter}
                   onMouseLeave={handleMouseLeave}
+                  onClick={() => handleWhatsAppRedirect(service.whatsappMessage)}
                   whileHover={{
                     scale: 1.08,
                     y: -2,

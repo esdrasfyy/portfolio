@@ -24,7 +24,7 @@ export const SilhouetteCardHome = ({ type, icon: Icon, children }: { type: strin
       <div className="group relative flex-1 w-full p-2 overflow-hidden flex flex-col gap-2">
         {children}
         <a
-          href="#"
+          href="#work"
           className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 scale-0 bg-white text-black px-4 py-2 rounded-full text-xs font-semibold opacity-0 transition-all duration-300 delay-100 z-20 border-none cursor-pointer group-hover:opacity-100 group-hover:scale-100 flex items-center gap-2"
         >
           <span className="text-nowrap">{t('modal.viewMore')}</span>

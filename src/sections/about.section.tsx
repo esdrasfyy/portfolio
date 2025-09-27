@@ -106,7 +106,7 @@ export const AboutSection = () => {
         <div className="space-y-6">
           <motion.div initial={{ opacity: 0, x: 30 }} animate={{ opacity: 1, x: 0 }} transition={{ duration: 0.5, delay: 0.8 }}>
             <h4 className="font-bold text-gray-900 mb-1 text-lg max-md:text-base">{t("about.aboutMyExperience")}</h4>
-            <p className="text-gray-700 leading-relaxed max-md:text-sm">{t("about.experienceDescription")}</p>
+            <p className="text-gray-700 leading-relaxed max-md:text-sm">{card.experienceDescription}</p>
           </motion.div>
           <motion.div className="space-y-2" initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 0.9 }}>
             <h4 className="font-bold text-gray-900 text-lg max-md:text-base">{card.myResponsibilitiesTitle}</h4>

@@ -348,7 +348,7 @@ export const MyWorkSection = () => {
   };
 
   return (
-    <section id="work" className="min-h-screen md:h-screen text-white bg-black/50 relative max-md:pt-12">
+    <section id="work" className="min-h-screen overflow-y-hidden md:h-screen text-white bg-black/50 relative max-md:pt-12">
       <motion.div
         className="absolute inset-0 opacity-30 left-[-200vw]"
         style={{
