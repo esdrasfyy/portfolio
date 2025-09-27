@@ -7,7 +7,6 @@ import { CgScrollV } from "react-icons/cg";
 import { Autoplay } from "swiper/modules";
 import { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { RiArrowRightSLine } from "react-icons/ri";
 import { useTranslation } from "react-i18next";
 import { FaDownload, FaLinkedinIn } from "react-icons/fa";
 
@@ -162,8 +161,8 @@ export const HeroSection = () => {
                 opacity: 1;
               }
             `}</style>
-            {Array.from({ length: 2 }).map(() => (
-              <>
+            {Array.from({ length: 2 }).map((_, index) => (
+              <div key={`mobile-${index}`}>
                 <SwiperSlide>
                   <SilhouetteCardHome type="E-commerce" icon={PiStorefrontLight}>
                     <div className="w-full h-1 border border-gray-600/50 rounded"></div>
@@ -325,7 +324,7 @@ export const HeroSection = () => {
                     </div>
                   </SilhouetteCardHome>
                 </SwiperSlide>
-              </>
+              </div>
             ))}
           </Swiper>
         </div>
@@ -369,8 +368,8 @@ export const HeroSection = () => {
                 width: 100vw;
               }
             `}</style>
-            {Array.from({ length: 2 }).map(() => (
-              <>
+            {Array.from({ length: 2 }).map((_, index) => (
+              <div key={`mobile-${index}`}>
                 <SwiperSlide>
                   <SilhouetteCardHome type="E-commerce" icon={PiStorefrontLight}>
                     <div className="w-full h-1 border border-gray-600/50 rounded"></div>
@@ -532,7 +531,7 @@ export const HeroSection = () => {
                     </div>
                   </SilhouetteCardHome>
                 </SwiperSlide>
-              </>
+              </div>
             ))}
           </Swiper>
         </div>

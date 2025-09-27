@@ -427,9 +427,9 @@ export const MyWorkSection = () => {
                       </div>
                     </div>
 
-                    <p className="text-white font-semibold tracking-wide absolute top-2/3 left-1/2 -translate-x-1/2 text-sm md:text-base">
+                    <div className="text-white font-semibold tracking-wide absolute top-2/3 left-1/2 -translate-x-1/2 text-sm md:text-base">
                       <ShinyTextComponent text="Scratch to reveal" speed={4} />
-                    </p>
+                    </div>
                   </div>
                 )}
 
