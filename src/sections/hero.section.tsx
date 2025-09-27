@@ -95,7 +95,16 @@ export const HeroSection = () => {
           </motion.p>
         </div>
         <motion.div ref={buttonRef} className="flex items-center gap-4 mt-2" variants={buttonVariants} initial="hidden" animate={buttonInView ? "visible" : "exit"} transition={{ duration: 0.6, ease: "easeOut", delay: 0.6 }}>
-          <button className="pl-16 pr-24  py-3 max-[710px]:py-2 max-[710px]:text-sm max-[710px]:w-[60vw] group hover:text-white duration-500 bg-white cursor-pointer rounded-full text-black font-semibold text-xl relative border border-white/50 hover:bg-white/30 hover:backdrop-blur-sm">
+          <button 
+            onClick={() => {
+              const currentLanguage = localStorage.getItem('i18nextLng') || 'en';
+              const pdfUrl = currentLanguage === 'pt' ? '/esdras-pt.pdf' : '/esdras-en.pdf';
+              const link = document.createElement('a');
+              link.href = pdfUrl;
+              link.download = `esdras-${currentLanguage}.pdf`;
+              link.click();
+            }}
+            className="pl-16 pr-24  py-3 max-[710px]:py-2 max-[710px]:text-sm max-[710px]:w-[60vw] group hover:text-white duration-500 bg-white cursor-pointer rounded-full text-black font-semibold text-xl relative border border-white/50 hover:bg-white/30 hover:backdrop-blur-sm">
             <span className="text-nowrap">{t("hero.cta")}</span>
             <span className="bg-black max-[710px]:w-8 max-[710px]:h-8 group-hover:scale-120 text-white group-hover:text-black group-hover:bg-white duration-500 rounded-full w-11 h-11 flex justify-center items-center absolute right-1 top-1/2 -translate-y-1/2">
               <FaDownload size={18} />
