@@ -18,13 +18,21 @@ export const WaveInput = forwardRef<HTMLInputElement | HTMLTextAreaElement, Wave
   error
 }, ref) => {
   const [isFocused, setIsFocused] = useState(false);
+  const [hasValue, setHasValue] = useState(false);
   const inputRef = useRef<HTMLInputElement | HTMLTextAreaElement>(null);
 
   const handleFocus = () => setIsFocused(true);
-  const handleBlur = () => setIsFocused(false);
+  const handleBlur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setIsFocused(false);
+    setHasValue(e.target.value.length > 0);
+  };
+
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+    setHasValue(e.target.value.length > 0);
+  };
 
   const labelText = placeholder || name;
-  const shouldAnimate = isFocused;
+  const shouldAnimate = isFocused || hasValue;
 
   const InputComponent = type === "textarea" ? "textarea" : "input";
 
@@ -35,6 +43,7 @@ export const WaveInput = forwardRef<HTMLInputElement | HTMLTextAreaElement, Wave
         name={name}
         onFocus={handleFocus}
         onBlur={handleBlur}
+        onChange={handleChange}
         required={required}
         rows={type === "textarea" ? rows : undefined}
         className={`w-full bg-transparent text-black border-0 border-b focus:outline-none text-lg py-2 ${

@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useRef, useState } from "react";
 import { motion, useInView } from "framer-motion";
 import { MdOutlineWhatsapp } from "react-icons/md";
 import { FaLinkedin, FaGithub, FaInstagram } from "react-icons/fa";
@@ -7,6 +7,8 @@ import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { useTranslation } from "react-i18next";
+import emailjs from '@emailjs/browser';
+import { Toast } from "../components/ui/toast.component";
 
 const schema = (t: any) => yup.object({
   name: yup.string().required(t('contact.errors.nameRequired')),
@@ -29,6 +31,10 @@ export const ContactSection = () => {
   const containerRef = useRef<HTMLDivElement>(null);
   const leftRef = useRef<HTMLDivElement>(null);
   const rightRef = useRef<HTMLDivElement>(null);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showToast, setShowToast] = useState(false);
+  const [toastType, setToastType] = useState<'success' | 'error'>('success');
+  const [toastMessage, setToastMessage] = useState('');
 
   const containerInView = useInView(containerRef, { once: false });
   const leftInView = useInView(leftRef, { once: false });
@@ -38,12 +44,43 @@ export const ContactSection = () => {
     register,
     handleSubmit,
     formState: { errors },
+    reset,
   } = useForm({
     resolver: yupResolver(schema(t)),
   });
 
-  const onSubmit = (data: FormData) => {
-    console.log(data);
+  const onSubmit = async (data: FormData) => {
+    setIsSubmitting(true);
+    
+    try {
+      await emailjs.send(
+        'service_fes1ze5',
+        'template_nr3n014',
+        {
+          from_name: data.name,
+          from_email: data.email,
+          subject: data.subject,
+          company: data.company || 'Não informado',
+          message: data.message,
+          to_name: 'Fernando Esdras',
+        },
+        '441NgK1wZAU9akAs'
+      );
+      
+      setToastType('success');
+      setToastMessage(t('contact.success'));
+      setShowToast(true);
+      reset();
+      setTimeout(() => setShowToast(false), 5000);
+    } catch (error) {
+      console.error('Error sending email:', error);
+      setToastType('error');
+      setToastMessage(t('contact.error'));
+      setShowToast(true);
+      setTimeout(() => setShowToast(false), 5000);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -109,9 +146,15 @@ export const ContactSection = () => {
 
             <WaveInput {...register("message")} name="message" placeholder={t('contact.message')} type="textarea" rows={1} error={errors.message?.message} />
 
-            <div className="flex  mt-20 max-md:mt-12 justify-start">
-              <button type="submit" className="group flex items-center space-x-2 text-lg font-medium text-gray-900 hover:text-gray-700 transition-colors">
-                <span className="text-black underline font-semibold">{t('contact.send')}</span>
+            <div className="flex mt-20 max-md:mt-12 justify-start">
+              <button 
+                type="submit" 
+                disabled={isSubmitting}
+                className="group flex items-center space-x-2 text-lg font-medium text-gray-900 hover:text-gray-700 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+              >
+                <span className="text-black underline font-semibold">
+                  {isSubmitting ? 'Enviando...' : t('contact.send')}
+                </span>
                 <span className="group-hover:translate-x-1 transition-transform">→</span>
               </button>
             </div>
@@ -141,6 +184,14 @@ export const ContactSection = () => {
           </div>
         </div>
       </motion.div>
+
+      {/* Toast Notification */}
+      <Toast 
+        message={toastMessage}
+        type={toastType}
+        isVisible={showToast}
+        onClose={() => setShowToast(false)}
+      />
     </section>
   );
 };

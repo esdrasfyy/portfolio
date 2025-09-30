@@ -311,7 +311,9 @@ const en = {
                 emailRequired: "Email is required",
                 emailInvalid: "Invalid email",
                 messageRequired: "Message is required"
-            }
+            },
+            success: "✓ Message sent successfully!",
+            error: "✗ Error sending message. Please try again."
         },
 
         feedbacks: {
@@ -684,7 +686,9 @@ const pt = {
                 emailRequired: "Email é obrigatório",
                 emailInvalid: "Email inválido",
                 messageRequired: "Mensagem é obrigatória"
-            }
+            },
+            success: "✓ Mensagem enviada com sucesso!",
+            error: "✗ Erro ao enviar mensagem. Tente novamente."
         },
 
         feedbacks: {
