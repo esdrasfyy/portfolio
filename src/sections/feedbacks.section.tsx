@@ -91,7 +91,12 @@ export const FeedbacksSection = () => {
   return (
     <section id="feedbacks" className="h-screen bg-white w-full relative overflow-hidden">
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-31050(11).png
+1050(10).png
+1050(9).png
+1050(8).png
+1050(7).png
+1050(6).png0"
         style={{
           backgroundImage: "url('/feedbacks.jpg')",
         }}

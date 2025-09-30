@@ -26,6 +26,7 @@ const getProjects = (t: any) => {
     projectDescription: project.projectDescription,
     keyFeatures: project.keyFeatures,
     date: project.date,
+    link: project.link,
     icon: icons[index],
   }));
 };
@@ -232,9 +233,18 @@ export const MyWorkSection = () => {
               </div>
             </div>
 
-            <div className="flex justify-center items-center gap-4 pt-4 xl:pt-6">
-              <button className="px-6 xl:px-8 py-2 xl:py-3 bg-white/90 text-black rounded-xl cursor-pointer hover:bg-white transition-colors font-medium text-sm xl:text-base shadow-sm hover:shadow-md">View Live Demo</button>
-            </div>
+            {project.link && (
+              <div className="flex justify-center items-center gap-4 pt-4 xl:pt-6">
+                <a 
+                  href={project.link} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="px-6 xl:px-8 py-2 xl:py-3 bg-white/90 text-black rounded-xl cursor-pointer hover:bg-white transition-colors font-medium text-sm xl:text-base shadow-sm hover:shadow-md"
+                >
+                  {t('modal.visitProject')}
+                </a>
+              </div>
+            )}
           </div>
         </div>
 
@@ -336,9 +346,18 @@ export const MyWorkSection = () => {
                 </div>
               </div>
 
-              <div className="flex justify-center items-center gap-4 pt-4">
-                <button className="px-6 py-2 bg-white/90 text-black rounded-xl cursor-pointer hover:bg-white transition-colors font-medium text-sm shadow-sm hover:shadow-md">View Live Demo</button>
-              </div>
+              {project.link && (
+                <div className="flex justify-center items-center gap-4 pt-4">
+                  <a 
+                    href={project.link} 
+                    target="_blank" 
+                    rel="noopener noreferrer"
+                    className="px-6 py-2 bg-white/90 text-black rounded-xl cursor-pointer hover:bg-white transition-colors font-medium text-sm shadow-sm hover:shadow-md"
+                  >
+                    {t('modal.visitProject')}
+                  </a>
+                </div>
+              )}
             </motion.div>
           )}
           </AnimatePresence>

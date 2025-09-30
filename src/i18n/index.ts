@@ -115,123 +115,146 @@ const en = {
             description: "A showcase of my recent work, featuring innovative solutions and cutting-edge technologies.",
             projects: [
                 {
-                    title: "E-commerce",
-                    description: "Full-stack e-commerce solution with React, Node.js, and MongoDB",
+                    title: "Aegis Capital Hub",
+                    description: "First multinational hub connecting brokers and former bankers with over 180 global financial partner institutions",
+                    image: "/aegis-home.png",
+                    images: ["/aegis-home.png", "/aegis-homepage.png", "/aegis-kit-comercial.png", "/aegis-academy.png", "/aegis-proposal.png", "/aegis-kanban.png"],
+                    technologies: ["React", "Nest.js", "TypeScript", "Bitrix CRM", "MySQL", "Tailwind CSS", "Digital Ocean", "Docker", "CI/CD"],
+                    projectDescription: "Aegis Capital Hub is a revolutionary white-label platform connecting brokers and former banking professionals with over 180 financial partner institutions worldwide. The platform offers a complete ecosystem with integrated AI chat, Office hub for law firms, Academy with specialized courses, and dozens of credit engines, including IVI - our AI credit analyst. With thousands of active users, it represents the first multinational hub in the financial sector.",
+                    keyFeatures: [
+                        "Connection with 180+ global financial institutions",
+                        "Integrated AI chat for intelligent customer service",
+                        "Office: Operational hub for law firms and businesses",
+                        "Academy: Professional training and courses platform",
+                        "IVI: AI credit analyst with advanced predictive engines",
+                        "Customizable white-label system for different markets"
+                    ],
+                    link: "https://aegiscapital.com.br",
+                    date: "Jun 2025"
+                },
+                {
+                    title: "Cidade Alta RP",
+                    description: "Largest GTA RP server in Latin America with admin panel, VIP system, and custom FiveM NUIs",
                     image: "/cda-home.png",
-                    images: ["/cda-home.png", "/daeshis-home.png", "/franciele-home.png", "/institutional-home.png", "/snapic-home.png", "/hm.jpg"],
-                    technologies: ["React", "TypeScript", "Node.js", "MongoDB", "Tailwind CSS", "Three.js"],
-                    projectDescription: "This innovative project showcases cutting-edge web development techniques, combining modern design principles with advanced 3D visualization capabilities. Built with React and Three.js, it delivers an immersive user experience that pushes the boundaries of interactive web applications.",
+                    images: ["/cda-home.png", "/cda-homepage.png", "/cda-admin.png", "/cda-dashboard.png", "/cda-support.png", "/cda-newsroom.png", "/cda-vip.png"],
+                    technologies: ["Next.js", "Nest.js", "TypeScript", "Figma", "Tailwind CSS", "FiveM", "Lua", "MySQL", "SEO"],
+                    projectDescription: "Cidade Alta RP is the largest GTA RP (roleplay) server in Latin America, offering an immersive gaming experience for thousands of active players. I worked on optimizing SEO, improving site performance, and developing a comprehensive admin panel with Next.js and Nest.js. The project includes custom NUIs (Native User Interfaces) for FiveM, a VIP membership system, news management, player support dashboard, and extensive community features. The platform handles high traffic and provides real-time data processing for game statistics and player management.",
                     keyFeatures: [
-                        "Interactive 3D visualization with Three.js",
-                        "Responsive design with modern UI/UX",
-                        "Scalable architecture and performance optimization",
-                        "Real-time 3D controls and interactions"
+                        "Admin panel with Next.js and Nest.js for server management",
+                        "Custom NUIs for FiveM enhancing roleplay gameplay",
+                        "VIP membership system with exclusive benefits",
+                        "SEO optimization achieving top rankings in Latin America",
+                        "Real-time player statistics and activity tracking",
+                        "News and community management platform"
                     ],
-                    date: "2024"
+                    link: "https://cidadealtarp.com.br",
+                    date: "Oct 2024"
                 },
                 {
-                    title: "Mobile Banking App",
-                    description: "Secure banking application with React Native and biometric authentication",
-                    image: "/daeshis-home.png",
-                    images: ["/daeshis-home.png", "/franciele-home.png", "/institutional-home.png", "/snapic-home.png", "/cda-home.png", "/about.jpg"],
-                    technologies: ["React Native", "TypeScript", "Node.js", "PostgreSQL", "Tailwind CSS", "Three.js"],
-                    projectDescription: "This innovative project showcases cutting-edge web development techniques, combining modern design principles with advanced 3D visualization capabilities. Built with React and Three.js, it delivers an immersive user experience that pushes the boundaries of interactive web applications.",
+                    title: "Clinivix E-commerce",
+                    description: "Complete white-label e-commerce platform for pharmaceutical and health products with admin panel and multi-vendor support",
+                    image: "/clinivix-home.png",
+                    images: ["/clinivix-home.png", "/clinivix-product.png", "/clinivix-search.png", "/clinivix-checkout.png", "/clinivix-account.png", "/clinivix-admin.png"],
+                    technologies: ["React", "Next.js", "Nest.js", "TypeScript", "MySQL", "Tailwind CSS", "Docker", "Payment Gateways", "SEO"],
+                    projectDescription: "Clinivix is a complete white-label e-commerce platform specialized in pharmaceutical and health products. The platform features a robust admin panel for inventory management, multi-vendor support, integrated payment gateways, advanced product search with filters, complete checkout flow, customer account management, and real-time order tracking. Built with modern technologies and best practices, it handles high transaction volumes and provides excellent user experience for both customers and administrators.",
                     keyFeatures: [
-                        "Interactive 3D visualization with Three.js",
-                        "Responsive design with modern UI/UX",
-                        "Scalable architecture and performance optimization",
-                        "Real-time 3D controls and interactions"
+                        "Complete admin panel for product and order management",
+                        "Multi-vendor marketplace with commission system",
+                        "Integrated payment gateways (credit card, PIX, boleto)",
+                        "Advanced search with category and price filters",
+                        "Complete checkout flow with address and payment",
+                        "Customer account with order history and tracking"
                     ],
-                    date: "2024"
+                    link: "https://fernandoesdras.store",
+                    date: "Sep 2025"
                 },
                 {
-                    title: "AI Dashboard",
-                    description: "Real-time analytics dashboard with machine learning insights",
-                    image: "/franciele-home.png",
-                    images: ["/franciele-home.png", "/institutional-home.png", "/snapic-home.png", "/cda-home.png", "/daeshis-home.png", "/contact.jpg"],
-                    technologies: ["React", "TypeScript", "Python", "TensorFlow", "Tailwind CSS", "Three.js"],
-                    projectDescription: "This innovative project showcases cutting-edge web development techniques, combining modern design principles with advanced 3D visualization capabilities. Built with React and Three.js, it delivers an immersive user experience that pushes the boundaries of interactive web applications.",
+                    title: "Anomalie Lab",
+                    description: "Digital agency platform showcasing innovative technological solutions and custom software development services",
+                    image: "/anomalie-homepage.png",
+                    images: ["/anomalie-homepage.png", "/anomalie-projects.png", "/anomalie-indications.png", "/anomalie-contact.png", "/anomalie-brand.png"],
+                    technologies: ["React", "Next.js", "TypeScript", "Framer Motion", "Tailwind CSS", "SEO", "Analytics"],
+                    projectDescription: "Anomalie Lab is my digital agency platform designed to attract clients for custom software development solutions. The website showcases our portfolio of innovative projects, client testimonials, and comprehensive services. Built with modern technologies and elegant design, it features smooth animations, intuitive navigation, and a professional presentation of our capabilities. The platform effectively communicates our expertise in turning ideas into real technological solutions, highlighting our commitment to quality, innovation, and strategic partnership with businesses seeking competitive advantages through technology.",
                     keyFeatures: [
-                        "Interactive 3D visualization with Three.js",
-                        "Responsive design with modern UI/UX",
-                        "Scalable architecture and performance optimization",
-                        "Real-time 3D controls and interactions"
+                        "Elegant showcase of portfolio projects and case studies",
+                        "Client testimonials and recommendations section",
+                        "Professional presentation of services and solutions",
+                        "Smooth animations and modern UI/UX design",
+                        "Lead generation optimized for client acquisition",
+                        "SEO and analytics integration for business growth"
                     ],
-                    date: "2023"
+                    link: "https://www.anomalielab.com",
+                    date: "2025"
                 },
                 {
-                    title: "Portfolio Website",
-                    description: "Modern portfolio with interactive animations and responsive design",
-                    image: "/institutional-home.png",
-                    images: ["/institutional-home.png", "/snapic-home.png", "/cda-home.png", "/daeshis-home.png", "/franciele-home.png", "/feedback.jpg"],
-                    technologies: ["React", "TypeScript", "Framer Motion", "Tailwind CSS", "Three.js", "Vite"],
-                    projectDescription: "This innovative project showcases cutting-edge web development techniques, combining modern design principles with advanced 3D visualization capabilities. Built with React and Three.js, it delivers an immersive user experience that pushes the boundaries of interactive web applications.",
+                    title: "Aegis Capital Landing Page",
+                    description: "Lead generation landing page for Aegis Capital showcasing financial solutions and broker services",
+                    image: "/aegis-landing-home.png",
+                    images: ["/aegis-landing-home.png", "/aegis-landing-about.png", "/aegis-landing-flow.png", "/aegis-landing-simulation.png", "/aegis-landing-portfolio.png", "/aegis-landing-footer.png"],
+                    technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "SEO", "Lead Generation"],
+                    projectDescription: "Professional landing page developed for Aegis Capital focused on lead generation and client acquisition. The page showcases the first multinational multi-bank hub, connecting over 180 financial institutions with 160+ products and services. Features include an interactive commission simulator, workflow demonstration, complete portfolio presentation, and optimized contact forms. Built with modern technologies and conversion-focused design, it effectively communicates Aegis Capital's value proposition as a strategic partner for transforming opportunities into results with focus, strategic partnership, and global reach.",
                     keyFeatures: [
-                        "Interactive 3D visualization with Three.js",
-                        "Responsive design with modern UI/UX",
-                        "Scalable architecture and performance optimization",
-                        "Real-time 3D controls and interactions"
+                        "Lead generation optimized for financial sector",
+                        "Interactive commission simulator for brokers",
+                        "Complete workflow demonstration (6 steps)",
+                        "Portfolio showcase with 4 service categories",
+                        "Professional presentation of 180+ financial institutions",
+                        "SEO optimized with strategic call-to-actions"
                     ],
-                    date: "2024"
+                    link: "https://aegis-broker.vercel.app",
+                    date: "2025"
                 },
                 {
-                    title: "SaaS Platform",
-                    description: "Scalable software-as-a-service platform with microservices architecture",
+                    title: "Snapic - Social Media Platform",
+                    description: "Complete social media platform with live streaming, real-time messaging, subscriptions, and AI-powered feed",
                     image: "/snapic-home.png",
-                    images: ["/snapic-home.png", "/cda-home.png", "/daeshis-home.png", "/franciele-home.png", "/institutional-home.png", "/services.jpg"],
-                    technologies: ["React", "TypeScript", "Node.js", "Docker", "AWS", "Three.js"],
-                    projectDescription: "This innovative project showcases cutting-edge web development techniques, combining modern design principles with advanced 3D visualization capabilities. Built with React and Three.js, it delivers an immersive user experience that pushes the boundaries of interactive web applications.",
+                    images: ["/snapic-home.png", "/snapic-home.png", "/snapic-home.png", "/snapic-home.png", "/snapic-home.png", "/snapic-home.png"],
+                    technologies: ["React", "Next.js", "Nest.js", "TypeScript", "Pusher", "Mercado Pago", "Stripe", "Efipay", "Google OAuth", "Zendesk", "AI", "Digital Ocean", "AWS", "Firebase", "Docker"],
+                    projectDescription: "Snapic is a comprehensive social media platform where I implemented complete payment systems with card, PIX, and boleto using Mercado Pago, Stripe, and Efipay. Developed real-time messaging with Pusher for efficient mass communication, live streaming with gift-sending features, and subscription systems with recurring billing. Integrated Google OAuth 2.0 for secure authentication, Zendesk for personalized customer support, and AI (ChatGPT) to improve feed algorithms and user engagement. Worked with cloud services (Digital Ocean, AWS, Firebase Storage) and Docker to optimize workflows and enhance user experience.",
                     keyFeatures: [
-                        "Interactive 3D visualization with Three.js",
-                        "Responsive design with modern UI/UX",
-                        "Scalable architecture and performance optimization",
-                        "Real-time 3D controls and interactions"
-                    ],
-                    date: "2023"
-                },
-                {
-                    title: "IoT Monitoring",
-                    description: "Internet of Things monitoring system with real-time data processing",
-                    image: "/cda-home.png",
-                    images: ["/cda-home.png", "/daeshis-home.png", "/franciele-home.png", "/institutional-home.png", "/snapic-home.png", "/791.jpg"],
-                    technologies: ["React", "TypeScript", "Python", "MQTT", "Tailwind CSS", "Three.js"],
-                    projectDescription: "This innovative project showcases cutting-edge web development techniques, combining modern design principles with advanced 3D visualization capabilities. Built with React and Three.js, it delivers an immersive user experience that pushes the boundaries of interactive web applications.",
-                    keyFeatures: [
-                        "Interactive 3D visualization with Three.js",
-                        "Responsive design with modern UI/UX",
-                        "Scalable architecture and performance optimization",
-                        "Real-time 3D controls and interactions"
+                        "Payment integration: Card, PIX, and boleto with Mercado Pago/Stripe/Efipay",
+                        "Real-time messaging with Pusher for mass communication",
+                        "Live streaming with interactive gift-sending feature",
+                        "Subscription systems with recurring billing management",
+                        "Google OAuth 2.0 authentication and Zendesk support",
+                        "AI-powered feed with ChatGPT for content personalization"
                     ],
                     date: "2024"
                 },
                 {
-                    title: "CRM System",
-                    description: "Customer relationship management system with real-time data processing",
-                    image: "/daeshis-home.png",
-                    images: ["/daeshis-home.png", "/franciele-home.png", "/institutional-home.png", "/snapic-home.png", "/cda-home.png", "/about.jpg"],
-                    technologies: ["React", "TypeScript", "Node.js", "PostgreSQL", "Tailwind CSS", "Three.js"],
-                    projectDescription: "This innovative project showcases cutting-edge web development techniques, combining modern design principles with advanced 3D visualization capabilities. Built with React and Three.js, it delivers an immersive user experience that pushes the boundaries of interactive web applications.",
+                    title: "Urban Vogue - B2B/B2C E-commerce",
+                    description: "Advanced white-label e-commerce platform with voice search, multi-gateway payments, AI algorithms, and complete B2B/B2C support",
+                    image: "/urban-vogue.png",
+                    images: ["/urban-vogue.png", "/urban-vogue.png", "/urban-vogue.png", "/urban-vogue.png", "/urban-vogue.png", "/urban-vogue.png"],
+                    technologies: ["Next.js", "Nest.js", "React", "TypeScript", "SQL", "OAuth", "Socket.IO", "EfiPay", "Mercado Pago", "Stripe", "PayPal", "WhatsApp", "Zendesk", "AI", "Correios", "Loggi"],
+                    projectDescription: "Urban Vogue is an advanced white-label e-commerce platform built for B2B and B2C models, leveraging cutting-edge technologies like Nest.js, React.js, Next.js, TypeScript, SQL, OAuth, voice recognition, webhooks, Socket.IO, email and SMS delivery, WhatsApp Web integration, and four payment gateways (EfiPay, Mercado Pago, Stripe, and PayPal) supporting multiple countries. Integrated with postal services (Correios and Loggi) and developed following SOLID principles and Clean Code practices. The platform offers a flexible, scalable, and secure e-commerce solution designed to meet business and consumer needs, providing optimal user experience across multiple touchpoints.",
                     keyFeatures: [
-                        "Interactive 3D visualization with Three.js",
-                        "Responsive design with modern UI/UX",
-                        "Scalable architecture and performance optimization",
-                        "Real-time 3D controls and interactions"
-                    ]
+                        "Voice search: Find products using voice commands",
+                        "Multi-gateway payments: EfiPay, Mercado Pago, Stripe, PayPal (Pix, debit, credit)",
+                        "Real-time notifications: Updates via dashboard, email, and SMS",
+                        "AI-powered algorithm: Enhanced product discovery and user experience",
+                        "Advanced admin panel: Complete order and inventory management",
+                        "Postal integration: Correios and Loggi for shipping tracking"
+                    ],
+                    date: "2024"
                 },
                 {
-                    title: "ERP System",
-                    description: "Enterprise resource planning system with real-time data processing",
+                    title: "Franciele Cruz - Law Office",
+                    description: "Modern and interactive landing page for lawyer Franciele Cruz with focus on usability and intuitive navigation",
                     image: "/franciele-home.png",
-                    images: ["/franciele-home.png", "/institutional-home.png", "/snapic-home.png", "/cda-home.png", "/daeshis-home.png", "/contact.jpg"],
-                    technologies: ["React", "TypeScript", "Node.js", "PostgreSQL", "Tailwind CSS", "Three.js"],
-                    projectDescription: "This innovative project showcases cutting-edge web development techniques, combining modern design principles with advanced 3D visualization capabilities. Built with React and Three.js, it delivers an immersive user experience that pushes the boundaries of interactive web applications.",
+                    images: ["/franciele-home.png", "/franciele-homepage.png", "/franciele-practice.png", "/franciele-services.png", "/franciele-trajectory.png", "/franciele-contact.png"],
+                    technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "NFC Technology", "SEO"],
+                    projectDescription: "Modern and interactive landing page for lawyer Franciele Cruz. The project required an elegant design with focus on usability and intuitive navigation. I implemented subtle animations and a responsive structure to highlight legal services clearly and accessibly on any device. The page attracted clients from other states, making services more accessible and attractive. The client noted that the navigation is very intuitive, and the design, besides being beautiful, reflects the company's professional image. Additionally, the NFC business card impressed clients, offering an innovative experience and easy access to contact information.",
                     keyFeatures: [
-                        "Interactive 3D visualization with Three.js",
-                        "Responsive design with modern UI/UX",
-                        "Scalable architecture and performance optimization",
-                        "Real-time 3D controls and interactions"
+                        "Elegant and professional design reflecting brand identity",
+                        "Intuitive navigation with smooth user experience",
+                        "Responsive structure working perfectly on all devices",
+                        "Subtle animations highlighting services and content",
+                        "NFC business card technology for modern networking",
+                        "SEO optimization attracting clients from other states"
                     ],
-                    date: "2023"
+                    link: "https://www.drafrancielecruz.com.br",
+                    date: "2024"
                 },
             ]
         },
@@ -343,7 +366,8 @@ const en = {
             interactive3DPreview: "Interactive 3D Preview",
             date: "Date",
             more: "More",
-            viewMore: "View More"
+            viewMore: "View More",
+            visitProject: "Visit Project"
         },
 
         backToTop: "Back to Top"
@@ -464,123 +488,145 @@ const pt = {
             description: "Uma vitrine dos meus trabalhos recentes, apresentando soluções inovadoras e tecnologias de ponta.",
             projects: [
                 {
-                    title: "E-commerce",
-                    description: "Solução completa de e-commerce com React, Node.js e MongoDB",
+                    title: "Hub Aegis Capital",
+                    description: "Primeiro hub multinacional que conecta brokers e ex-bancários com mais de 180 instituições financeiras parceiras globalmente",
+                    image: "/aegis-home.png",
+                    images: ["/aegis-home.png", "/aegis-homepage.png", "/aegis-kit-comercial.png", "/aegis-academy.png", "/aegis-proposal.png", "/aegis-kanban.png"],
+                    technologies: ["React", "Nest.js", "TypeScript", "Bitrix CRM", "MySQL", "Tailwind CSS", "Digital Ocean", "Docker", "CI/CD"],
+                    projectDescription: "Hub Aegis Capital é uma plataforma white-label revolucionária que conecta brokers e profissionais ex-bancários com mais de 180 instituições financeiras parceiras ao redor do mundo. A plataforma oferece um ecossistema completo com chat IA integrado, aba Office para escritórios de advocacia, Academy com cursos especializados e dezenas de motores de crédito, incluindo o IVI - nossa IA analista de crédito. Com milhares de usuários ativos, representa o primeiro hub multinacional do setor financeiro.",
+                    keyFeatures: [
+                        "Conexão com mais de 180 instituições financeiras globais",
+                        "Chat IA integrado para atendimento inteligente",
+                        "Office: Hub operacional para escritórios e empresas",
+                        "Academy: Plataforma de cursos e capacitação profissional",
+                        "IVI: IA analista de crédito com motores preditivos avançados",
+                        "Sistema white-label customizável para diferentes mercados"
+                    ],
+                    link: "https://aegiscapital.com.br",
+                    date: "Jun 2025"
+                },
+                {
+                    title: "Cidade Alta RP",
+                    description: "Maior servidor de GTA RP da América Latina com painel admin, sistema VIP e NUIs customizadas para FiveM",
                     image: "/cda-home.png",
-                    images: ["/cda-home.png", "/daeshis-home.png", "/franciele-home.png", "/institutional-home.png", "/snapic-home.png", "/hm.jpg"],
-                    technologies: ["React", "TypeScript", "Node.js", "MongoDB", "Tailwind CSS", "Three.js"],
-                    projectDescription: "Este projeto inovador demonstra técnicas de desenvolvimento web de ponta, combinando princípios de design moderno com capacidades avançadas de visualização 3D. Construído com React e Three.js, oferece uma experiência de usuário imersiva que ultrapassa os limites das aplicações web interativas.",
+                    images: ["/cda-home.png", "/cda-homepage.png", "/cda-admin.png", "/cda-dashboard.png", "/cda-support.png", "/cda-newsroom.png", "/cda-vip.png"],
+                    technologies: ["Next.js", "Nest.js", "TypeScript", "Figma", "Tailwind CSS", "FiveM", "Lua", "MySQL", "SEO"],
+                    projectDescription: "Cidade Alta RP é o maior servidor de GTA RP (roleplay) da América Latina, oferecendo uma experiência de jogo imersiva para milhares de jogadores ativos. Trabalhei na otimização de SEO, melhoria de performance do site e desenvolvimento de um painel administrativo completo com Next.js e Nest.js. O projeto inclui NUIs (Native User Interfaces) customizadas para FiveM, sistema de VIP com benefícios exclusivos, gerenciamento de notícias, dashboard de suporte ao jogador e recursos extensivos para a comunidade. A plataforma lida com alto tráfego e fornece processamento de dados em tempo real para estatísticas de jogo e gestão de jogadores.",
                     keyFeatures: [
-                        "Visualização 3D interativa com Three.js",
-                        "Design responsivo com UI/UX moderna",
-                        "Arquitetura escalável e otimização de performance",
-                        "Controles 3D e interações em tempo real"
+                        "Painel administrativo com Next.js e Nest.js para gestão do servidor",
+                        "NUIs customizadas para FiveM aprimorando a jogabilidade roleplay",
+                        "Sistema de VIP com benefícios exclusivos e planos",
+                        "Otimização de SEO alcançando top rankings na América Latina",
+                        "Estatísticas de jogadores e rastreamento de atividades em tempo real",
+                        "Plataforma de gerenciamento de notícias e comunidade"
                     ],
-                    date: "2024"
+                    link: "https://cidadealtarp.com.br",
+                    date: "Out 2024"
                 },
                 {
-                    title: "App Mobile Banking",
-                    description: "Aplicativo bancário seguro com React Native e autenticação biométrica",
-                    image: "/daeshis-home.png",
-                    images: ["/daeshis-home.png", "/franciele-home.png", "/institutional-home.png", "/snapic-home.png", "/cda-home.png", "/about.jpg"],
-                    technologies: ["React Native", "TypeScript", "Node.js", "PostgreSQL", "Tailwind CSS", "Three.js"],
-                    projectDescription: "Este projeto inovador demonstra técnicas de desenvolvimento web de ponta, combinando princípios de design moderno com capacidades avançadas de visualização 3D. Construído com React e Three.js, oferece uma experiência de usuário imersiva que ultrapassa os limites das aplicações web interativas.",
+                    title: "Clinivix E-commerce",
+                    description: "Plataforma completa de e-commerce white-label para produtos farmacêuticos e de saúde com painel admin e suporte multi-vendedor",
+                    image: "/clinivix-home.png",
+                    images: ["/clinivix-home.png", "/clinivix-product.png", "/clinivix-search.png", "/clinivix-checkout.png", "/clinivix-account.png", "/clinivix-admin.png"],
+                    technologies: ["React", "Next.js", "Nest.js", "TypeScript", "MySQL", "Tailwind CSS", "Docker", "Payment Gateways", "SEO"],
+                    projectDescription: "Clinivix é uma plataforma completa de e-commerce white-label especializada em produtos farmacêuticos e de saúde. A plataforma possui um painel administrativo robusto para gestão de estoque, suporte multi-vendedor, gateways de pagamento integrados, busca avançada de produtos com filtros, fluxo completo de checkout, gestão de conta do cliente e rastreamento de pedidos em tempo real. Construída com tecnologias modernas e melhores práticas, lida com alto volume de transações e oferece excelente experiência para clientes e administradores.",
                     keyFeatures: [
-                        "Visualização 3D interativa com Three.js",
-                        "Design responsivo com UI/UX moderna",
-                        "Arquitetura escalável e otimização de performance",
-                        "Controles 3D e interações em tempo real"
+                        "Painel admin completo para gestão de produtos e pedidos",
+                        "Marketplace multi-vendedor com sistema de comissão",
+                        "Gateways de pagamento integrados (cartão, PIX, boleto)",
+                        "Busca avançada com filtros de categoria e preço",
+                        "Fluxo completo de checkout com endereço e pagamento",
+                        "Conta do cliente com histórico e rastreamento de pedidos"
                     ],
-                    date: "2024"
+                    link: "https://fernandoesdras.store",
+                    date: "Set 2025"
                 },
                 {
-                    title: "Dashboard de IA",
-                    description: "Dashboard de analytics em tempo real com insights de machine learning",
-                    image: "/franciele-home.png",
-                    images: ["/franciele-home.png", "/institutional-home.png", "/snapic-home.png", "/cda-home.png", "/daeshis-home.png", "/contact.jpg"],
-                    technologies: ["React", "TypeScript", "Python", "TensorFlow", "Tailwind CSS", "Three.js"],
-                    projectDescription: "Este projeto inovador demonstra técnicas de desenvolvimento web de ponta, combinando princípios de design moderno com capacidades avançadas de visualização 3D. Construído com React e Three.js, oferece uma experiência de usuário imersiva que ultrapassa os limites das aplicações web interativas.",
+                    title: "Anomalie Lab",
+                    description: "Plataforma de agência digital apresentando soluções tecnológicas inovadoras e serviços de desenvolvimento de software customizado",
+                    image: "/anomalie-homepage.png",
+                    images: ["/anomalie-homepage.png", "/anomalie-projects.png", "/anomalie-indications.png", "/anomalie-contact.png", "/anomalie-brand.png"],
+                    technologies: ["React", "Next.js", "TypeScript", "Framer Motion", "Tailwind CSS", "SEO", "Analytics"],
+                    projectDescription: "Anomalie Lab é minha plataforma de agência digital projetada para atrair clientes para soluções de desenvolvimento de software customizado. O site apresenta nosso portfólio de projetos inovadores, depoimentos de clientes e serviços abrangentes. Construído com tecnologias modernas e design elegante, possui animações suaves, navegação intuitiva e uma apresentação profissional de nossas capacidades. A plataforma comunica efetivamente nossa expertise em transformar ideias em soluções tecnológicas reais, destacando nosso compromisso com qualidade, inovação e parceria estratégica com empresas que buscam vantagens competitivas através da tecnologia.",
                     keyFeatures: [
-                        "Visualização 3D interativa com Three.js",
-                        "Design responsivo com UI/UX moderna",
-                        "Arquitetura escalável e otimização de performance",
-                        "Controles 3D e interações em tempo real"
+                        "Showcase elegante de projetos do portfólio e cases de sucesso",
+                        "Seção de depoimentos e recomendações de clientes",
+                        "Apresentação profissional de serviços e soluções",
+                        "Animações suaves e design UI/UX moderno",
+                        "Geração de leads otimizada para captação de clientes",
+                        "Integração SEO e analytics para crescimento do negócio"
                     ],
-                    date: "2023"
+                    link: "https://www.anomalielab.com",
+                    date: "2025"
                 },
                 {
-                    title: "Site Portfolio",
-                    description: "Portfolio moderno com animações interativas e design responsivo",
-                    image: "/institutional-home.png",
-                    images: ["/institutional-home.png", "/snapic-home.png", "/cda-home.png", "/daeshis-home.png", "/franciele-home.png", "/feedback.jpg"],
-                    technologies: ["React", "TypeScript", "Framer Motion", "Tailwind CSS", "Three.js", "Vite"],
-                    projectDescription: "Este projeto inovador demonstra técnicas de desenvolvimento web de ponta, combinando princípios de design moderno com capacidades avançadas de visualização 3D. Construído com React e Three.js, oferece uma experiência de usuário imersiva que ultrapassa os limites das aplicações web interativas.",
+                    title: "Aegis Capital Landing Page",
+                    description: "Landing page de geração de leads para Aegis Capital apresentando soluções financeiras e serviços para brokers",
+                    image: "/aegis-landing-home.png",
+                    images: ["/aegis-landing-home.png", "/aegis-landing-about.png", "/aegis-landing-flow.png", "/aegis-landing-simulation.png", "/aegis-landing-portfolio.png", "/aegis-landing-footer.png"],
+                    technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "SEO", "Lead Generation"],
+                    projectDescription: "Landing page profissional desenvolvida para Aegis Capital focada em geração de leads e captação de clientes. A página apresenta o primeiro hub multibancos multinacional, conectando mais de 180 instituições financeiras com 160+ produtos e serviços. Inclui simulador interativo de comissões, demonstração de fluxo de trabalho, apresentação completa do portfólio e formulários de contato otimizados. Construída com tecnologias modernas e design focado em conversão, comunica efetivamente a proposta de valor da Aegis Capital como parceiro estratégico para transformar oportunidades em resultados com foco, parceria estratégica e alcance global.",
                     keyFeatures: [
-                        "Visualização 3D interativa com Three.js",
-                        "Design responsivo com UI/UX moderna",
-                        "Arquitetura escalável e otimização de performance",
-                        "Controles 3D e interações em tempo real"
+                        "Geração de leads otimizada para setor financeiro",
+                        "Simulador interativo de comissões para brokers",
+                        "Demonstração completa do fluxo de trabalho (6 etapas)",
+                        "Showcase de portfólio com 4 categorias de serviços",
+                        "Apresentação profissional de 180+ instituições financeiras",
+                        "SEO otimizado com call-to-actions estratégicos"
                     ],
-                    date: "2024"
+                    link: "https://aegis-broker.vercel.app",
+                    date: "2025"
                 },
                 {
-                    title: "Plataforma SaaS",
-                    description: "Plataforma de software como serviço escalável com arquitetura de microsserviços",
+                    title: "Snapic - Plataforma de Mídia Social",
+                    description: "Plataforma completa de mídia social com transmissão ao vivo, mensagens em tempo real, assinaturas e feed alimentado por IA",
                     image: "/snapic-home.png",
-                    images: ["/snapic-home.png", "/cda-home.png", "/daeshis-home.png", "/franciele-home.png", "/institutional-home.png", "/services.jpg"],
-                    technologies: ["React", "TypeScript", "Node.js", "Docker", "AWS", "Three.js"],
-                    projectDescription: "Este projeto inovador demonstra técnicas de desenvolvimento web de ponta, combinando princípios de design moderno com capacidades avançadas de visualização 3D. Construído com React e Three.js, oferece uma experiência de usuário imersiva que ultrapassa os limites das aplicações web interativas.",
+                    images: ["/snapic-home.png", "/snapic-home.png", "/snapic-home.png", "/snapic-home.png", "/snapic-home.png", "/snapic-home.png"],
+                    technologies: ["React", "Next.js", "Nest.js", "TypeScript", "Pusher", "Mercado Pago", "Stripe", "Efipay", "Google OAuth", "Zendesk", "IA", "Digital Ocean", "AWS", "Firebase", "Docker"],
+                    projectDescription: "Snapic é uma plataforma completa de mídia social onde implementei sistemas completos de pagamento com cartão, PIX e boleto usando Mercado Pago, Stripe e Efipay. Desenvolvi mensagens em tempo real com Pusher para comunicação em massa eficiente, transmissão ao vivo com recursos de envio de presentes e sistemas de assinatura com cobrança recorrente. Integrei Google OAuth 2.0 para autenticação segura, Zendesk para suporte personalizado ao cliente e IA (ChatGPT) para melhorar algoritmos de feed e engajamento do usuário. Trabalhei com serviços em nuvem (Digital Ocean, AWS, Firebase Storage) e Docker para otimizar fluxos de trabalho e aprimorar a experiência do usuário.",
                     keyFeatures: [
-                        "Visualização 3D interativa com Three.js",
-                        "Design responsivo com UI/UX moderna",
-                        "Arquitetura escalável e otimização de performance",
-                        "Controles 3D e interações em tempo real"
+                        "Integração de pagamentos: Cartão, PIX e boleto com Mercado Pago/Stripe/Efipay",
+                        "Mensagens em tempo real com Pusher para comunicação em massa",
+                        "Transmissão ao vivo com recurso interativo de envio de presentes",
+                        "Sistemas de assinatura com gestão de cobrança recorrente",
+                        "Autenticação Google OAuth 2.0 e suporte Zendesk",
+                        "Feed alimentado por IA com ChatGPT para personalização de conteúdo"
                     ],
                     date: "2024"
                 },
                 {
-                    title: "Monitoramento IoT",
-                    description: "Sistema de monitoramento de Internet das Coisas com processamento de dados em tempo real",
-                    image: "/cda-home.png",
-                    images: ["/cda-home.png", "/daeshis-home.png", "/franciele-home.png", "/institutional-home.png", "/snapic-home.png", "/791.jpg"],
-                    technologies: ["React", "TypeScript", "Python", "MQTT", "Tailwind CSS", "Three.js"],
-                    projectDescription: "Este projeto inovador demonstra técnicas de desenvolvimento web de ponta, combinando princípios de design moderno com capacidades avançadas de visualização 3D. Construído com React e Three.js, oferece uma experiência de usuário imersiva que ultrapassa os limites das aplicações web interativas.",
+                    title: "Urban Vogue - E-commerce B2B/B2C",
+                    description: "Plataforma avançada de e-commerce white-label com pesquisa por voz, múltiplos gateways de pagamento, algoritmos de IA e suporte completo B2B/B2C",
+                    image: "/urban-vogue.png",
+                    images: ["/urban-vogue.png", "/urban-vogue.png", "/urban-vogue.png", "/urban-vogue.png", "/urban-vogue.png", "/urban-vogue.png"],
+                    technologies: ["Next.js", "Nest.js", "React", "TypeScript", "SQL", "OAuth", "Socket.IO", "EfiPay", "Mercado Pago", "Stripe", "PayPal", "WhatsApp", "Zendesk", "IA", "Correios", "Loggi"],
+                    projectDescription: "Urban Vogue é uma plataforma avançada de e-commerce white-label construída para modelos B2B e B2C, aproveitando tecnologias de ponta como Nest.js, React.js, Next.js, TypeScript, SQL, OAuth, reconhecimento de voz, webhooks, Socket.IO, envio de e-mail e SMS, integração WhatsApp Web e quatro gateways de pagamento (EfiPay, Mercado Pago, Stripe e PayPal) suportando vários países. Integrada com serviços postais (Correios e Loggi) e desenvolvida seguindo princípios SOLID e Clean Code. A plataforma oferece uma solução de e-commerce flexível, escalável e segura, projetada para atender necessidades de empresas e consumidores, proporcionando experiência de usuário ideal em vários pontos de contato.",
                     keyFeatures: [
-                        "Visualização 3D interativa com Three.js",
-                        "Design responsivo com UI/UX moderna",
-                        "Arquitetura escalável e otimização de performance",
-                        "Controles 3D e interações em tempo real"
+                        "Pesquisa por voz: Encontre produtos usando comandos de voz",
+                        "Múltiplos gateways: EfiPay, Mercado Pago, Stripe, PayPal (Pix, débito, crédito)",
+                        "Notificações em tempo real: Atualizações via painel, e-mail e SMS",
+                        "Algoritmo alimentado por IA: Descoberta de produtos aprimorada",
+                        "Painel admin avançado: Gestão completa de pedidos e inventário",
+                        "Integração postal: Correios e Loggi para rastreamento de envios"
                     ],
                     date: "2024"
                 },
                 {
-                    title: "Sistema CRM",
-                    description: "Sistema de gestão de relacionamento com cliente com processamento de dados em tempo real",
-                    image: "/daeshis-home.png",
-                    images: ["/daeshis-home.png", "/franciele-home.png", "/institutional-home.png", "/snapic-home.png", "/cda-home.png", "/about.jpg"],
-                    technologies: ["React", "TypeScript", "Node.js", "PostgreSQL", "Tailwind CSS", "Three.js"],
-                    projectDescription: "Este projeto inovador demonstra técnicas de desenvolvimento web de ponta, combinando princípios de design moderno com capacidades avançadas de visualização 3D. Construído com React e Three.js, oferece uma experiência de usuário imersiva que ultrapassa os limites das aplicações web interativas.",
-                    keyFeatures: [
-                        "Visualização 3D interativa com Three.js",
-                        "Design responsivo com UI/UX moderna",
-                        "Arquitetura escalável e otimização de performance",
-                        "Controles 3D e interações em tempo real"
-                    ],
-                    date: "2024"
-                },
-                {
-                    title: "Sistema ERP",
-                    description: "Sistema de planejamento de recursos empresariais com processamento de dados em tempo real",
+                    title: "Franciele Cruz - Escritório de Advocacia",
+                    description: "Landing page moderna e interativa para a advogada Franciele Cruz com foco em usabilidade e navegação intuitiva",
                     image: "/franciele-home.png",
-                    images: ["/franciele-home.png", "/institutional-home.png", "/snapic-home.png", "/cda-home.png", "/daeshis-home.png", "/contact.jpg"],
-                    technologies: ["React", "TypeScript", "Node.js", "PostgreSQL", "Tailwind CSS", "Three.js"],
-                    projectDescription: "Este projeto inovador demonstra técnicas de desenvolvimento web de ponta, combinando princípios de design moderno com capacidades avançadas de visualização 3D. Construído com React e Three.js, oferece uma experiência de usuário imersiva que ultrapassa os limites das aplicações web interativas.",
+                    images: ["/franciele-home.png", "/franciele-homepage.png", "/franciele-practice.png", "/franciele-services.png", "/franciele-trajectory.png", "/franciele-contact.png"],
+                    technologies: ["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Tecnologia NFC", "SEO"],
+                    projectDescription: "Landing page moderna e interativa para a advogada Franciele Cruz. O projeto exigiu um design elegante com foco na usabilidade e navegação intuitiva. Implementei animações sutis e uma estrutura responsiva para destacar os serviços jurídicos de forma clara e acessível em qualquer dispositivo. A página chamou a atenção de clientes de outros estados, tornando os serviços mais acessíveis e atraentes. A cliente apontou que a navegação é muito intuitiva, e o design, além de ser bonito, reflete a imagem profissional da empresa. Além disso, o cartão de visita com tecnologia NFC impressionou os clientes, oferecendo uma experiência inovadora e fácil acesso a informações de contato.",
                     keyFeatures: [
-                        "Visualização 3D interativa com Three.js",
-                        "Design responsivo com UI/UX moderna",
-                        "Arquitetura escalável e otimização de performance",
-                        "Controles 3D e interações em tempo real"
+                        "Design elegante e profissional refletindo identidade da marca",
+                        "Navegação intuitiva com experiência de usuário fluida",
+                        "Estrutura responsiva funcionando perfeitamente em todos dispositivos",
+                        "Animações sutis destacando serviços e conteúdo",
+                        "Tecnologia NFC em cartão de visita para networking moderno",
+                        "Otimização SEO atraindo clientes de outros estados"
                     ],
+                    link: "https://www.drafrancielecruz.com.br",
                     date: "2024"
                 },
             ]
@@ -693,7 +739,8 @@ const pt = {
             interactive3DPreview: "Preview 3D Interativo",
             date: "Data",
             more: "Mais",
-            viewMore: "Ver Mais"
+            viewMore: "Ver Mais",
+            visitProject: "Visitar Projeto"
         },
 
         backToTop: "Voltar ao Topo"
