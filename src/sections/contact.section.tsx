@@ -192,6 +192,6 @@ export const ContactSection = () => {
         isVisible={showToast}
         onClose={() => setShowToast(false)}
       />
-    </section>
+                                     </section>
   );
 };

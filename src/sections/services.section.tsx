@@ -113,7 +113,7 @@ export const ServicesSection = () => {
   };
 
   return (
-    <section id="services" className="min-h-screen text-white bg-black/50 relative overflow-hidden" ref={containerRef}>
+    <section className="min-h-screen text-white bg-black/50 relative overflow-hidden" ref={containerRef}>
       <motion.div
         className="absolute inset-0 opacity-30 left-[-200vw]"
         style={{
@@ -132,7 +132,7 @@ export const ServicesSection = () => {
           100% { background-position: -200% 0; }
         }
       `}</style>
-      <div className="max-w-[1500px] mx-auto px-8 py-24 h-screen flex flex-col justify-between max-[920px]:justify-start max-[920px]:py-12 max-[920px]:px-4 max-[570px]:py-16">
+      <div id="services"  className="max-w-[1500px] mx-auto px-8 py-24 h-screen flex flex-col justify-between max-[920px]:justify-start max-[920px]:py-12 max-[920px]:px-4 max-[570px]:py-16">
         <div className="mb-8 max-[770px]:mb-16 max-[570px]:mb-0">
           <motion.div
             ref={titleRef}
