@@ -139,25 +139,25 @@ export const ServicesSection = () => {
             className="flex items-center gap-8 mb-8"
             initial={{ opacity: 0, y: -80, filter: "blur(15px)", scale: 0.8 }}
             animate={titleInView ? { opacity: 1, y: 0, filter: "blur(0px)", scale: 1 } : { opacity: 0, y: -80, filter: "blur(15px)", scale: 0.8 }}
-            transition={{ duration: 1.2, ease: "easeOut", type: "spring", stiffness: 100 }}
+            transition={{ duration: 0.8, ease: "easeOut", type: "spring", stiffness: 100 }}
           >
-            <motion.h2 className="text-4xl font-bold max-[920px]:text-3xl" initial={{ opacity: 0, x: -30 }} animate={titleInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }} transition={{ duration: 0.8, ease: "easeOut", delay: 0.2 }}>
+            <motion.h2 className="text-4xl font-bold max-[920px]:text-3xl" initial={{ opacity: 0, x: -30 }} animate={titleInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }} transition={{ duration: 0.6, ease: "easeOut", delay: 0.1 }}>
               <ShinyTextComponent text={t("services.title")} speed={4} />
             </motion.h2>
-            <motion.div className="flex-1 h-px bg-white/20 mt-2" initial={{ width: 0, opacity: 0 }} animate={titleInView ? { width: "100%", opacity: 1 } : { width: 0, opacity: 0 }} transition={{ duration: 1.5, ease: "easeOut", delay: 0.5 }}></motion.div>
+            <motion.div className="flex-1 h-px bg-white/20 mt-2" initial={{ width: 0, opacity: 0 }} animate={titleInView ? { width: "100%", opacity: 1 } : { width: 0, opacity: 0 }} transition={{ duration: 1.0, ease: "easeOut", delay: 0.3 }}></motion.div>
           </motion.div>
           <motion.div
             ref={descriptionRef}
             className="mb-12"
             initial={{ opacity: 0, y: 50, filter: "blur(12px)", scale: 0.95 }}
             animate={descriptionInView ? { opacity: 1, y: 0, filter: "blur(0px)", scale: 1 } : { opacity: 0, y: 50, filter: "blur(12px)", scale: 0.95 }}
-            transition={{ duration: 1, ease: "easeOut", delay: 0.4, type: "spring", stiffness: 80 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.2, type: "spring", stiffness: 80 }}
           >
             <motion.h1
               className="text-2xl max-[570px]:hidden font-light leading-tight max-w-4xl max-[920px]:text-base max-[570px]:text-sm"
               initial={{ opacity: 0, x: -20 }}
               animate={descriptionInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
-              transition={{ duration: 0.8, ease: "easeOut", delay: 0.6 }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
             >
               {t("services.description")}
             </motion.h1>
@@ -170,7 +170,7 @@ export const ServicesSection = () => {
             className="grid grid-cols-2 gap-8 md:gap-16 w-2/3 max-[1320px]:w-4/5 max-[920px]:w-full max-[770px]:grid-cols-2 max-[570px]:grid-cols-1"
             initial={{ opacity: 0, y: 120, filter: "blur(15px)", scale: 0.9 }}
             animate={cardsInView ? { opacity: 1, y: 0, filter: "blur(0px)", scale: 1 } : { opacity: 0, y: 120, filter: "blur(15px)", scale: 0.9 }}
-            transition={{ duration: 1.2, ease: "easeOut", delay: 0.5, type: "spring", stiffness: 100 }}
+            transition={{ duration: 0.8, ease: "easeOut", delay: 0.3, type: "spring", stiffness: 100 }}
           >
             {getServicesData(t).map((service, index) => (
               <div key={index} className="service-card relative py-4 px-8 group h-52 max-[1320px]:h-44 max-[770px]:h-36 max-[920px]:px-4 max-[920px]:py-2 max-[630px]:h-28">
@@ -181,9 +181,9 @@ export const ServicesSection = () => {
                   initial={{ opacity: 0, scale: 0.3, rotate: -180, y: 50 }}
                   animate={cardsInView ? { opacity: 1, scale: 1, rotate: 0, y: 0 } : { opacity: 0, scale: 0.3, rotate: -180, y: 50 }}
                   transition={{
-                    duration: 1.2,
+                    duration: 0.8,
                     ease: "easeOut",
-                    delay: 1.2 + index * 0.15,
+                    delay: 0.6 + index * 0.1,
                     type: "spring",
                     stiffness: 100,
                   }}
@@ -205,9 +205,9 @@ export const ServicesSection = () => {
                   initial={{ opacity: 0, y: 30, scale: 0.8, rotateX: 20 }}
                   animate={cardsInView ? { opacity: 1, y: 0, scale: 1, rotateX: 0 } : { opacity: 0, y: 30, scale: 0.8, rotateX: 20 }}
                   transition={{
-                    duration: 0.8,
+                    duration: 0.6,
                     ease: "easeOut",
-                    delay: 1.4 + index * 0.15,
+                    delay: 0.8 + index * 0.1,
                     type: "spring",
                     stiffness: 120,
                   }}
@@ -221,9 +221,9 @@ export const ServicesSection = () => {
                     initial={{ opacity: 0, x: -20 }}
                     animate={cardsInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -20 }}
                     transition={{
-                      duration: 0.6,
+                      duration: 0.5,
                       ease: "easeOut",
-                      delay: 1.5 + index * 0.15,
+                      delay: 0.9 + index * 0.1,
                     }}
                   >
                     <ShinyTextComponent text={service.title} speed={4} />
@@ -234,9 +234,9 @@ export const ServicesSection = () => {
                   initial={{ opacity: 0, y: 30, x: 20, filter: "blur(5px)" }}
                   animate={cardsInView ? { opacity: 1, y: 0, x: 0, filter: "blur(0px)" } : { opacity: 0, y: 30, x: 20, filter: "blur(5px)" }}
                   transition={{
-                    duration: 0.8,
+                    duration: 0.6,
                     ease: "easeOut",
-                    delay: 1.6 + index * 0.15,
+                    delay: 1.0 + index * 0.1,
                     type: "spring",
                     stiffness: 100,
                   }}
@@ -255,9 +255,9 @@ export const ServicesSection = () => {
         className="text-xl text-center absolute left-1/2 -translate-x-1/2 bottom-6 hidden text-nowrap max-[920px]:block"
         initial={{ opacity: 0, x: -150, y: 20, filter: "blur(15px)", scale: 0.8 }}
         animate={sideTextInView ? { opacity: 1, x: 0, y: 0, filter: "blur(0px)", scale: 1 } : { opacity: 0, x: -150, y: 20, filter: "blur(15px)", scale: 0.8 }}
-        transition={{ duration: 1.2, ease: "easeOut", delay: 0.8, type: "spring", stiffness: 60 }}
+        transition={{ duration: 0.8, ease: "easeOut", delay: 0.5, type: "spring", stiffness: 60 }}
       >
-        <motion.span className="text-lg text-nowrap max-[570px]:text-xs" initial={{ opacity: 0, y: 20 }} animate={sideTextInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }} transition={{ duration: 0.8, ease: "easeOut", delay: 1.2 }}>
+        <motion.span className="text-lg text-nowrap max-[570px]:text-xs" initial={{ opacity: 0, y: 20 }} animate={sideTextInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }} transition={{ duration: 0.6, ease: "easeOut", delay: 0.7 }}>
           {t("services.sub_description")}
         </motion.span>
       </motion.div>
