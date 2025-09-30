@@ -137,6 +137,11 @@ export const MyWorkSection = () => {
     openModal();
   };
 
+  const handleCloseModal = () => {
+    closeModal();
+    setActiveTab("description");
+  };
+
   const getModalContent = () => {
     if (selectedProject === null) return null;
     const project = getProjects(t).find((p) => p.id === selectedProject);
@@ -524,7 +529,7 @@ export const MyWorkSection = () => {
       </div>
 
       {/* Modal with dark theme */}
-      <Modal isOpen={isOpen} onClose={closeModal} title={selectedProject !== null ? getProjects(t).find((p) => p.id === selectedProject)?.title + " - " + getProjects(t).find((p) => p.id === selectedProject)?.date || "Project" : "Project Details"} theme="dark">
+      <Modal isOpen={isOpen} onClose={handleCloseModal} title={selectedProject !== null ? getProjects(t).find((p) => p.id === selectedProject)?.title + " - " + getProjects(t).find((p) => p.id === selectedProject)?.date || "Project" : "Project Details"} theme="dark">
         {getModalContent()}
       </Modal>
     </section>

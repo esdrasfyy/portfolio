@@ -109,7 +109,7 @@ export const Cube3D = ({ onRotationChange, rotation, projectImages }: Cube3DProp
           </div>
         </div>
       )}
-      <div className="w-full h-full max-w-[450px] max-h-[450px] mx-auto aspect-square">
+      <div className="w-full h-full mx-auto aspect-square">
         <Canvas camera={{ position: [0, 0, 7], fov: 45 }} style={{ background: "transparent", width: "100%", height: "100%" }}>
           <ambientLight intensity={0.6} />
           <directionalLight position={[5, 5, 5]} intensity={0.4} />
