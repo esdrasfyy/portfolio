@@ -63,7 +63,7 @@ function Cube({ onRotationChange, rotation = { x: 0, y: 0, z: 0 }, projectImages
       <group>
         <mesh>
           <boxGeometry args={[4, 4, 4]} />
-          <meshBasicMaterial color="#333333" wireframe />
+          <meshBasicMaterial color="black" wireframe />
         </mesh>
       </group>
     );
@@ -78,10 +78,8 @@ function Cube({ onRotationChange, rotation = { x: 0, y: 0, z: 0 }, projectImages
             key={i}
             attach={`material-${i}`} // aplica textura na face i
             map={texture}
-            metalness={0.1}
-            roughness={0.5}
-            emissive="#000000"
-            emissiveIntensity={0.0}
+            metalness={0.0}
+            roughness={0.8}
           />
         ))}
       </mesh>
@@ -113,13 +111,9 @@ export const Cube3D = ({ onRotationChange, rotation, projectImages }: Cube3DProp
       )}
       <div className="w-full h-full max-w-[450px] max-h-[450px] mx-auto aspect-square">
         <Canvas camera={{ position: [0, 0, 7], fov: 45 }} style={{ background: "transparent", width: "100%", height: "100%" }}>
-          <ambientLight intensity={0.4} />
-          <directionalLight position={[5, 5, 5]} intensity={0.8} />
-          <directionalLight position={[-5, 5, 5]} intensity={0.6} />
-          <directionalLight position={[0, -5, 5]} intensity={0.5} />
-          <directionalLight position={[5, 0, 5]} intensity={0.5} />
-          <directionalLight position={[-5, 0, 5]} intensity={0.5} />
-
+          <ambientLight intensity={0.6} />
+          <directionalLight position={[5, 5, 5]} intensity={0.4} />
+          <directionalLight position={[-5, -5, 5]} intensity={0.3} />
           <Cube onRotationChange={onRotationChange} rotation={rotation} projectImages={projectImages} />
 
           <OrbitControls enablePan={false} enableZoom={false} enableRotate={true} autoRotate={false} />
