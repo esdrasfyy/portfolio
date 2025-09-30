@@ -127,7 +127,7 @@ export const AboutSection = () => {
   return (
     <section id="about" className="h-screen bg-secondary text-text-reverse py-16 relative max-[420px]:py-12">
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-10"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-60"
         style={{
           backgroundImage: "url('/about.jpg')",
         }}

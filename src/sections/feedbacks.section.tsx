@@ -91,10 +91,9 @@ export const FeedbacksSection = () => {
   return (
     <section id="feedbacks" className="h-screen bg-white w-full relative overflow-hidden">
       <div
-        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-15"
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-30"
         style={{
-          backgroundImage: "url('/services.jpg')",
-          filter: "invert(1)",
+          backgroundImage: "url('/feedbacks.jpg')",
         }}
       ></div>
       <TextTube 
