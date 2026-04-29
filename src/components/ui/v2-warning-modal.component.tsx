@@ -66,7 +66,7 @@ export const V2WarningModal = () => {
         >
           <p className="text-gray-300">
             Eu estou desenvolvendo a V2 do portfólio. As informações atuais podem não estar atualizadas. 
-            Para projetos mais recentes, consulte meu LinkedIn.
+            Para projetos mais recentes, consulte meu <a href="https://www.linkedin.com/in/fernando-esdras/" target="_blank" className="text-white font-semibold hover:underline">LinkedIn</a>.
           </p>
         </motion.div>
 
@@ -78,7 +78,7 @@ export const V2WarningModal = () => {
         >
           <motion.button
             onClick={handleAccept}
-            className="px-6 py-2 bg-gray-800 text-white border border-gray-600 rounded hover:bg-gray-700 transition-colors"
+            className="px-6 py-2 cursor-pointer bg-gray-800 text-white border border-gray-600 rounded hover:bg-gray-700 transition-colors"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
